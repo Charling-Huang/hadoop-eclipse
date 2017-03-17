@@ -5,10 +5,10 @@ Bundle-SymbolicName: org.apache.hadoop.eclipse.release;singleton:=true
 Bundle-Version: 1.1.2.qualifier
 Bundle-Vendor: Apache Hadoop
 Fragment-Host: org.apache.hadoop.eclipse;bundle-version="1.0.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: lib/hadoop-1.1.2.21/hadoop-ant-1.1.2.21.jar,
  lib/hadoop-1.1.2.21/hadoop-client-1.1.2.21.jar,
- lib/hadoop-1.1.2.21/hadoop-core-1.1.1.jar,
+ lib/hadoop-1.1.2.21/hadoop-core-1.2.1.jar,
  lib/hadoop-1.1.2.21/hadoop-core-1.1.2.21.jar,
  lib/hadoop-1.1.2.21/hadoop-examples-1.1.2.21.jar,
  lib/hadoop-1.1.2.21/hadoop-minicluster-1.1.2.21.jar,
