@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <fragment>
    <extension
-         point="org.apache.hadoop.eclipse.hdfsclient">
+         point="org.apache.hadoop.eclipse.hdfsClient">
       <hdfsClient
             class="org.apache.hadoop.eclipse.release.webhdfs.HDFSClientRelease"
             protocol="webhdfs"
