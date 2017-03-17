@@ -22,7 +22,7 @@
       <hdfsClient
             class="org.apache.hadoop.eclipse.release.HDFSClientRelease"
             protocol="hdfs"
-            protocolVersion="1.1.2.21">
+            protocolVersion="2.7.2">
       </hdfsClient>
    </extension>
    <extension
