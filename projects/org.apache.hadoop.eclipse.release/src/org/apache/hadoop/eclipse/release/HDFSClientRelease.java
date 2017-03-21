@@ -221,14 +221,14 @@ public class HDFSClientRelease extends org.apache.hadoop.eclipse.hdfs.HDFSClient
 	@Override
 	public List<String> getDefaultUserAndGroupIds() throws IOException {
 		List<String> idList = new ArrayList<String>();
-		UserGroupInformation currentUser = UserGroupInformation.getCurrentUser();
-		idList.add(currentUser.getShortUserName());
-		String[] groupIds = currentUser.getGroupNames();
-		if (groupIds != null) {
-			for (String groupId : groupIds) {
-				idList.add(groupId);
-			}
-		}
+//		UserGroupInformation currentUser = UserGroupInformation.getCurrentUser();
+//		idList.add(currentUser.getShortUserName());
+//		String[] groupIds = currentUser.getGroupNames();
+//		if (groupIds != null) {
+//			for (String groupId : groupIds) {
+//				idList.add(groupId);
+//			}
+//		}
 		return idList;
 	}
 

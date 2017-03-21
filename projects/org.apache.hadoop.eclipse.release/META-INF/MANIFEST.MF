@@ -6,13 +6,14 @@ Bundle-Version: 1.1.2.qualifier
 Bundle-Vendor: Apache Hadoop
 Fragment-Host: org.apache.hadoop.eclipse;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Bundle-ClassPath: lib/hadoop-1.1.2.21/hadoop-ant-2.7.2.jar,
+Bundle-ClassPath: lib/hadoop-2.7.2/hadoop-ant-2.7.2.jar,
  lib/hadoop-2.7.2/hadoop-client-2.7.2.jar,
  lib/hadoop-2.7.2/hadoop-common-2.7.2.jar,
  lib/hadoop-2.7.2/hadoop-examples-1.1.2.21.jar,
  lib/hadoop-2.7.2/hadoop-minicluster-1.1.2.21.jar,
  lib/hadoop-2.7.2/hadoop-test-1.1.2.21.jar,
  lib/hadoop-2.7.2/hadoop-tools-1.1.2.21.jar,
+ lib/hadoop-2.7.2/hadoop-auth-2.7.2.jar,
  lib/hadoop-2.7.2/commons-configuration-1.6.jar,
  lib/hadoop-2.7.2/commons-lang-2.4.jar,
  lib/hadoop-2.7.2/commons-logging-1.1.1.jar,
@@ -24,3 +25,4 @@ Bundle-ClassPath: lib/hadoop-1.1.2.21/hadoop-ant-2.7.2.jar,
  lib/zookeeper-3.4.5/slf4j-api-1.6.1.jar,
  lib/zookeeper-3.4.5/slf4j-log4j12-1.6.1.jar,
  lib/zookeeper-3.4.5/zookeeper-3.4.5.21.jar
+Require-Bundle: org.apache.commons.collections;bundle-version="3.2.2"
