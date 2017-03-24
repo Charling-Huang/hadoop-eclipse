@@ -20,5 +20,12 @@
 	<classpathentry kind="lib" path="lib/hadoop-2.7.2/hadoop-common-2.7.2.jar"/>
 	<classpathentry kind="lib" path="lib/guava-21.0.jar"/>
 	<classpathentry kind="lib" path="lib/hadoop-2.7.2/hadoop-auth-2.7.2.jar"/>
+	<classpathentry kind="lib" path="lib/hadoop-2.7.2/commons-cli-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/hadoop-2.7.2/commons-collections-3.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/hadoop-2.7.2/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/htrace-core-3.1.0-incubating.jar"/>
+	<classpathentry kind="lib" path="lib/protobuf-java-3.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/servlet-api-2.3.jar"/>
+	<classpathentry kind="lib" path="lib/hadoop-2.7.2/hadoop-hdfs-2.7.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

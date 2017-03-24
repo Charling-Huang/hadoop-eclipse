@@ -49,6 +49,7 @@ public class HDFSClientRelease extends org.apache.hadoop.eclipse.hdfs.HDFSClient
 
 	public HDFSClientRelease() {
 		config = new Configuration();
+//		config.set( "fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem" );
 	}
 
 	private ResourceInformation getResourceInformation(FileStatus fileStatus) {
