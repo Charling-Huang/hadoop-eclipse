@@ -1,3 +1,4 @@
+
 package org.apache.hadoop.eclipse.ui.internal.hdfs;
 
 import java.util.ArrayList;
@@ -28,34 +29,45 @@ import org.eclipse.ui.views.properties.PropertySheetSorter;
 import org.eclipse.ui.views.properties.tabbed.AbstractPropertySection;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
-public class HDFSPropertySection extends AbstractPropertySection {
+public class HDFSPropertySection extends AbstractPropertySection
+{
 
-	private static final Logger logger = Logger.getLogger(HDFSPropertySection.class);
+	private static final Logger logger = Logger
+			.getLogger( HDFSPropertySection.class );
 
-	private static class HDFSPropertySheetPage extends PropertySheetPage {
-		public HDFSPropertySheetPage() {
-			final List<String> namesList = new ArrayList<String>();
-			namesList.add("User");
-			namesList.add("Group");
-			namesList.add("Is downloaded");
-			namesList.add("Effective Permissions");
-			namesList.add("User Permissions");
-			namesList.add("Group Permissions");
-			namesList.add("Other Permissions");
-			setSorter(new PropertySheetSorter() {
+	private static class HDFSPropertySheetPage extends PropertySheetPage
+	{
+
+		public HDFSPropertySheetPage( )
+		{
+			final List<String> namesList = new ArrayList<String>( );
+			namesList.add( "User" );
+			namesList.add( "Group" );
+			namesList.add( "Is downloaded" );
+			namesList.add( "Effective Permissions" );
+			namesList.add( "User Permissions" );
+			namesList.add( "Group Permissions" );
+			namesList.add( "Other Permissions" );
+			setSorter( new PropertySheetSorter( ) {
+
 				@Override
-				public int compare(IPropertySheetEntry entryA, IPropertySheetEntry entryB) {
-					int indexA = namesList.indexOf(entryA.getCategory());
-					int indexB = namesList.indexOf(entryB.getCategory());
+				public int compare( IPropertySheetEntry entryA,
+						IPropertySheetEntry entryB )
+				{
+					int indexA = namesList.indexOf( entryA.getCategory( ) );
+					int indexB = namesList.indexOf( entryB.getCategory( ) );
 					return indexA - indexB;
 				}
+
 				@Override
-				public int compareCategories(String categoryA, String categoryB) {
-					int indexA = namesList.indexOf(categoryA);
-					int indexB = namesList.indexOf(categoryB);
+				public int compareCategories( String categoryA,
+						String categoryB )
+				{
+					int indexA = namesList.indexOf( categoryA );
+					int indexB = namesList.indexOf( categoryB );
 					return indexA - indexB;
 				}
-			});
+			} );
 		}
 	}
 
@@ -68,88 +80,115 @@ public class HDFSPropertySection extends AbstractPropertySection {
 	private Composite hdfsPropertiesComposite;
 	private PropertySheetPage propertySheetPage;
 
-	public HDFSPropertySection() {
+	public HDFSPropertySection( )
+	{
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.ui.views.properties.tabbed.AbstractPropertySection#createControls
-	 * (org.eclipse.swt.widgets.Composite,
+	 * @see org.eclipse.ui.views.properties.tabbed.AbstractPropertySection#
+	 * createControls (org.eclipse.swt.widgets.Composite,
 	 * org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage)
 	 */
 	@Override
-	public void createControls(Composite parent, TabbedPropertySheetPage page) {
-		topComposite = page.getWidgetFactory().createComposite(parent);
-		stackLayout = new StackLayout();
-		topComposite.setLayout(stackLayout);
+	public void createControls( Composite parent, TabbedPropertySheetPage page )
+	{
+		topComposite = page.getWidgetFactory( ).createComposite( parent );
+		stackLayout = new StackLayout( );
+		topComposite.setLayout( stackLayout );
 		// no HDFS
-		nonHDFSComposite = page.getWidgetFactory().createComposite(topComposite);
-		nonHDFSComposite.setLayout(new GridLayout());
-		page.getWidgetFactory().createLabel(nonHDFSComposite, "Selection is not a HDFS resource").setLayoutData(new GridData());
+		nonHDFSComposite = page.getWidgetFactory( )
+				.createComposite( topComposite );
+		nonHDFSComposite.setLayout( new GridLayout( ) );
+		page.getWidgetFactory( )
+				.createLabel( nonHDFSComposite,
+						"Selection is not a HDFS resource" )
+				.setLayoutData( new GridData( ) );
 		// Project
-		hdfsResourceTopComposite = page.getWidgetFactory().createComposite(topComposite);
-		final GridLayout hdfsResourceLayout = new GridLayout(2, false);
+		hdfsResourceTopComposite = page.getWidgetFactory( )
+				.createComposite( topComposite );
+		final GridLayout hdfsResourceLayout = new GridLayout( 2, false );
 		hdfsResourceLayout.marginLeft = hdfsResourceLayout.marginBottom = hdfsResourceLayout.marginWidth = hdfsResourceLayout.marginHeight = hdfsResourceLayout.marginTop = hdfsResourceLayout.marginRight = 0;
-		hdfsResourceTopComposite.setLayout(hdfsResourceLayout);
-		hdfsResourceComposite = page.getWidgetFactory().createComposite(hdfsResourceTopComposite);
-		GridData gd = new GridData(GridData.FILL_VERTICAL | GridData.GRAB_VERTICAL);
+		hdfsResourceTopComposite.setLayout( hdfsResourceLayout );
+		hdfsResourceComposite = page.getWidgetFactory( )
+				.createComposite( hdfsResourceTopComposite );
+		GridData gd = new GridData(
+				GridData.FILL_VERTICAL | GridData.GRAB_VERTICAL );
 		gd.widthHint = 0; // TODO increase width when graphs available.
-		hdfsResourceComposite.setLayoutData(gd);
-		hdfsPropertiesComposite = page.getWidgetFactory().createComposite(hdfsResourceTopComposite);
-		hdfsPropertiesComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
-		hdfsPropertiesComposite.setLayout(new FillLayout());
-		createPropertiesPage(hdfsPropertiesComposite, page);
+		hdfsResourceComposite.setLayoutData( gd );
+		hdfsPropertiesComposite = page.getWidgetFactory( )
+				.createComposite( hdfsResourceTopComposite );
+		hdfsPropertiesComposite
+				.setLayoutData( new GridData( GridData.FILL_BOTH ) );
+		hdfsPropertiesComposite.setLayout( new FillLayout( ) );
+		createPropertiesPage( hdfsPropertiesComposite, page );
 	}
 
 	/**
 	 * @param hdfsPropertiesComposite2
 	 * @param page
 	 */
-	private void createPropertiesPage(Composite parent, final TabbedPropertySheetPage atabbedPropertySheetPage) {
-		super.createControls(parent, atabbedPropertySheetPage);
-		Composite composite = getWidgetFactory().createFlatFormComposite(parent);
-		propertySheetPage = new HDFSPropertySheetPage();
-		propertySheetPage.createControl(composite);
-		FormData data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(100, 0);
-		data.top = new FormAttachment(0, 0);
-		data.bottom = new FormAttachment(100, 0);
-		propertySheetPage.getControl().setLayoutData(data);
-		propertySheetPage.getControl().addControlListener(new ControlAdapter() {
-			public void controlResized(ControlEvent e) {
-				atabbedPropertySheetPage.resizeScrolledComposite();
-			}
-		});
-		propertySheetPage.selectionChanged(getPart(), getSelection());
+	private void createPropertiesPage( Composite parent,
+			final TabbedPropertySheetPage atabbedPropertySheetPage )
+	{
+		super.createControls( parent, atabbedPropertySheetPage );
+		Composite composite = getWidgetFactory( )
+				.createFlatFormComposite( parent );
+		propertySheetPage = new HDFSPropertySheetPage( );
+		propertySheetPage.createControl( composite );
+		FormData data = new FormData( );
+		data.left = new FormAttachment( 0, 0 );
+		data.right = new FormAttachment( 100, 0 );
+		data.top = new FormAttachment( 0, 0 );
+		data.bottom = new FormAttachment( 100, 0 );
+		propertySheetPage.getControl( ).setLayoutData( data );
+		propertySheetPage.getControl( )
+				.addControlListener( new ControlAdapter( ) {
+
+					public void controlResized( ControlEvent e )
+					{
+						atabbedPropertySheetPage.resizeScrolledComposite( );
+					}
+				} );
+		propertySheetPage.selectionChanged( getPart( ), getSelection( ) );
 	}
 
 	@Override
-	public void setInput(IWorkbenchPart part, ISelection selection) {
+	public void setInput( IWorkbenchPart part, ISelection selection )
+	{
 		this.store = null;
 		Composite c = nonHDFSComposite;
-		if (!selection.isEmpty()) {
-			Object firstElement = ((IStructuredSelection) selection).getFirstElement();
-			if (firstElement instanceof IResource) {
+		if ( !selection.isEmpty( ) )
+		{
+			Object firstElement = ( (IStructuredSelection) selection )
+					.getFirstElement( );
+			if ( firstElement instanceof IResource )
+			{
 				IResource resource = (IResource) firstElement;
-				try {
-					if (resource.getLocationURI() != null && HDFSFileSystem.SCHEME.equals(resource.getLocationURI().getScheme())) {
+				try
+				{
+					if ( resource.getLocationURI( ) != null
+							&& HDFSFileSystem.SCHEME.equals(
+									resource.getLocationURI( ).getScheme( ) ) )
+					{
 						c = hdfsResourceTopComposite;
-						store = (HDFSFileStore) EFS.getStore(resource.getLocationURI());
+						store = (HDFSFileStore) EFS
+								.getStore( resource.getLocationURI( ) );
 					}
-				} catch (CoreException e) {
-					logger.warn(e.getMessage(), e);
+				}
+				catch ( CoreException e )
+				{
+					logger.warn( e.getMessage( ), e );
 				}
 			}
 		}
-		selection = new StructuredSelection(this.store);
-		if (this.propertySheetPage != null)
-			this.propertySheetPage.selectionChanged(part, selection);
-		super.setInput(part, selection);
+		selection = new StructuredSelection( this.store );
+		if ( this.propertySheetPage != null )
+			this.propertySheetPage.selectionChanged( part, selection );
+		super.setInput( part, selection );
 		stackLayout.topControl = c;
-		topComposite.layout();
+		topComposite.layout( );
 	}
 
 	/*
@@ -159,10 +198,12 @@ public class HDFSPropertySection extends AbstractPropertySection {
 	 * org.eclipse.ui.views.properties.tabbed.AbstractPropertySection#dispose()
 	 */
 	@Override
-	public void dispose() {
-		super.dispose();
-		if (this.propertySheetPage != null) {
-			this.propertySheetPage.dispose();
+	public void dispose( )
+	{
+		super.dispose( );
+		if ( this.propertySheetPage != null )
+		{
+			this.propertySheetPage.dispose( );
 			this.propertySheetPage = null;
 		}
 	}
@@ -174,9 +215,10 @@ public class HDFSPropertySection extends AbstractPropertySection {
 	 * org.eclipse.ui.views.properties.tabbed.AbstractPropertySection#refresh()
 	 */
 	@Override
-	public void refresh() {
-		super.refresh();
-		if (this.propertySheetPage != null)
-			this.propertySheetPage.refresh();
+	public void refresh( )
+	{
+		super.refresh( );
+		if ( this.propertySheetPage != null )
+			this.propertySheetPage.refresh( );
 	}
 }

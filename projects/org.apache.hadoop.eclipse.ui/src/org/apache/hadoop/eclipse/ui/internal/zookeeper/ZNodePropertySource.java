@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.hadoop.eclipse.ui.internal.zookeeper;
 
 import java.text.DateFormat;
@@ -32,56 +33,69 @@ import org.eclipse.ui.views.properties.PropertyDescriptor;
  * @author Srimanth Gunturi
  * 
  */
-public class ZNodePropertySource implements IPropertySource {
+public class ZNodePropertySource implements IPropertySource
+{
 
 	/**
 	 * 
 	 */
-	private static final String PROP_DATA_SIZE = Activator.PLUGIN_ID + ".znode.dsize";
+	private static final String PROP_DATA_SIZE = Activator.PLUGIN_ID
+			+ ".znode.dsize";
 	/**
 	 * 
 	 */
-	private static final String PROP_CHILD_COUNT = Activator.PLUGIN_ID + ".znode.ccount";
+	private static final String PROP_CHILD_COUNT = Activator.PLUGIN_ID
+			+ ".znode.ccount";
 	/**
 	 * 
 	 */
-	private static final String PROP_TIME_REFRESH = Activator.PLUGIN_ID + ".znode.rtime";
+	private static final String PROP_TIME_REFRESH = Activator.PLUGIN_ID
+			+ ".znode.rtime";
 	/**
 	 * 
 	 */
-	private static final String PROP_TIME_MODIFICATION = Activator.PLUGIN_ID + ".znode.mtime";
+	private static final String PROP_TIME_MODIFICATION = Activator.PLUGIN_ID
+			+ ".znode.mtime";
 	/**
 	 * 
 	 */
-	private static final String PROP_TIME_CREATION = Activator.PLUGIN_ID + ".znode.ctime";
+	private static final String PROP_TIME_CREATION = Activator.PLUGIN_ID
+			+ ".znode.ctime";
 	/**
 	 * 
 	 */
-	private static final String PROP_ID_MODIFICATION = Activator.PLUGIN_ID + ".znode.mxid";
+	private static final String PROP_ID_MODIFICATION = Activator.PLUGIN_ID
+			+ ".znode.mxid";
 	/**
 	 * 
 	 */
-	private static final String PROP_ID_CREATION = Activator.PLUGIN_ID + ".znode.cxid";
+	private static final String PROP_ID_CREATION = Activator.PLUGIN_ID
+			+ ".znode.cxid";
 	/**
 	 * 
 	 */
-	private static final String PROP_VERSION_ACL = Activator.PLUGIN_ID + ".znode.aversion";
+	private static final String PROP_VERSION_ACL = Activator.PLUGIN_ID
+			+ ".znode.aversion";
 	/**
 	 * 
 	 */
-	private static final String PROP_VERSION_CHILDREN = Activator.PLUGIN_ID + ".znode.cversion";
+	private static final String PROP_VERSION_CHILDREN = Activator.PLUGIN_ID
+			+ ".znode.cversion";
 	/**
 	 * 
 	 */
-	private static final String PROP_VERSION = Activator.PLUGIN_ID + ".znode.version";
+	private static final String PROP_VERSION = Activator.PLUGIN_ID
+			+ ".znode.version";
 	/**
 	 * 
 	 */
-	private static final String PROP_EPHERMERAL = Activator.PLUGIN_ID + ".znode.ephermeral";
+	private static final String PROP_EPHERMERAL = Activator.PLUGIN_ID
+			+ ".znode.ephermeral";
 	/**
 	 * 
 	 */
-	private static final String PROP_EPHERMERAL_SESSION_ID = Activator.PLUGIN_ID + ".znode.ephermeral.sessionid";
+	private static final String PROP_EPHERMERAL_SESSION_ID = Activator.PLUGIN_ID
+			+ ".znode.ephermeral.sessionid";
 	/**
 	 * 
 	 */
@@ -92,7 +106,8 @@ public class ZNodePropertySource implements IPropertySource {
 	/**
 	 * @param zNode
 	 */
-	public ZNodePropertySource(ZNode zNode) {
+	public ZNodePropertySource( ZNode zNode )
+	{
 		this.zNode = zNode;
 	}
 
@@ -102,7 +117,8 @@ public class ZNodePropertySource implements IPropertySource {
 	 * @see org.eclipse.ui.views.properties.IPropertySource#getEditableValue()
 	 */
 	@Override
-	public Object getEditableValue() {
+	public Object getEditableValue( )
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -114,35 +130,51 @@ public class ZNodePropertySource implements IPropertySource {
 	 * org.eclipse.ui.views.properties.IPropertySource#getPropertyDescriptors()
 	 */
 	@Override
-	public IPropertyDescriptor[] getPropertyDescriptors() {
-		if (zNode != null) {
-			List<IPropertyDescriptor> props = new ArrayList<IPropertyDescriptor>();
-			props.add(new PropertyDescriptor(PROP_PATH, "Path"));
+	public IPropertyDescriptor[] getPropertyDescriptors( )
+	{
+		if ( zNode != null )
+		{
+			List<IPropertyDescriptor> props = new ArrayList<IPropertyDescriptor>( );
+			props.add( new PropertyDescriptor( PROP_PATH, "Path" ) );
 			// Versions
-			props.add(new PropertyDescriptor(PROP_VERSION, "Version (Node)"));
-			props.add(new PropertyDescriptor(PROP_VERSION_CHILDREN, "Version (Children)"));
-			props.add(new PropertyDescriptor(PROP_VERSION_ACL, "Version (ACL)"));
+			props.add(
+					new PropertyDescriptor( PROP_VERSION, "Version (Node)" ) );
+			props.add( new PropertyDescriptor( PROP_VERSION_CHILDREN,
+					"Version (Children)" ) );
+			props.add( new PropertyDescriptor( PROP_VERSION_ACL,
+					"Version (ACL)" ) );
 			// IDs
-			props.add(new PropertyDescriptor(PROP_ID_CREATION, "ID (Creation)"));
-			props.add(new PropertyDescriptor(PROP_ID_MODIFICATION, "ID (Modification)"));
+			props.add( new PropertyDescriptor( PROP_ID_CREATION,
+					"ID (Creation)" ) );
+			props.add( new PropertyDescriptor( PROP_ID_MODIFICATION,
+					"ID (Modification)" ) );
 			// Time
-			props.add(new PropertyDescriptor(PROP_TIME_CREATION, "Created"));
-			props.add(new PropertyDescriptor(PROP_TIME_MODIFICATION, "Modified"));
-			props.add(new PropertyDescriptor(PROP_TIME_REFRESH, "Refreshed"));
+			props.add(
+					new PropertyDescriptor( PROP_TIME_CREATION, "Created" ) );
+			props.add( new PropertyDescriptor( PROP_TIME_MODIFICATION,
+					"Modified" ) );
+			props.add(
+					new PropertyDescriptor( PROP_TIME_REFRESH, "Refreshed" ) );
 			// Misc
-			props.add(new PropertyDescriptor(PROP_CHILD_COUNT, "Children Count"));
-			props.add(new PropertyDescriptor(PROP_DATA_SIZE, "Data size"));
-			props.add(new PropertyDescriptor(PROP_EPHERMERAL, "Is Ephermeral Node"));
-			if (zNode.isEphermeral())
-				props.add(new PropertyDescriptor(PROP_EPHERMERAL_SESSION_ID, "Ephermeral Session Id"));
-			return props.toArray(new IPropertyDescriptor[props.size()]);
+			props.add( new PropertyDescriptor( PROP_CHILD_COUNT,
+					"Children Count" ) );
+			props.add( new PropertyDescriptor( PROP_DATA_SIZE, "Data size" ) );
+			props.add( new PropertyDescriptor( PROP_EPHERMERAL,
+					"Is Ephermeral Node" ) );
+			if ( zNode.isEphermeral( ) )
+				props.add( new PropertyDescriptor( PROP_EPHERMERAL_SESSION_ID,
+						"Ephermeral Session Id" ) );
+			return props.toArray( new IPropertyDescriptor[props.size( )] );
 		}
 		return new IPropertyDescriptor[0];
 	}
 
-	protected String getTimeDisplay(long time) {
-		if (time > 0)
-			return DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(new Date(time));
+	protected String getTimeDisplay( long time )
+	{
+		if ( time > 0 )
+			return DateFormat
+					.getDateTimeInstance( DateFormat.LONG, DateFormat.LONG )
+					.format( new Date( time ) );
 		return null;
 	}
 
@@ -154,33 +186,34 @@ public class ZNodePropertySource implements IPropertySource {
 	 * .lang.Object)
 	 */
 	@Override
-	public Object getPropertyValue(Object id) {
-		if (PROP_PATH.equals(id))
-			return zNode.getPath();
-		if (PROP_CHILD_COUNT.equals(id))
-			return zNode.getChildrenCount();
-		if (PROP_DATA_SIZE.equals(id))
-			return zNode.getDataLength();
-		if (PROP_TIME_CREATION.equals(id))
-			return getTimeDisplay(zNode.getCreationTime());
-		if (PROP_TIME_MODIFICATION.equals(id))
-			return getTimeDisplay(zNode.getModifiedTime());
-		if (PROP_TIME_REFRESH.equals(id))
-			return getTimeDisplay(zNode.getLastRefresh());
-		if (PROP_ID_CREATION.equals(id))
-			return zNode.getCreationId();
-		if (PROP_ID_MODIFICATION.equals(id))
-			return zNode.getModifiedId();
-		if (PROP_VERSION.equals(id))
-			return zNode.getVersion();
-		if (PROP_VERSION_ACL.equals(id))
-			return zNode.getAclVersion();
-		if (PROP_VERSION_CHILDREN.equals(id))
-			return zNode.getChildrenVersion();
-		if (PROP_EPHERMERAL.equals(id))
-			return zNode.isEphermeral();
-		if (PROP_EPHERMERAL_SESSION_ID.equals(id))
-			return zNode.getEphermalOwnerSessionId();
+	public Object getPropertyValue( Object id )
+	{
+		if ( PROP_PATH.equals( id ) )
+			return zNode.getPath( );
+		if ( PROP_CHILD_COUNT.equals( id ) )
+			return zNode.getChildrenCount( );
+		if ( PROP_DATA_SIZE.equals( id ) )
+			return zNode.getDataLength( );
+		if ( PROP_TIME_CREATION.equals( id ) )
+			return getTimeDisplay( zNode.getCreationTime( ) );
+		if ( PROP_TIME_MODIFICATION.equals( id ) )
+			return getTimeDisplay( zNode.getModifiedTime( ) );
+		if ( PROP_TIME_REFRESH.equals( id ) )
+			return getTimeDisplay( zNode.getLastRefresh( ) );
+		if ( PROP_ID_CREATION.equals( id ) )
+			return zNode.getCreationId( );
+		if ( PROP_ID_MODIFICATION.equals( id ) )
+			return zNode.getModifiedId( );
+		if ( PROP_VERSION.equals( id ) )
+			return zNode.getVersion( );
+		if ( PROP_VERSION_ACL.equals( id ) )
+			return zNode.getAclVersion( );
+		if ( PROP_VERSION_CHILDREN.equals( id ) )
+			return zNode.getChildrenVersion( );
+		if ( PROP_EPHERMERAL.equals( id ) )
+			return zNode.isEphermeral( );
+		if ( PROP_EPHERMERAL_SESSION_ID.equals( id ) )
+			return zNode.getEphermalOwnerSessionId( );
 		return null;
 	}
 
@@ -192,7 +225,8 @@ public class ZNodePropertySource implements IPropertySource {
 	 * .Object)
 	 */
 	@Override
-	public boolean isPropertySet(Object id) {
+	public boolean isPropertySet( Object id )
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -205,7 +239,8 @@ public class ZNodePropertySource implements IPropertySource {
 	 * .lang.Object)
 	 */
 	@Override
-	public void resetPropertyValue(Object id) {
+	public void resetPropertyValue( Object id )
+	{
 		// TODO Auto-generated method stub
 
 	}
@@ -218,7 +253,8 @@ public class ZNodePropertySource implements IPropertySource {
 	 * .lang.Object, java.lang.Object)
 	 */
 	@Override
-	public void setPropertyValue(Object id, Object value) {
+	public void setPropertyValue( Object id, Object value )
+	{
 		// TODO Auto-generated method stub
 
 	}

@@ -1,3 +1,4 @@
+
 package org.apache.hadoop.eclipse.ui.internal.hdfs;
 
 import java.util.Iterator;
@@ -17,9 +18,11 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
-public class UploadResourceAction implements IObjectActionDelegate {
+public class UploadResourceAction implements IObjectActionDelegate
+{
 
-	private final static Logger logger = Logger.getLogger(UploadResourceAction.class);
+	private final static Logger logger = Logger
+			.getLogger( UploadResourceAction.class );
 	private ISelection selection;
 	private IWorkbenchPart targetPart;
 
@@ -29,16 +32,20 @@ public class UploadResourceAction implements IObjectActionDelegate {
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	@Override
-	public void run(IAction action) {
-		if (this.selection != null && !this.selection.isEmpty()) {
+	public void run( IAction action )
+	{
+		if ( this.selection != null && !this.selection.isEmpty( ) )
+		{
 			IStructuredSelection sSelection = (IStructuredSelection) this.selection;
 			@SuppressWarnings("rawtypes")
-			Iterator itr = sSelection.iterator();
-			while (itr.hasNext()) {
-				Object object = itr.next();
-				if (object instanceof IResource) {
+			Iterator itr = sSelection.iterator( );
+			while ( itr.hasNext( ) )
+			{
+				Object object = itr.next( );
+				if ( object instanceof IResource )
+				{
 					IResource r = (IResource) object;
-					uploadResource(r);
+					uploadResource( r );
 				}
 			}
 		}
@@ -47,26 +54,37 @@ public class UploadResourceAction implements IObjectActionDelegate {
 	/**
 	 * @param r
 	 */
-	private void uploadResource(IResource r) {
-		try {
-			switch (r.getType()) {
-			case IResource.FILE:
-				UploadFileJob ufj = new UploadFileJob(r);
-				ufj.schedule();
-				break;
-			case IResource.FOLDER:
-				IFolder folder = (IFolder) r;
-				IResource[] members = folder.members();
-				if (members != null) {
-					for (int mc = 0; mc < members.length; mc++) {
-						uploadResource(members[mc]);
+	private void uploadResource( IResource r )
+	{
+		try
+		{
+			switch ( r.getType( ) )
+			{
+				case IResource.FILE :
+					UploadFileJob ufj = new UploadFileJob( r );
+					ufj.schedule( );
+					break;
+				case IResource.FOLDER :
+					IFolder folder = (IFolder) r;
+					IResource[] members = folder.members( );
+					if ( members != null )
+					{
+						for ( int mc = 0; mc < members.length; mc++ )
+						{
+							uploadResource( members[mc] );
+						}
 					}
-				}
 			}
-		} catch (CoreException e) {
-			MessageDialog.openError(targetPart.getSite().getShell(), "Upload HDFS Resources", "Error uploading resource to " + r.getLocationURI() + ": "
-					+ e.getMessage());
-			logger.warn(e.getMessage(), e);
+		}
+		catch ( CoreException e )
+		{
+			MessageDialog.openError( targetPart.getSite( ).getShell( ),
+					"Upload HDFS Resources",
+					"Error uploading resource to "
+							+ r.getLocationURI( )
+							+ ": "
+							+ e.getMessage( ) );
+			logger.warn( e.getMessage( ), e );
 		}
 	}
 
@@ -78,33 +96,46 @@ public class UploadResourceAction implements IObjectActionDelegate {
 	 * .IAction, org.eclipse.jface.viewers.ISelection)
 	 */
 	@Override
-	public void selectionChanged(IAction action, ISelection selection) {
+	public void selectionChanged( IAction action, ISelection selection )
+	{
 		this.selection = selection;
 		boolean enabled = true;
-		if (this.selection != null && !this.selection.isEmpty()) {
+		if ( this.selection != null && !this.selection.isEmpty( ) )
+		{
 			IStructuredSelection sSelection = (IStructuredSelection) this.selection;
 			@SuppressWarnings("rawtypes")
-			Iterator itr = sSelection.iterator();
-			while (itr.hasNext()) {
-				Object object = itr.next();
-				if (object instanceof IResource) {
+			Iterator itr = sSelection.iterator( );
+			while ( itr.hasNext( ) )
+			{
+				Object object = itr.next( );
+				if ( object instanceof IResource )
+				{
 					IResource r = (IResource) object;
-					try {
-						HDFSFileStore store = (HDFSFileStore) EFS.getStore(r.getLocationURI());
-						Permissions effectivePermissions = store.getEffectivePermissions();
-						if (enabled && effectivePermissions != null && !effectivePermissions.write)
+					try
+					{
+						HDFSFileStore store = (HDFSFileStore) EFS
+								.getStore( r.getLocationURI( ) );
+						Permissions effectivePermissions = store
+								.getEffectivePermissions( );
+						if ( enabled
+								&& effectivePermissions != null
+								&& !effectivePermissions.write )
 							enabled = false;
-						if (enabled)
-							enabled = store.isLocalFile();
-					} catch (Throwable t) {
+						if ( enabled )
+							enabled = store.isLocalFile( );
+					}
+					catch ( Throwable t )
+					{
 						enabled = false;
 					}
-				} else
+				}
+				else
 					enabled = false;
 			}
-		} else
+		}
+		else
 			enabled = false;
-		action.setEnabled(enabled);
+		action.setEnabled( enabled );
 	}
 
 	/*
@@ -115,7 +146,8 @@ public class UploadResourceAction implements IObjectActionDelegate {
 	 * action.IAction, org.eclipse.ui.IWorkbenchPart)
 	 */
 	@Override
-	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+	public void setActivePart( IAction action, IWorkbenchPart targetPart )
+	{
 		this.targetPart = targetPart;
 
 	}

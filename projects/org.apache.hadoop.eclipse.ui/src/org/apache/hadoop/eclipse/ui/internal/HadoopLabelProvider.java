@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.hadoop.eclipse.ui.internal;
 
 import java.util.ArrayList;
@@ -32,15 +33,18 @@ import org.eclipse.ui.navigator.ICommonLabelProvider;
  * @author Srimanth Gunturi
  * 
  */
-public class HadoopLabelProvider implements ICommonLabelProvider {
-	private List<ICommonLabelProvider> childProviders = new ArrayList<ICommonLabelProvider>();
+public class HadoopLabelProvider implements ICommonLabelProvider
+{
+
+	private List<ICommonLabelProvider> childProviders = new ArrayList<ICommonLabelProvider>( );
 
 	/**
 	 * 
 	 */
-	public HadoopLabelProvider() {
-		childProviders.add(new HDFSLabelProvider());
-		childProviders.add(new ZooKeeperLabelProvider());
+	public HadoopLabelProvider( )
+	{
+		childProviders.add( new HDFSLabelProvider( ) );
+		childProviders.add( new ZooKeeperLabelProvider( ) );
 	}
 
 	/*
@@ -49,10 +53,12 @@ public class HadoopLabelProvider implements ICommonLabelProvider {
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
 	 */
 	@Override
-	public Image getImage(Object element) {
-		for (ICommonLabelProvider lp : childProviders) {
-			Image image = lp.getImage(element);
-			if (image != null)
+	public Image getImage( Object element )
+	{
+		for ( ICommonLabelProvider lp : childProviders )
+		{
+			Image image = lp.getImage( element );
+			if ( image != null )
 				return image;
 		}
 		return null;
@@ -64,10 +70,12 @@ public class HadoopLabelProvider implements ICommonLabelProvider {
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
 	 */
 	@Override
-	public String getText(Object element) {
-		for (ICommonLabelProvider lp : childProviders) {
-			String text = lp.getText(element);
-			if (text != null)
+	public String getText( Object element )
+	{
+		for ( ICommonLabelProvider lp : childProviders )
+		{
+			String text = lp.getText( element );
+			if ( text != null )
 				return text;
 		}
 		return null;
@@ -81,7 +89,8 @@ public class HadoopLabelProvider implements ICommonLabelProvider {
 	 * jface.viewers.ILabelProviderListener)
 	 */
 	@Override
-	public void addListener(ILabelProviderListener listener) {
+	public void addListener( ILabelProviderListener listener )
+	{
 		// TODO Auto-generated method stub
 
 	}
@@ -92,7 +101,8 @@ public class HadoopLabelProvider implements ICommonLabelProvider {
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
 	 */
 	@Override
-	public void dispose() {
+	public void dispose( )
+	{
 		// TODO Auto-generated method stub
 
 	}
@@ -105,7 +115,8 @@ public class HadoopLabelProvider implements ICommonLabelProvider {
 	 * .Object, java.lang.String)
 	 */
 	@Override
-	public boolean isLabelProperty(Object element, String property) {
+	public boolean isLabelProperty( Object element, String property )
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -118,7 +129,8 @@ public class HadoopLabelProvider implements ICommonLabelProvider {
 	 * .jface.viewers.ILabelProviderListener)
 	 */
 	@Override
-	public void removeListener(ILabelProviderListener listener) {
+	public void removeListener( ILabelProviderListener listener )
+	{
 		// TODO Auto-generated method stub
 
 	}
@@ -126,12 +138,12 @@ public class HadoopLabelProvider implements ICommonLabelProvider {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.ui.navigator.IMementoAware#restoreState(org.eclipse.ui.IMemento
-	 * )
+	 * @see org.eclipse.ui.navigator.IMementoAware#restoreState(org.eclipse.ui.
+	 * IMemento )
 	 */
 	@Override
-	public void restoreState(IMemento aMemento) {
+	public void restoreState( IMemento aMemento )
+	{
 		// TODO Auto-generated method stub
 
 	}
@@ -143,7 +155,8 @@ public class HadoopLabelProvider implements ICommonLabelProvider {
 	 * org.eclipse.ui.navigator.IMementoAware#saveState(org.eclipse.ui.IMemento)
 	 */
 	@Override
-	public void saveState(IMemento aMemento) {
+	public void saveState( IMemento aMemento )
+	{
 		// TODO Auto-generated method stub
 
 	}
@@ -156,7 +169,8 @@ public class HadoopLabelProvider implements ICommonLabelProvider {
 	 * .Object)
 	 */
 	@Override
-	public String getDescription(Object anElement) {
+	public String getDescription( Object anElement )
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -164,12 +178,12 @@ public class HadoopLabelProvider implements ICommonLabelProvider {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.ui.navigator.ICommonLabelProvider#init(org.eclipse.ui.navigator
-	 * .ICommonContentExtensionSite)
+	 * @see org.eclipse.ui.navigator.ICommonLabelProvider#init(org.eclipse.ui.
+	 * navigator .ICommonContentExtensionSite)
 	 */
 	@Override
-	public void init(ICommonContentExtensionSite aConfig) {
+	public void init( ICommonContentExtensionSite aConfig )
+	{
 		// TODO Auto-generated method stub
 
 	}

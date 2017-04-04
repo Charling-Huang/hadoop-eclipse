@@ -1,3 +1,4 @@
+
 package org.apache.hadoop.eclipse.ui.internal.zookeeper;
 
 import java.util.Iterator;
@@ -13,9 +14,11 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.navigator.resources.ProjectExplorer;
 
-public class DisconnectAction implements IObjectActionDelegate {
+public class DisconnectAction implements IObjectActionDelegate
+{
 
-	private final static Logger logger = Logger.getLogger(DisconnectAction.class);
+	private final static Logger logger = Logger
+			.getLogger( DisconnectAction.class );
 	private ISelection selection;
 	private IWorkbenchPart targetPart;
 
@@ -25,23 +28,28 @@ public class DisconnectAction implements IObjectActionDelegate {
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	@Override
-	public void run(IAction action) {
-		if (this.selection != null && !this.selection.isEmpty()) {
+	public void run( IAction action )
+	{
+		if ( this.selection != null && !this.selection.isEmpty( ) )
+		{
 			IStructuredSelection sSelection = (IStructuredSelection) this.selection;
 			@SuppressWarnings("rawtypes")
-			Iterator itr = sSelection.iterator();
-			while (itr.hasNext()) {
-				Object object = itr.next();
-				if (object instanceof ZooKeeperServer) {
+			Iterator itr = sSelection.iterator( );
+			while ( itr.hasNext( ) )
+			{
+				Object object = itr.next( );
+				if ( object instanceof ZooKeeperServer )
+				{
 					ZooKeeperServer r = (ZooKeeperServer) object;
-					if(logger.isDebugEnabled())
-						logger.debug("Disconnecting: "+r);
-					ZooKeeperManager.INSTANCE.disconnect(r);
-					if(logger.isDebugEnabled())
-						logger.debug("Disconnected: "+r);
-					if (targetPart instanceof ProjectExplorer) {
+					if ( logger.isDebugEnabled( ) )
+						logger.debug( "Disconnecting: " + r );
+					ZooKeeperManager.INSTANCE.disconnect( r );
+					if ( logger.isDebugEnabled( ) )
+						logger.debug( "Disconnected: " + r );
+					if ( targetPart instanceof ProjectExplorer )
+					{
 						ProjectExplorer pe = (ProjectExplorer) targetPart;
-						pe.getCommonViewer().refresh(r, true);
+						pe.getCommonViewer( ).refresh( r, true );
 					}
 				}
 			}
@@ -56,28 +64,38 @@ public class DisconnectAction implements IObjectActionDelegate {
 	 * .IAction, org.eclipse.jface.viewers.ISelection)
 	 */
 	@Override
-	public void selectionChanged(IAction action, ISelection selection) {
+	public void selectionChanged( IAction action, ISelection selection )
+	{
 		this.selection = selection;
 		boolean enabled = true;
-		if (this.selection != null && !this.selection.isEmpty()) {
+		if ( this.selection != null && !this.selection.isEmpty( ) )
+		{
 			IStructuredSelection sSelection = (IStructuredSelection) this.selection;
 			@SuppressWarnings("rawtypes")
-			Iterator itr = sSelection.iterator();
-			while (itr.hasNext()) {
-				Object object = itr.next();
-				if (object instanceof ZooKeeperServer) {
+			Iterator itr = sSelection.iterator( );
+			while ( itr.hasNext( ) )
+			{
+				Object object = itr.next( );
+				if ( object instanceof ZooKeeperServer )
+				{
 					ZooKeeperServer server = (ZooKeeperServer) object;
-					try {
-						enabled = server == null ? false : server.getStatusCode() != ServerStatus.DISCONNECTED_VALUE;
-					} catch (Throwable t) {
+					try
+					{
+						enabled = server == null ? false
+								: server.getStatusCode( ) != ServerStatus.DISCONNECTED_VALUE;
+					}
+					catch ( Throwable t )
+					{
 						enabled = false;
 					}
-				} else
+				}
+				else
 					enabled = false;
 			}
-		} else
+		}
+		else
 			enabled = false;
-		action.setEnabled(enabled);
+		action.setEnabled( enabled );
 	}
 
 	/*
@@ -88,7 +106,8 @@ public class DisconnectAction implements IObjectActionDelegate {
 	 * action.IAction, org.eclipse.ui.IWorkbenchPart)
 	 */
 	@Override
-	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+	public void setActivePart( IAction action, IWorkbenchPart targetPart )
+	{
 		this.targetPart = targetPart;
 	}
 

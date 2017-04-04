@@ -28,58 +28,74 @@ import org.eclipse.core.filesystem.IFileInfo;
  * @author Srimanth Gunturi
  * 
  */
-public class HDFSUtilites {
+public class HDFSUtilites
+{
 
-	public static String getDebugMessage(IFileInfo fi) {
-		if (fi != null) {
-			String lastMod = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.LONG).format(new Date(fi.getLastModified()));
-			
+	public static String getDebugMessage( IFileInfo fi )
+	{
+		if ( fi != null )
+		{
+			String lastMod = DateFormat
+					.getDateTimeInstance( DateFormat.SHORT, DateFormat.LONG )
+					.format( new Date( fi.getLastModified( ) ) );
+
 			String userPerms = "user(";
-			if (fi.getAttribute(EFS.ATTRIBUTE_OWNER_READ))
-				userPerms+="r";
+			if ( fi.getAttribute( EFS.ATTRIBUTE_OWNER_READ ) )
+				userPerms += "r";
 			else
-				userPerms+="-";
-			if (fi.getAttribute(EFS.ATTRIBUTE_OWNER_WRITE))
-				userPerms+="w";
+				userPerms += "-";
+			if ( fi.getAttribute( EFS.ATTRIBUTE_OWNER_WRITE ) )
+				userPerms += "w";
 			else
-				userPerms+="-";
-			if (fi.getAttribute(EFS.ATTRIBUTE_OWNER_EXECUTE))
-				userPerms+="x";
+				userPerms += "-";
+			if ( fi.getAttribute( EFS.ATTRIBUTE_OWNER_EXECUTE ) )
+				userPerms += "x";
 			else
-				userPerms+="-";
+				userPerms += "-";
 			userPerms += ")";
 
 			String groupPerms = "group(";
-			if (fi.getAttribute(EFS.ATTRIBUTE_GROUP_READ))
-				groupPerms+="r";
+			if ( fi.getAttribute( EFS.ATTRIBUTE_GROUP_READ ) )
+				groupPerms += "r";
 			else
-				groupPerms+="-";
-			if (fi.getAttribute(EFS.ATTRIBUTE_GROUP_WRITE))
-				groupPerms+="w";
+				groupPerms += "-";
+			if ( fi.getAttribute( EFS.ATTRIBUTE_GROUP_WRITE ) )
+				groupPerms += "w";
 			else
-				groupPerms+="-";
-			if (fi.getAttribute(EFS.ATTRIBUTE_GROUP_EXECUTE))
-				groupPerms+="x";
+				groupPerms += "-";
+			if ( fi.getAttribute( EFS.ATTRIBUTE_GROUP_EXECUTE ) )
+				groupPerms += "x";
 			else
-				groupPerms+="-";
+				groupPerms += "-";
 			groupPerms += ")";
 
 			String otherPerms = "other(";
-			if (fi.getAttribute(EFS.ATTRIBUTE_OTHER_READ))
-				otherPerms+="r";
+			if ( fi.getAttribute( EFS.ATTRIBUTE_OTHER_READ ) )
+				otherPerms += "r";
 			else
-				otherPerms+="-";
-			if (fi.getAttribute(EFS.ATTRIBUTE_OTHER_WRITE))
-				otherPerms+="w";
+				otherPerms += "-";
+			if ( fi.getAttribute( EFS.ATTRIBUTE_OTHER_WRITE ) )
+				otherPerms += "w";
 			else
-				otherPerms+="-";
-			if (fi.getAttribute(EFS.ATTRIBUTE_OTHER_EXECUTE))
-				otherPerms+="x";
+				otherPerms += "-";
+			if ( fi.getAttribute( EFS.ATTRIBUTE_OTHER_EXECUTE ) )
+				otherPerms += "x";
 			else
-				otherPerms+="-";
+				otherPerms += "-";
 			otherPerms += ")";
 
-			return "Exists=" + fi.exists() + ", Length=" + fi.getLength() + ", LastMod=" + lastMod + ", "+userPerms+", "+groupPerms+", "+otherPerms;
+			return "Exists="
+					+ fi.exists( )
+					+ ", Length="
+					+ fi.getLength( )
+					+ ", LastMod="
+					+ lastMod
+					+ ", "
+					+ userPerms
+					+ ", "
+					+ groupPerms
+					+ ", "
+					+ otherPerms;
 		}
 		return "null";
 	}

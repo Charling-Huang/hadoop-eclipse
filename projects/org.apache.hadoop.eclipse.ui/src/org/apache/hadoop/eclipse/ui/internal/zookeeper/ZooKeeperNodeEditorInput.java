@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.hadoop.eclipse.ui.internal.zookeeper;
 
 import org.apache.hadoop.eclipse.internal.model.ZNode;
@@ -29,7 +30,8 @@ import org.eclipse.ui.IStorageEditorInput;
  * @author Srimanth Gunturi
  * 
  */
-public class ZooKeeperNodeEditorInput implements IStorageEditorInput {
+public class ZooKeeperNodeEditorInput implements IStorageEditorInput
+{
 
 	private final byte[] nodeData;
 	private final ZNode node;
@@ -37,7 +39,8 @@ public class ZooKeeperNodeEditorInput implements IStorageEditorInput {
 	/**
 	 * 
 	 */
-	public ZooKeeperNodeEditorInput(ZNode node, byte[] nodeData) {
+	public ZooKeeperNodeEditorInput( ZNode node, byte[] nodeData )
+	{
 		this.node = node;
 		this.nodeData = nodeData;
 	}
@@ -48,7 +51,8 @@ public class ZooKeeperNodeEditorInput implements IStorageEditorInput {
 	 * @see org.eclipse.ui.IEditorInput#exists()
 	 */
 	@Override
-	public boolean exists() {
+	public boolean exists( )
+	{
 		// TODO
 		return true;
 	}
@@ -59,7 +63,8 @@ public class ZooKeeperNodeEditorInput implements IStorageEditorInput {
 	 * @see org.eclipse.ui.IEditorInput#getImageDescriptor()
 	 */
 	@Override
-	public ImageDescriptor getImageDescriptor() {
+	public ImageDescriptor getImageDescriptor( )
+	{
 		return Activator.IMAGE_HADOOP;
 	}
 
@@ -69,8 +74,9 @@ public class ZooKeeperNodeEditorInput implements IStorageEditorInput {
 	 * @see org.eclipse.ui.IEditorInput#getName()
 	 */
 	@Override
-	public String getName() {
-		return getNode().getNodeName();
+	public String getName( )
+	{
+		return getNode( ).getNodeName( );
 	}
 
 	/*
@@ -79,7 +85,8 @@ public class ZooKeeperNodeEditorInput implements IStorageEditorInput {
 	 * @see org.eclipse.ui.IEditorInput#getPersistable()
 	 */
 	@Override
-	public IPersistableElement getPersistable() {
+	public IPersistableElement getPersistable( )
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -90,8 +97,9 @@ public class ZooKeeperNodeEditorInput implements IStorageEditorInput {
 	 * @see org.eclipse.ui.IEditorInput#getToolTipText()
 	 */
 	@Override
-	public String getToolTipText() {
-		return getNode().getPath();
+	public String getToolTipText( )
+	{
+		return getNode( ).getPath( );
 	}
 
 	/*
@@ -100,7 +108,8 @@ public class ZooKeeperNodeEditorInput implements IStorageEditorInput {
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
 	 */
 	@Override
-	public Object getAdapter(Class adapter) {
+	public Object getAdapter( Class adapter )
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -111,15 +120,18 @@ public class ZooKeeperNodeEditorInput implements IStorageEditorInput {
 	 * @see org.eclipse.ui.IStorageEditorInput#getStorage()
 	 */
 	@Override
-	public IStorage getStorage() throws CoreException {
-		return new ZooKeeperNodeStorage(this);
+	public IStorage getStorage( ) throws CoreException
+	{
+		return new ZooKeeperNodeStorage( this );
 	}
 
-	public byte[] getNodeData() {
+	public byte[] getNodeData( )
+	{
 		return nodeData;
 	}
 
-	public ZNode getNode() {
+	public ZNode getNode( )
+	{
 		return node;
 	}
 

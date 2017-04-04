@@ -27,30 +27,38 @@ import org.eclipse.core.filesystem.provider.FileSystem;
  * 
  * @author Srimanth Gunturi
  */
-public class HDFSFileSystem extends FileSystem {
-	
+public class HDFSFileSystem extends FileSystem
+{
+
 	public static final String SCHEME = "hdfs";
 
 	@Override
-	public IFileStore getStore(URI uri) {
-		if(SCHEME.equals(uri.getScheme()))
-			return new HDFSFileStore(new HDFSURI(uri));
+	public IFileStore getStore( URI uri )
+	{
+		if ( SCHEME.equals( uri.getScheme( ) ) )
+			return new HDFSFileStore( new HDFSURI( uri ) );
 		return null;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.core.filesystem.provider.FileSystem#canDelete()
 	 */
 	@Override
-	public boolean canDelete() {
+	public boolean canDelete( )
+	{
 		return true;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.core.filesystem.provider.FileSystem#canWrite()
 	 */
 	@Override
-	public boolean canWrite() {
+	public boolean canWrite( )
+	{
 		return true;
 	}
 

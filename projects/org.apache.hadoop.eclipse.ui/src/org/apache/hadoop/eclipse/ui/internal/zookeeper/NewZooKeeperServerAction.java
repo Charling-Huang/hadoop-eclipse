@@ -1,3 +1,4 @@
+
 package org.apache.hadoop.eclipse.ui.internal.zookeeper;
 
 import org.eclipse.jface.action.Action;
@@ -8,7 +9,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
-public class NewZooKeeperServerAction extends Action implements IWorkbenchWindowActionDelegate {
+public class NewZooKeeperServerAction extends Action
+		implements IWorkbenchWindowActionDelegate
+{
 
 	private Shell shell;
 
@@ -18,10 +21,11 @@ public class NewZooKeeperServerAction extends Action implements IWorkbenchWindow
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	@Override
-	public void run(IAction action) {
-		NewZooKeeperWizard wizard = new NewZooKeeperWizard();
-		WizardDialog dialog = new WizardDialog(shell, wizard);
-		dialog.open();
+	public void run( IAction action )
+	{
+		NewZooKeeperWizard wizard = new NewZooKeeperWizard( );
+		WizardDialog dialog = new WizardDialog( shell, wizard );
+		dialog.open( );
 	}
 
 	/*
@@ -32,7 +36,8 @@ public class NewZooKeeperServerAction extends Action implements IWorkbenchWindow
 	 * .IAction, org.eclipse.jface.viewers.ISelection)
 	 */
 	@Override
-	public void selectionChanged(IAction action, ISelection selection) {
+	public void selectionChanged( IAction action, ISelection selection )
+	{
 		// TODO Auto-generated method stub
 
 	}
@@ -43,7 +48,8 @@ public class NewZooKeeperServerAction extends Action implements IWorkbenchWindow
 	 * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#dispose()
 	 */
 	@Override
-	public void dispose() {
+	public void dispose( )
+	{
 		// TODO Auto-generated method stub
 
 	}
@@ -55,8 +61,9 @@ public class NewZooKeeperServerAction extends Action implements IWorkbenchWindow
 	 * IWorkbenchWindow)
 	 */
 	@Override
-	public void init(IWorkbenchWindow window) {
-		shell = window.getShell();
+	public void init( IWorkbenchWindow window )
+	{
+		shell = window.getShell( );
 	}
 
 }

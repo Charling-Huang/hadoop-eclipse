@@ -16,6 +16,7 @@
  * limitations under the License.
  *  
  */
+
 package org.apache.hadoop.eclipse.internal.model;
 
 import org.eclipse.emf.common.util.EList;
@@ -23,16 +24,19 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Servers</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '
+ * <em><b>Servers</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.Servers#getHdfsServers <em>Hdfs Servers</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.Servers#getVersion <em>Version</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.Servers#getZookeeperServers <em>Zookeeper Servers</em>}</li>
+ * <li>{@link org.apache.hadoop.eclipse.internal.model.Servers#getHdfsServers
+ * <em>Hdfs Servers</em>}</li>
+ * <li>{@link org.apache.hadoop.eclipse.internal.model.Servers#getVersion
+ * <em>Version</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.Servers#getZookeeperServers
+ * <em>Zookeeper Servers</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,64 +44,75 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Servers extends EObject {
+public interface Servers extends EObject
+{
+
 	/**
-	 * Returns the value of the '<em><b>Hdfs Servers</b></em>' containment reference list.
-	 * The list contents are of type {@link org.apache.hadoop.eclipse.internal.model.HDFSServer}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Hdfs Servers</b></em>' containment
+	 * reference list. The list contents are of type
+	 * {@link org.apache.hadoop.eclipse.internal.model.HDFSServer}. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Hdfs Servers</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Hdfs Servers</em>' containment reference list.
+	 * 
+	 * @return the value of the '<em>Hdfs Servers</em>' containment reference
+	 *         list.
 	 * @see org.apache.hadoop.eclipse.internal.model.HadoopPackage#getServers_HdfsServers()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<HDFSServer> getHdfsServers();
+	EList<HDFSServer> getHdfsServers( );
 
 	/**
-	 * Returns the value of the '<em><b>Version</b></em>' attribute.
-	 * The default value is <code>"1.0.0.0"</code>.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Version</b></em>' attribute. The default
+	 * value is <code>"1.0.0.0"</code>. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Version</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Version</em>' attribute isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Version</em>' attribute.
 	 * @see #setVersion(String)
 	 * @see org.apache.hadoop.eclipse.internal.model.HadoopPackage#getServers_Version()
 	 * @model default="1.0.0.0"
 	 * @generated
 	 */
-	String getVersion();
+	String getVersion( );
 
 	/**
-	 * Sets the value of the '{@link org.apache.hadoop.eclipse.internal.model.Servers#getVersion <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Version</em>' attribute.
+	 * Sets the value of the '
+	 * {@link org.apache.hadoop.eclipse.internal.model.Servers#getVersion
+	 * <em>Version</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Version</em>' attribute.
 	 * @see #getVersion()
 	 * @generated
 	 */
-	void setVersion(String value);
+	void setVersion( String value );
 
 	/**
-	 * Returns the value of the '<em><b>Zookeeper Servers</b></em>' containment reference list.
-	 * The list contents are of type {@link org.apache.hadoop.eclipse.internal.model.ZooKeeperServer}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Zookeeper Servers</b></em>' containment
+	 * reference list. The list contents are of type
+	 * {@link org.apache.hadoop.eclipse.internal.model.ZooKeeperServer}. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Zookeeper Servers</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Zookeeper Servers</em>' reference list isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Zookeeper Servers</em>' containment reference list.
+	 * 
+	 * @return the value of the '<em>Zookeeper Servers</em>' containment
+	 *         reference list.
 	 * @see org.apache.hadoop.eclipse.internal.model.HadoopPackage#getServers_ZookeeperServers()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ZooKeeperServer> getZookeeperServers();
+	EList<ZooKeeperServer> getZookeeperServers( );
 
 } // Servers

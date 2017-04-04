@@ -32,9 +32,12 @@ import org.apache.log4j.Logger;
  * @author Srimanth Gunturi
  * 
  */
-public class InterruptableZooKeeperClient extends ZooKeeperClient {
+public class InterruptableZooKeeperClient extends ZooKeeperClient
+{
+
 	private static final int DEFAULT_TIMEOUT = 60000;
-	private static final Logger logger = Logger.getLogger(InterruptableZooKeeperClient.class);
+	private static final Logger logger = Logger
+			.getLogger( InterruptableZooKeeperClient.class );
 	// private static ExecutorService threadPool =
 	// Executors.newFixedThreadPool(10);
 
@@ -46,64 +49,87 @@ public class InterruptableZooKeeperClient extends ZooKeeperClient {
 	 * @param server
 	 * 
 	 */
-	public InterruptableZooKeeperClient(ZooKeeperServer server, ZooKeeperClient client) {
+	public InterruptableZooKeeperClient( ZooKeeperServer server,
+			ZooKeeperClient client )
+	{
 		this.server = server;
 		this.client = client;
 	}
 
-	private static interface CustomRunnable<V> {
-		public V run() throws IOException, InterruptedException;
+	private static interface CustomRunnable<V>
+	{
+
+		public V run( ) throws IOException, InterruptedException;
 	}
 
-	protected <T> T executeWithTimeout(final CustomRunnable<T> runnable) throws IOException, InterruptedException {
-		final List<T> data = new ArrayList<T>();
+	protected <T> T executeWithTimeout( final CustomRunnable<T> runnable )
+			throws IOException, InterruptedException
+	{
+		final List<T> data = new ArrayList<T>( );
 		final IOException[] ioE = new IOException[1];
 		final InterruptedException[] inE = new InterruptedException[1];
-		Thread runnerThread = new Thread(new Runnable() {
-			public void run() {
-				try {
-					data.add(runnable.run());
-				} catch (IOException e) {
+		Thread runnerThread = new Thread( new Runnable( ) {
+
+			public void run( )
+			{
+				try
+				{
+					data.add( runnable.run( ) );
+				}
+				catch ( IOException e )
+				{
 					ioE[0] = e;
-				} catch (InterruptedException e) {
+				}
+				catch ( InterruptedException e )
+				{
 					inE[0] = e;
 				}
 			}
-		});
+		} );
 		boolean interrupted = false;
-		runnerThread.start();
-		runnerThread.join(timeoutMillis);
-		if (runnerThread.isAlive()) {
-			if (logger.isDebugEnabled())
-				logger.debug("executeWithTimeout(): Interrupting server call");
-			runnerThread.interrupt();
+		runnerThread.start( );
+		runnerThread.join( timeoutMillis );
+		if ( runnerThread.isAlive( ) )
+		{
+			if ( logger.isDebugEnabled( ) )
+				logger.debug(
+						"executeWithTimeout(): Interrupting server call" );
+			runnerThread.interrupt( );
 			interrupted = true;
 		}
-		if (ioE[0] != null) {
-			try {
-				if (!client.isConnected())
-					ZooKeeperManager.INSTANCE.disconnect(server);
-			} catch (Throwable t) {
+		if ( ioE[0] != null )
+		{
+			try
+			{
+				if ( !client.isConnected( ) )
+					ZooKeeperManager.INSTANCE.disconnect( server );
+			}
+			catch ( Throwable t )
+			{
 			}
 			throw ioE[0];
 		}
-		if (inE[0] != null)
+		if ( inE[0] != null )
 			throw inE[0];
-		if (interrupted) {
+		if ( interrupted )
+		{
 			// Tell HDFS manager that the server timed out
-			if (logger.isDebugEnabled())
-				logger.debug("executeWithTimeout(): Server timed out: " + server);
-			ZooKeeperManager.INSTANCE.disconnect(server);
-			throw new InterruptedException();
+			if ( logger.isDebugEnabled( ) )
+				logger.debug(
+						"executeWithTimeout(): Server timed out: " + server );
+			ZooKeeperManager.INSTANCE.disconnect( server );
+			throw new InterruptedException( );
 		}
-		if (data.size() > 0)
-			return data.get(0);
+		if ( data.size( ) > 0 )
+			return data.get( 0 );
 		return null;
 	}
 
-	protected void connectIfNecessary() throws IOException, InterruptedException {
-		if (!client.isConnected())
-			client.connect();
+	protected void connectIfNecessary( )
+			throws IOException, InterruptedException
+	{
+		if ( !client.isConnected( ) )
+			client.connect( );
 	}
 
 	/*
@@ -114,19 +140,27 @@ public class InterruptableZooKeeperClient extends ZooKeeperClient {
 	 * .String)
 	 */
 	@Override
-	public void initialize(final String serverLocation) {
-		try {
-			executeWithTimeout(new CustomRunnable<Object>() {
+	public void initialize( final String serverLocation )
+	{
+		try
+		{
+			executeWithTimeout( new CustomRunnable<Object>( ) {
+
 				@Override
-				public Object run() throws IOException, InterruptedException {
-					client.initialize(serverLocation);
+				public Object run( ) throws IOException, InterruptedException
+				{
+					client.initialize( serverLocation );
 					return null;
 				}
-			});
-		} catch (IOException e) {
-			throw new RuntimeException(e.getMessage(), e);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e.getMessage(), e);
+			} );
+		}
+		catch ( IOException e )
+		{
+			throw new RuntimeException( e.getMessage( ), e );
+		}
+		catch ( InterruptedException e )
+		{
+			throw new RuntimeException( e.getMessage( ), e );
 		}
 	}
 
@@ -136,13 +170,16 @@ public class InterruptableZooKeeperClient extends ZooKeeperClient {
 	 * @see org.apache.hadoop.eclipse.zookeeper.ZooKeeperClient#isConnected()
 	 */
 	@Override
-	public boolean isConnected() throws IOException, InterruptedException {
-		return executeWithTimeout(new CustomRunnable<Boolean>() {
+	public boolean isConnected( ) throws IOException, InterruptedException
+	{
+		return executeWithTimeout( new CustomRunnable<Boolean>( ) {
+
 			@Override
-			public Boolean run() throws IOException, InterruptedException {
-				return client.isConnected();
+			public Boolean run( ) throws IOException, InterruptedException
+			{
+				return client.isConnected( );
 			}
-		});
+		} );
 	}
 
 	/*
@@ -153,14 +190,17 @@ public class InterruptableZooKeeperClient extends ZooKeeperClient {
 	 * .String)
 	 */
 	@Override
-	public void connect() throws IOException, InterruptedException {
-		executeWithTimeout(new CustomRunnable<Object>() {
+	public void connect( ) throws IOException, InterruptedException
+	{
+		executeWithTimeout( new CustomRunnable<Object>( ) {
+
 			@Override
-			public Object run() throws IOException, InterruptedException {
-				client.connect();
+			public Object run( ) throws IOException, InterruptedException
+			{
+				client.connect( );
 				return null;
 			}
-		});
+		} );
 	}
 
 	/*
@@ -171,14 +211,18 @@ public class InterruptableZooKeeperClient extends ZooKeeperClient {
 	 * lang.String)
 	 */
 	@Override
-	public List<ZNode> getChildren(final ZNode path) throws IOException, InterruptedException {
-		connectIfNecessary();
-		return executeWithTimeout(new CustomRunnable<List<ZNode>>() {
+	public List<ZNode> getChildren( final ZNode path )
+			throws IOException, InterruptedException
+	{
+		connectIfNecessary( );
+		return executeWithTimeout( new CustomRunnable<List<ZNode>>( ) {
+
 			@Override
-			public List<ZNode> run() throws IOException, InterruptedException {
-				return client.getChildren(path);
+			public List<ZNode> run( ) throws IOException, InterruptedException
+			{
+				return client.getChildren( path );
 			}
-		});
+		} );
 	}
 
 	/*
@@ -187,14 +231,17 @@ public class InterruptableZooKeeperClient extends ZooKeeperClient {
 	 * @see org.apache.hadoop.eclipse.zookeeper.ZooKeeperClient#disconnect()
 	 */
 	@Override
-	public void disconnect() throws IOException, InterruptedException {
-		executeWithTimeout(new CustomRunnable<Object>() {
+	public void disconnect( ) throws IOException, InterruptedException
+	{
+		executeWithTimeout( new CustomRunnable<Object>( ) {
+
 			@Override
-			public Object run() throws IOException, InterruptedException {
-				client.disconnect();
+			public Object run( ) throws IOException, InterruptedException
+			{
+				client.disconnect( );
 				return null;
 			}
-		});
+		} );
 	}
 
 	/*
@@ -203,14 +250,18 @@ public class InterruptableZooKeeperClient extends ZooKeeperClient {
 	 * @see org.apache.hadoop.eclipse.zookeeper.ZooKeeperClient#disconnect()
 	 */
 	@Override
-	public void delete(final ZNode node) throws IOException, InterruptedException {
-		executeWithTimeout(new CustomRunnable<Object>() {
+	public void delete( final ZNode node )
+			throws IOException, InterruptedException
+	{
+		executeWithTimeout( new CustomRunnable<Object>( ) {
+
 			@Override
-			public Object run() throws IOException, InterruptedException {
-				client.delete(node);
+			public Object run( ) throws IOException, InterruptedException
+			{
+				client.delete( node );
 				return null;
 			}
-		});
+		} );
 	}
 
 	/*
@@ -221,13 +272,17 @@ public class InterruptableZooKeeperClient extends ZooKeeperClient {
 	 * )
 	 */
 	@Override
-	public byte[] open(final ZNode path) throws InterruptedException, IOException {
-		connectIfNecessary();
-		return executeWithTimeout(new CustomRunnable<byte[]>() {
+	public byte[] open( final ZNode path )
+			throws InterruptedException, IOException
+	{
+		connectIfNecessary( );
+		return executeWithTimeout( new CustomRunnable<byte[]>( ) {
+
 			@Override
-			public byte[] run() throws IOException, InterruptedException {
-				return client.open(path);
+			public byte[] run( ) throws IOException, InterruptedException
+			{
+				return client.open( path );
 			}
-		});
+		} );
 	}
 }

@@ -40,56 +40,74 @@ import org.eclipse.emf.common.util.EList;
  * @author Srimanth Gunturi
  * 
  */
-public class ZooKeeperManager {
-	private static final Logger logger = Logger.getLogger(ZooKeeperManager.class);
-	public static ZooKeeperManager INSTANCE = new ZooKeeperManager();
-	private Map<String, ZooKeeperClient> clientsMap = new HashMap<String, ZooKeeperClient>();
+public class ZooKeeperManager
+{
 
-	private ZooKeeperManager() {
+	private static final Logger logger = Logger
+			.getLogger( ZooKeeperManager.class );
+	public static ZooKeeperManager INSTANCE = new ZooKeeperManager( );
+	private Map<String, ZooKeeperClient> clientsMap = new HashMap<String, ZooKeeperClient>( );
+
+	private ZooKeeperManager( )
+	{
 	}
 
 	/**
 	 * 
 	 */
-	public void loadServers() {
+	public void loadServers( )
+	{
 
 	}
 
-	public EList<ZooKeeperServer> getServers() {
-		return HadoopManager.INSTANCE.getServers().getZookeeperServers();
+	public EList<ZooKeeperServer> getServers( )
+	{
+		return HadoopManager.INSTANCE.getServers( ).getZookeeperServers( );
 	}
 
 	/**
 	 * @param zkServerName
 	 * @param uri
 	 */
-	public ZooKeeperServer createServer(String zkServerName, String zkServerLocation) {
-		ZooKeeperServer zkServer = HadoopFactory.eINSTANCE.createZooKeeperServer();
-		zkServer.setName(zkServerName);
-		zkServer.setUri(zkServerLocation);
-		getServers().add(zkServer);
-		HadoopManager.INSTANCE.saveServers();
+	public ZooKeeperServer createServer( String zkServerName,
+			String zkServerLocation )
+	{
+		ZooKeeperServer zkServer = HadoopFactory.eINSTANCE
+				.createZooKeeperServer( );
+		zkServer.setName( zkServerName );
+		zkServer.setUri( zkServerLocation );
+		getServers( ).add( zkServer );
+		HadoopManager.INSTANCE.saveServers( );
 		return zkServer;
 	}
 
 	/**
 	 * @param r
 	 */
-	public void disconnect(ZooKeeperServer server) {
-		try {
-			if (ServerStatus.DISCONNECTED_VALUE != server.getStatusCode()) {
-				getClient(server).disconnect();
-				server.setStatusCode(ServerStatus.DISCONNECTED_VALUE);
+	public void disconnect( ZooKeeperServer server )
+	{
+		try
+		{
+			if ( ServerStatus.DISCONNECTED_VALUE != server.getStatusCode( ) )
+			{
+				getClient( server ).disconnect( );
+				server.setStatusCode( ServerStatus.DISCONNECTED_VALUE );
 			}
-		} catch (IOException e) {
+		}
+		catch ( IOException e )
+		{
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
+			e.printStackTrace( );
+		}
+		catch ( InterruptedException e )
+		{
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CoreException e) {
+			e.printStackTrace( );
+		}
+		catch ( CoreException e )
+		{
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace( );
 		}
 	}
 
@@ -98,50 +116,75 @@ public class ZooKeeperManager {
 	 * 
 	 * @param r
 	 */
-	public void reconnect(ZooKeeperServer server) {
-		try {
-			if (logger.isDebugEnabled())
-				logger.debug("reconnect(): Reconnecting: " + server);
-			server.setStatusCode(0);
-			getClient(server).connect();
-			if (!getClient(server).isConnected()) {
-				if (logger.isDebugEnabled())
-					logger.debug("reconnect(): Client not connected. Setting to disconnected: " + server);
-				server.setStatusCode(ServerStatus.DISCONNECTED_VALUE);
+	public void reconnect( ZooKeeperServer server )
+	{
+		try
+		{
+			if ( logger.isDebugEnabled( ) )
+				logger.debug( "reconnect(): Reconnecting: " + server );
+			server.setStatusCode( 0 );
+			getClient( server ).connect( );
+			if ( !getClient( server ).isConnected( ) )
+			{
+				if ( logger.isDebugEnabled( ) )
+					logger.debug(
+							"reconnect(): Client not connected. Setting to disconnected: "
+									+ server );
+				server.setStatusCode( ServerStatus.DISCONNECTED_VALUE );
 			}
-			if (logger.isDebugEnabled())
-				logger.debug("reconnect(): Reconnected: " + server);
-		} catch (IOException e) {
-			server.setStatusCode(ServerStatus.DISCONNECTED_VALUE);
+			if ( logger.isDebugEnabled( ) )
+				logger.debug( "reconnect(): Reconnected: " + server );
+		}
+		catch ( IOException e )
+		{
+			server.setStatusCode( ServerStatus.DISCONNECTED_VALUE );
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			server.setStatusCode(ServerStatus.DISCONNECTED_VALUE);
+			e.printStackTrace( );
+		}
+		catch ( InterruptedException e )
+		{
+			server.setStatusCode( ServerStatus.DISCONNECTED_VALUE );
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CoreException e) {
-			server.setStatusCode(ServerStatus.DISCONNECTED_VALUE);
+			e.printStackTrace( );
+		}
+		catch ( CoreException e )
+		{
+			server.setStatusCode( ServerStatus.DISCONNECTED_VALUE );
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace( );
 		}
 	}
 
-	public ZooKeeperClient getClient(ZooKeeperServer server) throws CoreException {
-		if (server != null && server.getStatusCode() == ServerStatus.DISCONNECTED_VALUE) {
-			if (logger.isDebugEnabled())
-				logger.debug("getClient(" + server.getUri() + "): Server disconnected. Not returning client");
-			throw new CoreException(new Status(IStatus.WARNING, Activator.BUNDLE_ID, "Server disconnected. Please reconnect to server."));
+	public ZooKeeperClient getClient( ZooKeeperServer server )
+			throws CoreException
+	{
+		if ( server != null
+				&& server.getStatusCode( ) == ServerStatus.DISCONNECTED_VALUE )
+		{
+			if ( logger.isDebugEnabled( ) )
+				logger.debug( "getClient("
+						+ server.getUri( )
+						+ "): Server disconnected. Not returning client" );
+			throw new CoreException( new Status( IStatus.WARNING,
+					Activator.BUNDLE_ID,
+					"Server disconnected. Please reconnect to server." ) );
 		}
-		if (clientsMap.containsKey(server.getUri()))
-			return clientsMap.get(server.getUri());
-		else {
-			IConfigurationElement[] elementsFor = Platform.getExtensionRegistry().getConfigurationElementsFor("org.apache.hadoop.eclipse.zookeeperClient");
-			for (IConfigurationElement element : elementsFor) {
-				ZooKeeperClient client = (ZooKeeperClient) element.createExecutableExtension("class");
-				client.initialize(server.getUri());
-				clientsMap.put(server.getUri(), new InterruptableZooKeeperClient(server, client));
+		if ( clientsMap.containsKey( server.getUri( ) ) )
+			return clientsMap.get( server.getUri( ) );
+		else
+		{
+			IConfigurationElement[] elementsFor = Platform
+					.getExtensionRegistry( ).getConfigurationElementsFor(
+							"org.apache.hadoop.eclipse.zookeeperClient" );
+			for ( IConfigurationElement element : elementsFor )
+			{
+				ZooKeeperClient client = (ZooKeeperClient) element
+						.createExecutableExtension( "class" );
+				client.initialize( server.getUri( ) );
+				clientsMap.put( server.getUri( ),
+						new InterruptableZooKeeperClient( server, client ) );
 			}
-			return clientsMap.get(server.getUri());
+			return clientsMap.get( server.getUri( ) );
 		}
 	}
 
@@ -149,14 +192,21 @@ public class ZooKeeperManager {
 	 * @param r
 	 * @throws CoreException
 	 */
-	public void delete(ZooKeeperServer server) throws CoreException {
-		if (server != null && server.getStatusCode() != ServerStatus.DISCONNECTED_VALUE) {
-			if (logger.isDebugEnabled())
-				logger.debug("getClient(" + server.getUri() + "): Cannot delete a connected server.");
-			throw new CoreException(new Status(IStatus.WARNING, Activator.BUNDLE_ID, "Cannot delete a connected server."));
+	public void delete( ZooKeeperServer server ) throws CoreException
+	{
+		if ( server != null
+				&& server.getStatusCode( ) != ServerStatus.DISCONNECTED_VALUE )
+		{
+			if ( logger.isDebugEnabled( ) )
+				logger.debug( "getClient("
+						+ server.getUri( )
+						+ "): Cannot delete a connected server." );
+			throw new CoreException( new Status( IStatus.WARNING,
+					Activator.BUNDLE_ID,
+					"Cannot delete a connected server." ) );
 		}
-		if (clientsMap.containsKey(server.getUri()))
-			clientsMap.remove(server.getUri());
-		getServers().remove(server);
+		if ( clientsMap.containsKey( server.getUri( ) ) )
+			clientsMap.remove( server.getUri( ) );
+		getServers( ).remove( server );
 	}
 }

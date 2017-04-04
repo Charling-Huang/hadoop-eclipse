@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.hadoop.eclipse.ui.internal.hdfs;
 
 import java.net.URI;
@@ -32,17 +33,20 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
-public class NewHDFSWizard extends Wizard implements INewWizard {
+public class NewHDFSWizard extends Wizard implements INewWizard
+{
 
-	private static Logger logger = Logger.getLogger(NewHDFSWizard.class);
+	private static Logger logger = Logger.getLogger( NewHDFSWizard.class );
 	private NewHDFSServerWizardPage serverLocationWizardPage = null;
 
-	public NewHDFSWizard() {
+	public NewHDFSWizard( )
+	{
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
+	public void init( IWorkbench workbench, IStructuredSelection selection )
+	{
 	}
 
 	/*
@@ -51,42 +55,73 @@ public class NewHDFSWizard extends Wizard implements INewWizard {
 	 * @see org.eclipse.jface.wizard.Wizard#addPages()
 	 */
 	@Override
-	public void addPages() {
-		super.addPages();
-		if (serverLocationWizardPage == null) {
-			serverLocationWizardPage = new NewHDFSServerWizardPage();
+	public void addPages( )
+	{
+		super.addPages( );
+		if ( serverLocationWizardPage == null )
+		{
+			serverLocationWizardPage = new NewHDFSServerWizardPage( );
 		}
-		addPage(serverLocationWizardPage);
+		addPage( serverLocationWizardPage );
 	}
 
 	@Override
-	public boolean performFinish() {
-		if (serverLocationWizardPage != null) {
-			String ambariUrl = serverLocationWizardPage.getHdfsServerLocation();
-			if (ambariUrl != null) {
-				IPreferenceStore ps = Activator.getDefault().getPreferenceStore();
-				String currentUrls = ps.getString(Activator.PREFERENCE_HDFS_URLS);
-				if (currentUrls.indexOf(ambariUrl + "\r\n") < 0) {
+	public boolean performFinish( )
+	{
+		if ( serverLocationWizardPage != null )
+		{
+			String ambariUrl = serverLocationWizardPage
+					.getHdfsServerLocation( );
+			if ( ambariUrl != null )
+			{
+				IPreferenceStore ps = Activator.getDefault( )
+						.getPreferenceStore( );
+				String currentUrls = ps
+						.getString( Activator.PREFERENCE_HDFS_URLS );
+				if ( currentUrls.indexOf( ambariUrl + "\r\n" ) < 0 )
+				{
 					currentUrls = ambariUrl + "\r\n" + currentUrls;
-					ps.setValue(Activator.PREFERENCE_HDFS_URLS, currentUrls);
+					ps.setValue( Activator.PREFERENCE_HDFS_URLS, currentUrls );
 				}
 
-				Job j = new Job("Creating HDFS project [" + serverLocationWizardPage.getHdfsServerName() + "]") {
-					protected org.eclipse.core.runtime.IStatus run(org.eclipse.core.runtime.IProgressMonitor monitor) {
-						try {
-							HDFSManager.INSTANCE.createServer(serverLocationWizardPage.getHdfsServerName(), new URI(serverLocationWizardPage
-									.getHdfsServerLocation()), serverLocationWizardPage.isOverrideDefaultSecurity() ? serverLocationWizardPage.getUserId()
-									: null, serverLocationWizardPage.isOverrideDefaultSecurity() ? serverLocationWizardPage.getGroupIds() : null);
-						} catch (CoreException e) {
-							logger.warn(e.getMessage(), e);
-							return e.getStatus();
-						} catch (URISyntaxException e) {
-							logger.warn(e.getMessage(), e);
+				Job j = new Job( "Creating HDFS project ["
+						+ serverLocationWizardPage.getHdfsServerName( )
+						+ "]" ) {
+
+					protected org.eclipse.core.runtime.IStatus run(
+							org.eclipse.core.runtime.IProgressMonitor monitor )
+					{
+						try
+						{
+							HDFSManager.INSTANCE.createServer(
+									serverLocationWizardPage
+											.getHdfsServerName( ),
+									new URI( serverLocationWizardPage
+											.getHdfsServerLocation( ) ),
+									serverLocationWizardPage
+											.isOverrideDefaultSecurity( )
+													? serverLocationWizardPage
+															.getUserId( )
+													: null,
+									serverLocationWizardPage
+											.isOverrideDefaultSecurity( )
+													? serverLocationWizardPage
+															.getGroupIds( )
+													: null );
+						}
+						catch ( CoreException e )
+						{
+							logger.warn( e.getMessage( ), e );
+							return e.getStatus( );
+						}
+						catch ( URISyntaxException e )
+						{
+							logger.warn( e.getMessage( ), e );
 						}
 						return Status.OK_STATUS;
 					};
 				};
-				j.schedule();
+				j.schedule( );
 				return true;
 			}
 		}

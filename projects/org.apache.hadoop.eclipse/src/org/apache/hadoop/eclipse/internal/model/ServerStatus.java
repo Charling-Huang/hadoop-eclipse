@@ -16,6 +16,7 @@
  * limitations under the License.
  *  
  */
+
 package org.apache.hadoop.eclipse.internal.model;
 
 import java.util.Arrays;
@@ -25,35 +26,37 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Server Status</b></em>',
- * and utility methods for working with them.
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration '
+ * <em><b>Server Status</b></em>', and utility methods for working with them.
  * <!-- end-user-doc -->
+ * 
  * @see org.apache.hadoop.eclipse.internal.model.HadoopPackage#getServerStatus()
  * @model
  * @generated
  */
 public enum ServerStatus implements Enumerator {
 	/**
-	 * The '<em><b>NO PROJECT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>NO PROJECT</b></em>' literal object. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #NO_PROJECT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NO_PROJECT(1, "NO_PROJECT", "NO_PROJECT"), /**
-	 * The '<em><b>DISCONNECTED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	NO_PROJECT(1, "NO_PROJECT", "NO_PROJECT"),
+	/**
+	 * The '<em><b>DISCONNECTED</b></em>' literal object. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #DISCONNECTED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DISCONNECTED(2, "DISCONNECTED", "DISCONNECTED"), /**
-	 * The '<em><b>CONNECTED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+	DISCONNECTED(2, "DISCONNECTED", "DISCONNECTED"),
+	/**
+	 * The '<em><b>CONNECTED</b></em>' literal object. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #CONNECTED_VALUE
 	 * @generated
 	 * @ordered
@@ -61,13 +64,13 @@ public enum ServerStatus implements Enumerator {
 	CONNECTED(3, "CONNECTED", "CONNECTED");
 
 	/**
-	 * The '<em><b>NO PROJECT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>NO PROJECT</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NO PROJECT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>NO PROJECT</b></em>' literal object isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #NO_PROJECT
 	 * @model
 	 * @generated
@@ -76,13 +79,13 @@ public enum ServerStatus implements Enumerator {
 	public static final int NO_PROJECT_VALUE = 1;
 
 	/**
-	 * The '<em><b>DISCONNECTED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>DISCONNECTED</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>DISCONNECTED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>DISCONNECTED</b></em>' literal object isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #DISCONNECTED
 	 * @model
 	 * @generated
@@ -91,13 +94,13 @@ public enum ServerStatus implements Enumerator {
 	public static final int DISCONNECTED_VALUE = 2;
 
 	/**
-	 * The '<em><b>CONNECTED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>CONNECTED</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>CONNECTED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #CONNECTED
 	 * @model
 	 * @generated
@@ -106,36 +109,37 @@ public enum ServerStatus implements Enumerator {
 	public static final int CONNECTED_VALUE = 3;
 
 	/**
-	 * An array of all the '<em><b>Server Status</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * An array of all the '<em><b>Server Status</b></em>' enumerators. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static final ServerStatus[] VALUES_ARRAY =
-		new ServerStatus[] {
-			NO_PROJECT,
-			DISCONNECTED,
-			CONNECTED,
-		};
+	private static final ServerStatus[] VALUES_ARRAY = new ServerStatus[]{
+			NO_PROJECT, DISCONNECTED, CONNECTED,
+	};
 
 	/**
-	 * A public read-only list of all the '<em><b>Server Status</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * A public read-only list of all the '<em><b>Server Status</b></em>'
+	 * enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public static final List<ServerStatus> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ServerStatus> VALUES = Collections
+			.unmodifiableList( Arrays.asList( VALUES_ARRAY ) );
 
 	/**
-	 * Returns the '<em><b>Server Status</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>Server Status</b></em>' literal with the specified
+	 * literal value. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public static ServerStatus get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static ServerStatus get( String literal )
+	{
+		for ( int i = 0; i < VALUES_ARRAY.length; ++i )
+		{
 			ServerStatus result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if ( result.toString( ).equals( literal ) )
+			{
 				return result;
 			}
 		}
@@ -143,15 +147,18 @@ public enum ServerStatus implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Server Status</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>Server Status</b></em>' literal with the specified
+	 * name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public static ServerStatus getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+	public static ServerStatus getByName( String name )
+	{
+		for ( int i = 0; i < VALUES_ARRAY.length; ++i )
+		{
 			ServerStatus result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if ( result.getName( ).equals( name ) )
+			{
 				return result;
 			}
 		}
@@ -159,89 +166,99 @@ public enum ServerStatus implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Server Status</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>Server Status</b></em>' literal with the specified
+	 * integer value. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public static ServerStatus get(int value) {
-		switch (value) {
-			case NO_PROJECT_VALUE: return NO_PROJECT;
-			case DISCONNECTED_VALUE: return DISCONNECTED;
-			case CONNECTED_VALUE: return CONNECTED;
+	public static ServerStatus get( int value )
+	{
+		switch ( value )
+		{
+			case NO_PROJECT_VALUE :
+				return NO_PROJECT;
+			case DISCONNECTED_VALUE :
+				return DISCONNECTED;
+			case CONNECTED_VALUE :
+				return CONNECTED;
 		}
 		return null;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Only this class can construct instances. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private ServerStatus(int value, String name, String literal) {
+	private ServerStatus( int value, String name, String literal )
+	{
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public int getValue() {
-	  return value;
+	public int getValue( )
+	{
+		return value;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public String getName() {
-	  return name;
+	public String getName( )
+	{
+		return name;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public String getLiteral() {
-	  return literal;
+	public String getLiteral( )
+	{
+		return literal;
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string
+	 * representation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String toString() {
+	public String toString( )
+	{
 		return literal;
 	}
-	
-} //ServerStatus
+
+} // ServerStatus

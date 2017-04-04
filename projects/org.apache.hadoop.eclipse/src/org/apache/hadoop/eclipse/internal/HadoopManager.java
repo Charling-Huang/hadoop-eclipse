@@ -38,46 +38,63 @@ import org.osgi.framework.Bundle;
  * @author Srimanth Gunturi
  * 
  */
-public class HadoopManager {
-	private static final Logger logger = Logger.getLogger(HadoopManager.class);
+public class HadoopManager
+{
+
+	private static final Logger logger = Logger
+			.getLogger( HadoopManager.class );
 	private static final String MODEL_FILE_NAME = "servers.xmi";
-	public static HadoopManager INSTANCE = new HadoopManager();
+	public static HadoopManager INSTANCE = new HadoopManager( );
 
 	private Servers servers = null;
 
-	private HadoopManager() {
+	private HadoopManager( )
+	{
 	}
 
-	public Servers getServers() {
-		if (servers == null) {
-			loadServers();
-			if (servers == null) {
-				Bundle bundle = Platform.getBundle(Activator.BUNDLE_ID);
-				File serversFile = bundle.getBundleContext().getDataFile(MODEL_FILE_NAME);
-				Resource resource = new ResourceSetImpl().createResource(URI.createFileURI(serversFile.getPath()));
-				servers = HadoopFactory.eINSTANCE.createServers();
-				resource.getContents().add(servers);
+	public Servers getServers( )
+	{
+		if ( servers == null )
+		{
+			loadServers( );
+			if ( servers == null )
+			{
+				Bundle bundle = Platform.getBundle( Activator.BUNDLE_ID );
+				File serversFile = bundle.getBundleContext( )
+						.getDataFile( MODEL_FILE_NAME );
+				Resource resource = new ResourceSetImpl( ).createResource(
+						URI.createFileURI( serversFile.getPath( ) ) );
+				servers = HadoopFactory.eINSTANCE.createServers( );
+				resource.getContents( ).add( servers );
 			}
 		}
 		return servers;
 	}
 
-	private void loadServers() {
-		Bundle bundle = Platform.getBundle(Activator.BUNDLE_ID);
-		File serversFile = bundle.getBundleContext().getDataFile(MODEL_FILE_NAME);
-		if (serversFile.exists()) {
-			Resource resource = new ResourceSetImpl().getResource(URI.createFileURI(serversFile.getPath()), true);
-			servers = (Servers) resource.getContents().get(0);
-			HDFSManager.INSTANCE.loadServers();
-			ZooKeeperManager.INSTANCE.loadServers();
+	private void loadServers( )
+	{
+		Bundle bundle = Platform.getBundle( Activator.BUNDLE_ID );
+		File serversFile = bundle.getBundleContext( )
+				.getDataFile( MODEL_FILE_NAME );
+		if ( serversFile.exists( ) )
+		{
+			Resource resource = new ResourceSetImpl( ).getResource(
+					URI.createFileURI( serversFile.getPath( ) ), true );
+			servers = (Servers) resource.getContents( ).get( 0 );
+			HDFSManager.INSTANCE.loadServers( );
+			ZooKeeperManager.INSTANCE.loadServers( );
 		}
 	}
 
-	public void saveServers() {
-		try {
-			servers.eResource().save(Collections.EMPTY_MAP);
-		} catch (IOException e) {
-			logger.error("Unable to persist Hadoop servers model", e);
+	public void saveServers( )
+	{
+		try
+		{
+			servers.eResource( ).save( Collections.EMPTY_MAP );
+		}
+		catch ( IOException e )
+		{
+			logger.error( "Unable to persist Hadoop servers model", e );
 		}
 	}
 }

@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.hadoop.eclipse.ui.internal.hdfs;
 
 import org.apache.hadoop.eclipse.internal.hdfs.HDFSFileSystem;
@@ -30,12 +31,14 @@ import org.eclipse.ui.navigator.ICommonLabelProvider;
  * @author Srimanth Gunturi
  * 
  */
-public class HDFSLabelProvider implements ICommonLabelProvider {
+public class HDFSLabelProvider implements ICommonLabelProvider
+{
 
 	/**
 	 * 
 	 */
-	public HDFSLabelProvider() {
+	public HDFSLabelProvider( )
+	{
 	}
 
 	/*
@@ -44,10 +47,14 @@ public class HDFSLabelProvider implements ICommonLabelProvider {
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
 	 */
 	@Override
-	public Image getImage(Object element) {
-		if (element instanceof IProject) {
+	public Image getImage( Object element )
+	{
+		if ( element instanceof IProject )
+		{
 			IProject project = (IProject) element;
-			if (HDFSFileSystem.SCHEME.equals(project.getLocationURI().getScheme())) {
+			if ( HDFSFileSystem.SCHEME
+					.equals( project.getLocationURI( ).getScheme( ) ) )
+			{
 				return Activator.IMAGE_HDFS;
 			}
 		}
@@ -60,7 +67,8 @@ public class HDFSLabelProvider implements ICommonLabelProvider {
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
 	 */
 	@Override
-	public String getText(Object element) {
+	public String getText( Object element )
+	{
 		return null;
 	}
 
@@ -72,7 +80,8 @@ public class HDFSLabelProvider implements ICommonLabelProvider {
 	 * jface.viewers.ILabelProviderListener)
 	 */
 	@Override
-	public void addListener(ILabelProviderListener listener) {
+	public void addListener( ILabelProviderListener listener )
+	{
 	}
 
 	/*
@@ -81,7 +90,8 @@ public class HDFSLabelProvider implements ICommonLabelProvider {
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
 	 */
 	@Override
-	public void dispose() {
+	public void dispose( )
+	{
 	}
 
 	/*
@@ -92,7 +102,8 @@ public class HDFSLabelProvider implements ICommonLabelProvider {
 	 * .Object, java.lang.String)
 	 */
 	@Override
-	public boolean isLabelProperty(Object element, String property) {
+	public boolean isLabelProperty( Object element, String property )
+	{
 		return false;
 	}
 
@@ -104,18 +115,19 @@ public class HDFSLabelProvider implements ICommonLabelProvider {
 	 * .jface.viewers.ILabelProviderListener)
 	 */
 	@Override
-	public void removeListener(ILabelProviderListener listener) {
+	public void removeListener( ILabelProviderListener listener )
+	{
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.ui.navigator.IMementoAware#restoreState(org.eclipse.ui.IMemento
-	 * )
+	 * @see org.eclipse.ui.navigator.IMementoAware#restoreState(org.eclipse.ui.
+	 * IMemento )
 	 */
 	@Override
-	public void restoreState(IMemento aMemento) {
+	public void restoreState( IMemento aMemento )
+	{
 	}
 
 	/*
@@ -125,7 +137,8 @@ public class HDFSLabelProvider implements ICommonLabelProvider {
 	 * org.eclipse.ui.navigator.IMementoAware#saveState(org.eclipse.ui.IMemento)
 	 */
 	@Override
-	public void saveState(IMemento aMemento) {
+	public void saveState( IMemento aMemento )
+	{
 	}
 
 	/*
@@ -136,18 +149,19 @@ public class HDFSLabelProvider implements ICommonLabelProvider {
 	 * .Object)
 	 */
 	@Override
-	public String getDescription(Object anElement) {
+	public String getDescription( Object anElement )
+	{
 		return null;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.ui.navigator.ICommonLabelProvider#init(org.eclipse.ui.navigator
-	 * .ICommonContentExtensionSite)
+	 * @see org.eclipse.ui.navigator.ICommonLabelProvider#init(org.eclipse.ui.
+	 * navigator .ICommonContentExtensionSite)
 	 */
 	@Override
-	public void init(ICommonContentExtensionSite aConfig) {
+	public void init( ICommonContentExtensionSite aConfig )
+	{
 	}
 }

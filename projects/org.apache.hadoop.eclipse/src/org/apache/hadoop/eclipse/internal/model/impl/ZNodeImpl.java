@@ -16,6 +16,7 @@
  * limitations under the License.
  *  
  */
+
 package org.apache.hadoop.eclipse.internal.model.impl;
 
 import java.util.Collection;
@@ -40,32 +41,67 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getChildren <em>Children</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getLastRefresh <em>Last Refresh</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#isRefreshing <em>Refreshing</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#isEphermeral <em>Ephermeral</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getCreationId <em>Creation Id</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getModifiedId <em>Modified Id</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getCreationTime <em>Creation Time</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getModifiedTime <em>Modified Time</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getVersion <em>Version</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getChildrenVersion <em>Children Version</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getAclVersion <em>Acl Version</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getEphermalOwnerSessionId <em>Ephermal Owner Session Id</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getDataLength <em>Data Length</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getChildrenCount <em>Children Count</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getParent <em>Parent</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getNodeName <em>Node Name</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#isSequential <em>Sequential</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getChildren
+ * <em>Children</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getLastRefresh
+ * <em>Last Refresh</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#isRefreshing
+ * <em>Refreshing</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#isEphermeral
+ * <em>Ephermeral</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getCreationId
+ * <em>Creation Id</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getModifiedId
+ * <em>Modified Id</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getCreationTime
+ * <em>Creation Time</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getModifiedTime
+ * <em>Modified Time</em>}</li>
+ * <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getVersion
+ * <em>Version</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getChildrenVersion
+ * <em>Children Version</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getAclVersion
+ * <em>Acl Version</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getEphermalOwnerSessionId
+ * <em>Ephermal Owner Session Id</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getDataLength
+ * <em>Data Length</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getChildrenCount
+ * <em>Children Count</em>}</li>
+ * <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getParent
+ * <em>Parent</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#getNodeName
+ * <em>Node Name</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ZNodeImpl#isSequential
+ * <em>Sequential</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ZNodeImpl extends EObjectImpl implements ZNode {
+public class ZNodeImpl extends EObjectImpl implements ZNode
+{
+
 	/**
-	 * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getChildren() <em>Children</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getChildren()
 	 * @generated
 	 * @ordered
@@ -73,8 +109,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected EList<ZNode> children;
 
 	/**
-	 * The default value of the '{@link #getLastRefresh() <em>Last Refresh</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getLastRefresh() <em>Last Refresh</em>}
+	 * ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getLastRefresh()
 	 * @generated
 	 * @ordered
@@ -82,8 +119,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected static final long LAST_REFRESH_EDEFAULT = -1L;
 
 	/**
-	 * The cached value of the '{@link #getLastRefresh() <em>Last Refresh</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getLastRefresh() <em>Last Refresh</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getLastRefresh()
 	 * @generated
 	 * @ordered
@@ -91,8 +129,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected long lastRefresh = LAST_REFRESH_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isRefreshing() <em>Refreshing</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #isRefreshing() <em>Refreshing</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isRefreshing()
 	 * @generated
 	 * @ordered
@@ -100,8 +139,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected static final boolean REFRESHING_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isRefreshing() <em>Refreshing</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #isRefreshing() <em>Refreshing</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isRefreshing()
 	 * @generated
 	 * @ordered
@@ -109,9 +149,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected boolean refreshing = REFRESHING_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isEphermeral() <em>Ephermeral</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isEphermeral() <em>Ephermeral</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isEphermeral()
 	 * @generated
 	 * @ordered
@@ -119,9 +159,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected static final boolean EPHERMERAL_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isEphermeral() <em>Ephermeral</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isEphermeral() <em>Ephermeral</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isEphermeral()
 	 * @generated
 	 * @ordered
@@ -129,8 +169,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected boolean ephermeral = EPHERMERAL_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCreationId() <em>Creation Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getCreationId() <em>Creation Id</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getCreationId()
 	 * @generated
 	 * @ordered
@@ -138,8 +179,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected static final long CREATION_ID_EDEFAULT = -1L;
 
 	/**
-	 * The cached value of the '{@link #getCreationId() <em>Creation Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getCreationId() <em>Creation Id</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getCreationId()
 	 * @generated
 	 * @ordered
@@ -147,8 +189,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected long creationId = CREATION_ID_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getModifiedId() <em>Modified Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getModifiedId() <em>Modified Id</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getModifiedId()
 	 * @generated
 	 * @ordered
@@ -156,8 +199,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected static final long MODIFIED_ID_EDEFAULT = -1L;
 
 	/**
-	 * The cached value of the '{@link #getModifiedId() <em>Modified Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getModifiedId() <em>Modified Id</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getModifiedId()
 	 * @generated
 	 * @ordered
@@ -165,9 +209,10 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected long modifiedId = MODIFIED_ID_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCreationTime() <em>Creation Time</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getCreationTime()
+	 * <em>Creation Time</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getCreationTime()
 	 * @generated
 	 * @ordered
@@ -175,9 +220,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected static final long CREATION_TIME_EDEFAULT = -1L;
 
 	/**
-	 * The cached value of the '{@link #getCreationTime() <em>Creation Time</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getCreationTime() <em>Creation Time</em>
+	 * }' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getCreationTime()
 	 * @generated
 	 * @ordered
@@ -185,9 +230,10 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected long creationTime = CREATION_TIME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getModifiedTime() <em>Modified Time</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getModifiedTime()
+	 * <em>Modified Time</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getModifiedTime()
 	 * @generated
 	 * @ordered
@@ -195,9 +241,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected static final long MODIFIED_TIME_EDEFAULT = -1L;
 
 	/**
-	 * The cached value of the '{@link #getModifiedTime() <em>Modified Time</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getModifiedTime() <em>Modified Time</em>
+	 * }' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getModifiedTime()
 	 * @generated
 	 * @ordered
@@ -205,8 +251,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected long modifiedTime = MODIFIED_TIME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getVersion() <em>Version</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -214,8 +261,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected static final int VERSION_EDEFAULT = -1;
 
 	/**
-	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getVersion() <em>Version</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -223,9 +271,10 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected int version = VERSION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getChildrenVersion() <em>Children Version</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getChildrenVersion()
+	 * <em>Children Version</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getChildrenVersion()
 	 * @generated
 	 * @ordered
@@ -233,9 +282,10 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected static final int CHILDREN_VERSION_EDEFAULT = -1;
 
 	/**
-	 * The cached value of the '{@link #getChildrenVersion() <em>Children Version</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getChildrenVersion()
+	 * <em>Children Version</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getChildrenVersion()
 	 * @generated
 	 * @ordered
@@ -243,8 +293,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected int childrenVersion = CHILDREN_VERSION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getAclVersion() <em>Acl Version</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getAclVersion() <em>Acl Version</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAclVersion()
 	 * @generated
 	 * @ordered
@@ -252,8 +303,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected static final int ACL_VERSION_EDEFAULT = -1;
 
 	/**
-	 * The cached value of the '{@link #getAclVersion() <em>Acl Version</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAclVersion() <em>Acl Version</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAclVersion()
 	 * @generated
 	 * @ordered
@@ -261,9 +313,10 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected int aclVersion = ACL_VERSION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEphermalOwnerSessionId() <em>Ephermal Owner Session Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getEphermalOwnerSessionId()
+	 * <em>Ephermal Owner Session Id</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getEphermalOwnerSessionId()
 	 * @generated
 	 * @ordered
@@ -271,9 +324,10 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected static final long EPHERMAL_OWNER_SESSION_ID_EDEFAULT = -1L;
 
 	/**
-	 * The cached value of the '{@link #getEphermalOwnerSessionId() <em>Ephermal Owner Session Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getEphermalOwnerSessionId()
+	 * <em>Ephermal Owner Session Id</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getEphermalOwnerSessionId()
 	 * @generated
 	 * @ordered
@@ -281,8 +335,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected long ephermalOwnerSessionId = EPHERMAL_OWNER_SESSION_ID_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDataLength() <em>Data Length</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDataLength() <em>Data Length</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDataLength()
 	 * @generated
 	 * @ordered
@@ -290,8 +345,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected static final int DATA_LENGTH_EDEFAULT = -1;
 
 	/**
-	 * The cached value of the '{@link #getDataLength() <em>Data Length</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDataLength() <em>Data Length</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDataLength()
 	 * @generated
 	 * @ordered
@@ -299,9 +355,10 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected int dataLength = DATA_LENGTH_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getChildrenCount() <em>Children Count</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getChildrenCount()
+	 * <em>Children Count</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getChildrenCount()
 	 * @generated
 	 * @ordered
@@ -309,9 +366,10 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected static final int CHILDREN_COUNT_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getChildrenCount() <em>Children Count</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getChildrenCount()
+	 * <em>Children Count</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getChildrenCount()
 	 * @generated
 	 * @ordered
@@ -321,6 +379,7 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	/**
 	 * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getParent()
 	 * @generated
 	 * @ordered
@@ -328,8 +387,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected ZNode parent;
 
 	/**
-	 * The default value of the '{@link #getNodeName() <em>Node Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getNodeName() <em>Node Name</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNodeName()
 	 * @generated
 	 * @ordered
@@ -337,8 +397,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected static final String NODE_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getNodeName() <em>Node Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNodeName() <em>Node Name</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNodeName()
 	 * @generated
 	 * @ordered
@@ -346,9 +407,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected String nodeName = NODE_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isSequential() <em>Sequential</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isSequential() <em>Sequential</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isSequential()
 	 * @generated
 	 * @ordered
@@ -356,9 +417,9 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 	protected static final boolean SEQUENTIAL_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isSequential() <em>Sequential</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isSequential() <em>Sequential</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isSequential()
 	 * @generated
 	 * @ordered
@@ -367,292 +428,411 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	protected ZNodeImpl() {
-		super();
+	protected ZNodeImpl( )
+	{
+		super( );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass( )
+	{
 		return HadoopPackage.Literals.ZNODE;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public EList<ZNode> getChildren() {
-		if (children == null) {
-			children = new EObjectContainmentEList<ZNode>(ZNode.class, this, HadoopPackage.ZNODE__CHILDREN);
+	public EList<ZNode> getChildren( )
+	{
+		if ( children == null )
+		{
+			children = new EObjectContainmentEList<ZNode>( ZNode.class,
+					this,
+					HadoopPackage.ZNODE__CHILDREN );
 		}
 		return children;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public long getLastRefresh() {
+	public long getLastRefresh( )
+	{
 		return lastRefresh;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setLastRefresh(long newLastRefresh) {
+	public void setLastRefresh( long newLastRefresh )
+	{
 		long oldLastRefresh = lastRefresh;
 		lastRefresh = newLastRefresh;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__LAST_REFRESH, oldLastRefresh, lastRefresh));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__LAST_REFRESH,
+					oldLastRefresh,
+					lastRefresh ) );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public boolean isRefreshing() {
+	public boolean isRefreshing( )
+	{
 		return refreshing;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setRefreshing(boolean newRefreshing) {
+	public void setRefreshing( boolean newRefreshing )
+	{
 		boolean oldRefreshing = refreshing;
 		refreshing = newRefreshing;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__REFRESHING, oldRefreshing, refreshing));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isEphermeral() {
-		return ephermeral;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEphermeral(boolean newEphermeral) {
-		boolean oldEphermeral = ephermeral;
-		ephermeral = newEphermeral;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__EPHERMERAL, oldEphermeral, ephermeral));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__REFRESHING,
+					oldRefreshing,
+					refreshing ) );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public long getCreationId() {
+	public boolean isEphermeral( )
+	{
+		return ephermeral;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setEphermeral( boolean newEphermeral )
+	{
+		boolean oldEphermeral = ephermeral;
+		ephermeral = newEphermeral;
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__EPHERMERAL,
+					oldEphermeral,
+					ephermeral ) );
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public long getCreationId( )
+	{
 		return creationId;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setCreationId(long newCreationId) {
+	public void setCreationId( long newCreationId )
+	{
 		long oldCreationId = creationId;
 		creationId = newCreationId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__CREATION_ID, oldCreationId, creationId));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__CREATION_ID,
+					oldCreationId,
+					creationId ) );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public long getModifiedId() {
+	public long getModifiedId( )
+	{
 		return modifiedId;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setModifiedId(long newModifiedId) {
+	public void setModifiedId( long newModifiedId )
+	{
 		long oldModifiedId = modifiedId;
 		modifiedId = newModifiedId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__MODIFIED_ID, oldModifiedId, modifiedId));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__MODIFIED_ID,
+					oldModifiedId,
+					modifiedId ) );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public long getCreationTime() {
+	public long getCreationTime( )
+	{
 		return creationTime;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setCreationTime(long newCreationTime) {
+	public void setCreationTime( long newCreationTime )
+	{
 		long oldCreationTime = creationTime;
 		creationTime = newCreationTime;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__CREATION_TIME, oldCreationTime, creationTime));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__CREATION_TIME,
+					oldCreationTime,
+					creationTime ) );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public long getModifiedTime() {
+	public long getModifiedTime( )
+	{
 		return modifiedTime;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setModifiedTime(long newModifiedTime) {
+	public void setModifiedTime( long newModifiedTime )
+	{
 		long oldModifiedTime = modifiedTime;
 		modifiedTime = newModifiedTime;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__MODIFIED_TIME, oldModifiedTime, modifiedTime));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__MODIFIED_TIME,
+					oldModifiedTime,
+					modifiedTime ) );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public int getVersion() {
+	public int getVersion( )
+	{
 		return version;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setVersion(int newVersion) {
+	public void setVersion( int newVersion )
+	{
 		int oldVersion = version;
 		version = newVersion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__VERSION, oldVersion, version));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__VERSION,
+					oldVersion,
+					version ) );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public int getChildrenVersion() {
+	public int getChildrenVersion( )
+	{
 		return childrenVersion;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setChildrenVersion(int newChildrenVersion) {
+	public void setChildrenVersion( int newChildrenVersion )
+	{
 		int oldChildrenVersion = childrenVersion;
 		childrenVersion = newChildrenVersion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__CHILDREN_VERSION, oldChildrenVersion, childrenVersion));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__CHILDREN_VERSION,
+					oldChildrenVersion,
+					childrenVersion ) );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public int getAclVersion() {
+	public int getAclVersion( )
+	{
 		return aclVersion;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setAclVersion(int newAclVersion) {
+	public void setAclVersion( int newAclVersion )
+	{
 		int oldAclVersion = aclVersion;
 		aclVersion = newAclVersion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__ACL_VERSION, oldAclVersion, aclVersion));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__ACL_VERSION,
+					oldAclVersion,
+					aclVersion ) );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public long getEphermalOwnerSessionId() {
+	public long getEphermalOwnerSessionId( )
+	{
 		return ephermalOwnerSessionId;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setEphermalOwnerSessionId(long newEphermalOwnerSessionId) {
+	public void setEphermalOwnerSessionId( long newEphermalOwnerSessionId )
+	{
 		long oldEphermalOwnerSessionId = ephermalOwnerSessionId;
 		ephermalOwnerSessionId = newEphermalOwnerSessionId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__EPHERMAL_OWNER_SESSION_ID, oldEphermalOwnerSessionId, ephermalOwnerSessionId));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__EPHERMAL_OWNER_SESSION_ID,
+					oldEphermalOwnerSessionId,
+					ephermalOwnerSessionId ) );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public int getDataLength() {
+	public int getDataLength( )
+	{
 		return dataLength;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setDataLength(int newDataLength) {
+	public void setDataLength( int newDataLength )
+	{
 		int oldDataLength = dataLength;
 		dataLength = newDataLength;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__DATA_LENGTH, oldDataLength, dataLength));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__DATA_LENGTH,
+					oldDataLength,
+					dataLength ) );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public int getChildrenCount() {
+	public int getChildrenCount( )
+	{
 		return childrenCount;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setChildrenCount(int newChildrenCount) {
+	public void setChildrenCount( int newChildrenCount )
+	{
 		int oldChildrenCount = childrenCount;
 		childrenCount = newChildrenCount;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__CHILDREN_COUNT, oldChildrenCount, childrenCount));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__CHILDREN_COUNT,
+					oldChildrenCount,
+					childrenCount ) );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public ZNode getParent() {
-		if (parent != null && parent.eIsProxy()) {
-			InternalEObject oldParent = (InternalEObject)parent;
-			parent = (ZNode)eResolveProxy(oldParent);
-			if (parent != oldParent) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, HadoopPackage.ZNODE__PARENT, oldParent, parent));
+	public ZNode getParent( )
+	{
+		if ( parent != null && parent.eIsProxy( ) )
+		{
+			InternalEObject oldParent = (InternalEObject) parent;
+			parent = (ZNode) eResolveProxy( oldParent );
+			if ( parent != oldParent )
+			{
+				if ( eNotificationRequired( ) )
+					eNotify( new ENotificationImpl( this,
+							Notification.RESOLVE,
+							HadoopPackage.ZNODE__PARENT,
+							oldParent,
+							parent ) );
 			}
 		}
 		return parent;
@@ -660,358 +840,408 @@ public class ZNodeImpl extends EObjectImpl implements ZNode {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public ZNode basicGetParent() {
+	public ZNode basicGetParent( )
+	{
 		return parent;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setParent(ZNode newParent) {
+	public void setParent( ZNode newParent )
+	{
 		ZNode oldParent = parent;
 		parent = newParent;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__PARENT, oldParent, parent));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__PARENT,
+					oldParent,
+					parent ) );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public String getNodeName() {
+	public String getNodeName( )
+	{
 		return nodeName;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setNodeName(String newNodeName) {
+	public void setNodeName( String newNodeName )
+	{
 		String oldNodeName = nodeName;
 		nodeName = newNodeName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__NODE_NAME, oldNodeName, nodeName));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__NODE_NAME,
+					oldNodeName,
+					nodeName ) );
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public boolean isSequential() {
+	public boolean isSequential( )
+	{
 		return sequential;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setSequential(boolean newSequential) {
+	public void setSequential( boolean newSequential )
+	{
 		boolean oldSequential = sequential;
 		sequential = newSequential;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.ZNODE__SEQUENTIAL, oldSequential, sequential));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.ZNODE__SEQUENTIAL,
+					oldSequential,
+					sequential ) );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public ZooKeeperServer getServer() {
-		if(this instanceof org.apache.hadoop.eclipse.internal.model.ZooKeeperServer)
-					return (org.apache.hadoop.eclipse.internal.model.ZooKeeperServer) this;
-				else
-					return getParent().getServer();
+	public ZooKeeperServer getServer( )
+	{
+		if ( this instanceof org.apache.hadoop.eclipse.internal.model.ZooKeeperServer )
+			return (org.apache.hadoop.eclipse.internal.model.ZooKeeperServer) this;
+		else
+			return getParent( ).getServer( );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public String getPath() {
-		if (this instanceof org.apache.hadoop.eclipse.internal.model.ZooKeeperServer)
+	public String getPath( )
+	{
+		if ( this instanceof org.apache.hadoop.eclipse.internal.model.ZooKeeperServer )
 			return "/";
-		else {
-			String parentPath = getParent().getPath();
-			return parentPath.endsWith("/") ? parentPath + getNodeName() : parentPath + "/" + getNodeName();
+		else
+		{
+			String parentPath = getParent( ).getPath( );
+			return parentPath.endsWith( "/" ) ? parentPath + getNodeName( )
+					: parentPath + "/" + getNodeName( );
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case HadoopPackage.ZNODE__CHILDREN:
-				return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
+	public NotificationChain eInverseRemove( InternalEObject otherEnd,
+			int featureID, NotificationChain msgs )
+	{
+		switch ( featureID )
+		{
+			case HadoopPackage.ZNODE__CHILDREN :
+				return ( (InternalEList<?>) getChildren( ) )
+						.basicRemove( otherEnd, msgs );
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return super.eInverseRemove( otherEnd, featureID, msgs );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case HadoopPackage.ZNODE__CHILDREN:
-				return getChildren();
-			case HadoopPackage.ZNODE__LAST_REFRESH:
-				return getLastRefresh();
-			case HadoopPackage.ZNODE__REFRESHING:
-				return isRefreshing();
-			case HadoopPackage.ZNODE__EPHERMERAL:
-				return isEphermeral();
-			case HadoopPackage.ZNODE__CREATION_ID:
-				return getCreationId();
-			case HadoopPackage.ZNODE__MODIFIED_ID:
-				return getModifiedId();
-			case HadoopPackage.ZNODE__CREATION_TIME:
-				return getCreationTime();
-			case HadoopPackage.ZNODE__MODIFIED_TIME:
-				return getModifiedTime();
-			case HadoopPackage.ZNODE__VERSION:
-				return getVersion();
-			case HadoopPackage.ZNODE__CHILDREN_VERSION:
-				return getChildrenVersion();
-			case HadoopPackage.ZNODE__ACL_VERSION:
-				return getAclVersion();
-			case HadoopPackage.ZNODE__EPHERMAL_OWNER_SESSION_ID:
-				return getEphermalOwnerSessionId();
-			case HadoopPackage.ZNODE__DATA_LENGTH:
-				return getDataLength();
-			case HadoopPackage.ZNODE__CHILDREN_COUNT:
-				return getChildrenCount();
-			case HadoopPackage.ZNODE__PARENT:
-				if (resolve) return getParent();
-				return basicGetParent();
-			case HadoopPackage.ZNODE__NODE_NAME:
-				return getNodeName();
-			case HadoopPackage.ZNODE__SEQUENTIAL:
-				return isSequential();
+	public Object eGet( int featureID, boolean resolve, boolean coreType )
+	{
+		switch ( featureID )
+		{
+			case HadoopPackage.ZNODE__CHILDREN :
+				return getChildren( );
+			case HadoopPackage.ZNODE__LAST_REFRESH :
+				return getLastRefresh( );
+			case HadoopPackage.ZNODE__REFRESHING :
+				return isRefreshing( );
+			case HadoopPackage.ZNODE__EPHERMERAL :
+				return isEphermeral( );
+			case HadoopPackage.ZNODE__CREATION_ID :
+				return getCreationId( );
+			case HadoopPackage.ZNODE__MODIFIED_ID :
+				return getModifiedId( );
+			case HadoopPackage.ZNODE__CREATION_TIME :
+				return getCreationTime( );
+			case HadoopPackage.ZNODE__MODIFIED_TIME :
+				return getModifiedTime( );
+			case HadoopPackage.ZNODE__VERSION :
+				return getVersion( );
+			case HadoopPackage.ZNODE__CHILDREN_VERSION :
+				return getChildrenVersion( );
+			case HadoopPackage.ZNODE__ACL_VERSION :
+				return getAclVersion( );
+			case HadoopPackage.ZNODE__EPHERMAL_OWNER_SESSION_ID :
+				return getEphermalOwnerSessionId( );
+			case HadoopPackage.ZNODE__DATA_LENGTH :
+				return getDataLength( );
+			case HadoopPackage.ZNODE__CHILDREN_COUNT :
+				return getChildrenCount( );
+			case HadoopPackage.ZNODE__PARENT :
+				if ( resolve )
+					return getParent( );
+				return basicGetParent( );
+			case HadoopPackage.ZNODE__NODE_NAME :
+				return getNodeName( );
+			case HadoopPackage.ZNODE__SEQUENTIAL :
+				return isSequential( );
 		}
-		return super.eGet(featureID, resolve, coreType);
+		return super.eGet( featureID, resolve, coreType );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case HadoopPackage.ZNODE__CHILDREN:
-				getChildren().clear();
-				getChildren().addAll((Collection<? extends ZNode>)newValue);
+	public void eSet( int featureID, Object newValue )
+	{
+		switch ( featureID )
+		{
+			case HadoopPackage.ZNODE__CHILDREN :
+				getChildren( ).clear( );
+				getChildren( ).addAll( (Collection<? extends ZNode>) newValue );
 				return;
-			case HadoopPackage.ZNODE__LAST_REFRESH:
-				setLastRefresh((Long)newValue);
+			case HadoopPackage.ZNODE__LAST_REFRESH :
+				setLastRefresh( (Long) newValue );
 				return;
-			case HadoopPackage.ZNODE__REFRESHING:
-				setRefreshing((Boolean)newValue);
+			case HadoopPackage.ZNODE__REFRESHING :
+				setRefreshing( (Boolean) newValue );
 				return;
-			case HadoopPackage.ZNODE__EPHERMERAL:
-				setEphermeral((Boolean)newValue);
+			case HadoopPackage.ZNODE__EPHERMERAL :
+				setEphermeral( (Boolean) newValue );
 				return;
-			case HadoopPackage.ZNODE__CREATION_ID:
-				setCreationId((Long)newValue);
+			case HadoopPackage.ZNODE__CREATION_ID :
+				setCreationId( (Long) newValue );
 				return;
-			case HadoopPackage.ZNODE__MODIFIED_ID:
-				setModifiedId((Long)newValue);
+			case HadoopPackage.ZNODE__MODIFIED_ID :
+				setModifiedId( (Long) newValue );
 				return;
-			case HadoopPackage.ZNODE__CREATION_TIME:
-				setCreationTime((Long)newValue);
+			case HadoopPackage.ZNODE__CREATION_TIME :
+				setCreationTime( (Long) newValue );
 				return;
-			case HadoopPackage.ZNODE__MODIFIED_TIME:
-				setModifiedTime((Long)newValue);
+			case HadoopPackage.ZNODE__MODIFIED_TIME :
+				setModifiedTime( (Long) newValue );
 				return;
-			case HadoopPackage.ZNODE__VERSION:
-				setVersion((Integer)newValue);
+			case HadoopPackage.ZNODE__VERSION :
+				setVersion( (Integer) newValue );
 				return;
-			case HadoopPackage.ZNODE__CHILDREN_VERSION:
-				setChildrenVersion((Integer)newValue);
+			case HadoopPackage.ZNODE__CHILDREN_VERSION :
+				setChildrenVersion( (Integer) newValue );
 				return;
-			case HadoopPackage.ZNODE__ACL_VERSION:
-				setAclVersion((Integer)newValue);
+			case HadoopPackage.ZNODE__ACL_VERSION :
+				setAclVersion( (Integer) newValue );
 				return;
-			case HadoopPackage.ZNODE__EPHERMAL_OWNER_SESSION_ID:
-				setEphermalOwnerSessionId((Long)newValue);
+			case HadoopPackage.ZNODE__EPHERMAL_OWNER_SESSION_ID :
+				setEphermalOwnerSessionId( (Long) newValue );
 				return;
-			case HadoopPackage.ZNODE__DATA_LENGTH:
-				setDataLength((Integer)newValue);
+			case HadoopPackage.ZNODE__DATA_LENGTH :
+				setDataLength( (Integer) newValue );
 				return;
-			case HadoopPackage.ZNODE__CHILDREN_COUNT:
-				setChildrenCount((Integer)newValue);
+			case HadoopPackage.ZNODE__CHILDREN_COUNT :
+				setChildrenCount( (Integer) newValue );
 				return;
-			case HadoopPackage.ZNODE__PARENT:
-				setParent((ZNode)newValue);
+			case HadoopPackage.ZNODE__PARENT :
+				setParent( (ZNode) newValue );
 				return;
-			case HadoopPackage.ZNODE__NODE_NAME:
-				setNodeName((String)newValue);
+			case HadoopPackage.ZNODE__NODE_NAME :
+				setNodeName( (String) newValue );
 				return;
-			case HadoopPackage.ZNODE__SEQUENTIAL:
-				setSequential((Boolean)newValue);
+			case HadoopPackage.ZNODE__SEQUENTIAL :
+				setSequential( (Boolean) newValue );
 				return;
 		}
-		super.eSet(featureID, newValue);
+		super.eSet( featureID, newValue );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case HadoopPackage.ZNODE__CHILDREN:
-				getChildren().clear();
+	public void eUnset( int featureID )
+	{
+		switch ( featureID )
+		{
+			case HadoopPackage.ZNODE__CHILDREN :
+				getChildren( ).clear( );
 				return;
-			case HadoopPackage.ZNODE__LAST_REFRESH:
-				setLastRefresh(LAST_REFRESH_EDEFAULT);
+			case HadoopPackage.ZNODE__LAST_REFRESH :
+				setLastRefresh( LAST_REFRESH_EDEFAULT );
 				return;
-			case HadoopPackage.ZNODE__REFRESHING:
-				setRefreshing(REFRESHING_EDEFAULT);
+			case HadoopPackage.ZNODE__REFRESHING :
+				setRefreshing( REFRESHING_EDEFAULT );
 				return;
-			case HadoopPackage.ZNODE__EPHERMERAL:
-				setEphermeral(EPHERMERAL_EDEFAULT);
+			case HadoopPackage.ZNODE__EPHERMERAL :
+				setEphermeral( EPHERMERAL_EDEFAULT );
 				return;
-			case HadoopPackage.ZNODE__CREATION_ID:
-				setCreationId(CREATION_ID_EDEFAULT);
+			case HadoopPackage.ZNODE__CREATION_ID :
+				setCreationId( CREATION_ID_EDEFAULT );
 				return;
-			case HadoopPackage.ZNODE__MODIFIED_ID:
-				setModifiedId(MODIFIED_ID_EDEFAULT);
+			case HadoopPackage.ZNODE__MODIFIED_ID :
+				setModifiedId( MODIFIED_ID_EDEFAULT );
 				return;
-			case HadoopPackage.ZNODE__CREATION_TIME:
-				setCreationTime(CREATION_TIME_EDEFAULT);
+			case HadoopPackage.ZNODE__CREATION_TIME :
+				setCreationTime( CREATION_TIME_EDEFAULT );
 				return;
-			case HadoopPackage.ZNODE__MODIFIED_TIME:
-				setModifiedTime(MODIFIED_TIME_EDEFAULT);
+			case HadoopPackage.ZNODE__MODIFIED_TIME :
+				setModifiedTime( MODIFIED_TIME_EDEFAULT );
 				return;
-			case HadoopPackage.ZNODE__VERSION:
-				setVersion(VERSION_EDEFAULT);
+			case HadoopPackage.ZNODE__VERSION :
+				setVersion( VERSION_EDEFAULT );
 				return;
-			case HadoopPackage.ZNODE__CHILDREN_VERSION:
-				setChildrenVersion(CHILDREN_VERSION_EDEFAULT);
+			case HadoopPackage.ZNODE__CHILDREN_VERSION :
+				setChildrenVersion( CHILDREN_VERSION_EDEFAULT );
 				return;
-			case HadoopPackage.ZNODE__ACL_VERSION:
-				setAclVersion(ACL_VERSION_EDEFAULT);
+			case HadoopPackage.ZNODE__ACL_VERSION :
+				setAclVersion( ACL_VERSION_EDEFAULT );
 				return;
-			case HadoopPackage.ZNODE__EPHERMAL_OWNER_SESSION_ID:
-				setEphermalOwnerSessionId(EPHERMAL_OWNER_SESSION_ID_EDEFAULT);
+			case HadoopPackage.ZNODE__EPHERMAL_OWNER_SESSION_ID :
+				setEphermalOwnerSessionId( EPHERMAL_OWNER_SESSION_ID_EDEFAULT );
 				return;
-			case HadoopPackage.ZNODE__DATA_LENGTH:
-				setDataLength(DATA_LENGTH_EDEFAULT);
+			case HadoopPackage.ZNODE__DATA_LENGTH :
+				setDataLength( DATA_LENGTH_EDEFAULT );
 				return;
-			case HadoopPackage.ZNODE__CHILDREN_COUNT:
-				setChildrenCount(CHILDREN_COUNT_EDEFAULT);
+			case HadoopPackage.ZNODE__CHILDREN_COUNT :
+				setChildrenCount( CHILDREN_COUNT_EDEFAULT );
 				return;
-			case HadoopPackage.ZNODE__PARENT:
-				setParent((ZNode)null);
+			case HadoopPackage.ZNODE__PARENT :
+				setParent( (ZNode) null );
 				return;
-			case HadoopPackage.ZNODE__NODE_NAME:
-				setNodeName(NODE_NAME_EDEFAULT);
+			case HadoopPackage.ZNODE__NODE_NAME :
+				setNodeName( NODE_NAME_EDEFAULT );
 				return;
-			case HadoopPackage.ZNODE__SEQUENTIAL:
-				setSequential(SEQUENTIAL_EDEFAULT);
+			case HadoopPackage.ZNODE__SEQUENTIAL :
+				setSequential( SEQUENTIAL_EDEFAULT );
 				return;
 		}
-		super.eUnset(featureID);
+		super.eUnset( featureID );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case HadoopPackage.ZNODE__CHILDREN:
-				return children != null && !children.isEmpty();
-			case HadoopPackage.ZNODE__LAST_REFRESH:
+	public boolean eIsSet( int featureID )
+	{
+		switch ( featureID )
+		{
+			case HadoopPackage.ZNODE__CHILDREN :
+				return children != null && !children.isEmpty( );
+			case HadoopPackage.ZNODE__LAST_REFRESH :
 				return lastRefresh != LAST_REFRESH_EDEFAULT;
-			case HadoopPackage.ZNODE__REFRESHING:
+			case HadoopPackage.ZNODE__REFRESHING :
 				return refreshing != REFRESHING_EDEFAULT;
-			case HadoopPackage.ZNODE__EPHERMERAL:
+			case HadoopPackage.ZNODE__EPHERMERAL :
 				return ephermeral != EPHERMERAL_EDEFAULT;
-			case HadoopPackage.ZNODE__CREATION_ID:
+			case HadoopPackage.ZNODE__CREATION_ID :
 				return creationId != CREATION_ID_EDEFAULT;
-			case HadoopPackage.ZNODE__MODIFIED_ID:
+			case HadoopPackage.ZNODE__MODIFIED_ID :
 				return modifiedId != MODIFIED_ID_EDEFAULT;
-			case HadoopPackage.ZNODE__CREATION_TIME:
+			case HadoopPackage.ZNODE__CREATION_TIME :
 				return creationTime != CREATION_TIME_EDEFAULT;
-			case HadoopPackage.ZNODE__MODIFIED_TIME:
+			case HadoopPackage.ZNODE__MODIFIED_TIME :
 				return modifiedTime != MODIFIED_TIME_EDEFAULT;
-			case HadoopPackage.ZNODE__VERSION:
+			case HadoopPackage.ZNODE__VERSION :
 				return version != VERSION_EDEFAULT;
-			case HadoopPackage.ZNODE__CHILDREN_VERSION:
+			case HadoopPackage.ZNODE__CHILDREN_VERSION :
 				return childrenVersion != CHILDREN_VERSION_EDEFAULT;
-			case HadoopPackage.ZNODE__ACL_VERSION:
+			case HadoopPackage.ZNODE__ACL_VERSION :
 				return aclVersion != ACL_VERSION_EDEFAULT;
-			case HadoopPackage.ZNODE__EPHERMAL_OWNER_SESSION_ID:
+			case HadoopPackage.ZNODE__EPHERMAL_OWNER_SESSION_ID :
 				return ephermalOwnerSessionId != EPHERMAL_OWNER_SESSION_ID_EDEFAULT;
-			case HadoopPackage.ZNODE__DATA_LENGTH:
+			case HadoopPackage.ZNODE__DATA_LENGTH :
 				return dataLength != DATA_LENGTH_EDEFAULT;
-			case HadoopPackage.ZNODE__CHILDREN_COUNT:
+			case HadoopPackage.ZNODE__CHILDREN_COUNT :
 				return childrenCount != CHILDREN_COUNT_EDEFAULT;
-			case HadoopPackage.ZNODE__PARENT:
+			case HadoopPackage.ZNODE__PARENT :
 				return parent != null;
-			case HadoopPackage.ZNODE__NODE_NAME:
-				return NODE_NAME_EDEFAULT == null ? nodeName != null : !NODE_NAME_EDEFAULT.equals(nodeName);
-			case HadoopPackage.ZNODE__SEQUENTIAL:
+			case HadoopPackage.ZNODE__NODE_NAME :
+				return NODE_NAME_EDEFAULT == null ? nodeName != null
+						: !NODE_NAME_EDEFAULT.equals( nodeName );
+			case HadoopPackage.ZNODE__SEQUENTIAL :
 				return sequential != SEQUENTIAL_EDEFAULT;
 		}
-		return super.eIsSet(featureID);
+		return super.eIsSet( featureID );
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
+	public String toString( )
+	{
+		if ( eIsProxy( ) )
+			return super.toString( );
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (lastRefresh: ");
-		result.append(lastRefresh);
-		result.append(", refreshing: ");
-		result.append(refreshing);
-		result.append(", ephermeral: ");
-		result.append(ephermeral);
-		result.append(", creationId: ");
-		result.append(creationId);
-		result.append(", modifiedId: ");
-		result.append(modifiedId);
-		result.append(", creationTime: ");
-		result.append(creationTime);
-		result.append(", modifiedTime: ");
-		result.append(modifiedTime);
-		result.append(", version: ");
-		result.append(version);
-		result.append(", childrenVersion: ");
-		result.append(childrenVersion);
-		result.append(", aclVersion: ");
-		result.append(aclVersion);
-		result.append(", ephermalOwnerSessionId: ");
-		result.append(ephermalOwnerSessionId);
-		result.append(", dataLength: ");
-		result.append(dataLength);
-		result.append(", childrenCount: ");
-		result.append(childrenCount);
-		result.append(", nodeName: ");
-		result.append(nodeName);
-		result.append(", sequential: ");
-		result.append(sequential);
-		result.append(')');
-		return result.toString();
+		StringBuffer result = new StringBuffer( super.toString( ) );
+		result.append( " (lastRefresh: " );
+		result.append( lastRefresh );
+		result.append( ", refreshing: " );
+		result.append( refreshing );
+		result.append( ", ephermeral: " );
+		result.append( ephermeral );
+		result.append( ", creationId: " );
+		result.append( creationId );
+		result.append( ", modifiedId: " );
+		result.append( modifiedId );
+		result.append( ", creationTime: " );
+		result.append( creationTime );
+		result.append( ", modifiedTime: " );
+		result.append( modifiedTime );
+		result.append( ", version: " );
+		result.append( version );
+		result.append( ", childrenVersion: " );
+		result.append( childrenVersion );
+		result.append( ", aclVersion: " );
+		result.append( aclVersion );
+		result.append( ", ephermalOwnerSessionId: " );
+		result.append( ephermalOwnerSessionId );
+		result.append( ", dataLength: " );
+		result.append( dataLength );
+		result.append( ", childrenCount: " );
+		result.append( childrenCount );
+		result.append( ", nodeName: " );
+		result.append( nodeName );
+		result.append( ", sequential: " );
+		result.append( sequential );
+		result.append( ')' );
+		return result.toString( );
 	}
 
 } // ZNodeImpl

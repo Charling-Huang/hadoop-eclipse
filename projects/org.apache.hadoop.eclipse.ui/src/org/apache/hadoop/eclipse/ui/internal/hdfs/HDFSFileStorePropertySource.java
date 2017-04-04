@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.hadoop.eclipse.ui.internal.hdfs;
 
 import java.util.ArrayList;
@@ -31,12 +32,11 @@ import org.eclipse.ui.views.properties.PropertyDescriptor;
  * @author Srimanth Gunturi
  * 
  */
-public class HDFSFileStorePropertySource implements IPropertySource {
+public class HDFSFileStorePropertySource implements IPropertySource
+{
 
 	private enum Property {
-		USER, GROUP, ISLOCAL,
-		PERMISSIONS, USER_PERMISSIONS, 
-		GROUP_PERMISSIONS, OTHER_PERMISSIONS,
+		USER, GROUP, ISLOCAL, PERMISSIONS, USER_PERMISSIONS, GROUP_PERMISSIONS, OTHER_PERMISSIONS,
 	}
 
 	private final HDFSFileStore fileStore;
@@ -44,7 +44,8 @@ public class HDFSFileStorePropertySource implements IPropertySource {
 	/**
 	 * @param fs
 	 */
-	public HDFSFileStorePropertySource(HDFSFileStore fileStore) {
+	public HDFSFileStorePropertySource( HDFSFileStore fileStore )
+	{
 		this.fileStore = fileStore;
 	}
 
@@ -54,7 +55,8 @@ public class HDFSFileStorePropertySource implements IPropertySource {
 	 * @see org.eclipse.ui.views.properties.IPropertySource#getEditableValue()
 	 */
 	@Override
-	public Object getEditableValue() {
+	public Object getEditableValue( )
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -66,23 +68,32 @@ public class HDFSFileStorePropertySource implements IPropertySource {
 	 * org.eclipse.ui.views.properties.IPropertySource#getPropertyDescriptors()
 	 */
 	@Override
-	public IPropertyDescriptor[] getPropertyDescriptors() {
-		List<IPropertyDescriptor> descriptors = new ArrayList<IPropertyDescriptor>();
-		final PropertyDescriptor user = new PropertyDescriptor(Property.USER, "User");
-		final PropertyDescriptor group = new PropertyDescriptor(Property.GROUP, "Group");
-		final PropertyDescriptor isDownloaded = new PropertyDescriptor(Property.ISLOCAL, "Is downloaded");
-		final PropertyDescriptor perms = new PropertyDescriptor(Property.PERMISSIONS, "Effective Permissions");
-		final PropertyDescriptor userPerms = new PropertyDescriptor(Property.USER_PERMISSIONS, "User Permissions");
-		final PropertyDescriptor groupPerms = new PropertyDescriptor(Property.GROUP_PERMISSIONS, "Group Permissions");
-		final PropertyDescriptor otherPerms = new PropertyDescriptor(Property.OTHER_PERMISSIONS, "Other Permissions");
-		descriptors.add(user);
-		descriptors.add(group);
-		descriptors.add(isDownloaded);
-		descriptors.add(perms);
-		descriptors.add(userPerms);
-		descriptors.add(groupPerms);
-		descriptors.add(otherPerms);
-		return descriptors.toArray(new IPropertyDescriptor[descriptors.size()]);
+	public IPropertyDescriptor[] getPropertyDescriptors( )
+	{
+		List<IPropertyDescriptor> descriptors = new ArrayList<IPropertyDescriptor>( );
+		final PropertyDescriptor user = new PropertyDescriptor( Property.USER,
+				"User" );
+		final PropertyDescriptor group = new PropertyDescriptor( Property.GROUP,
+				"Group" );
+		final PropertyDescriptor isDownloaded = new PropertyDescriptor(
+				Property.ISLOCAL, "Is downloaded" );
+		final PropertyDescriptor perms = new PropertyDescriptor(
+				Property.PERMISSIONS, "Effective Permissions" );
+		final PropertyDescriptor userPerms = new PropertyDescriptor(
+				Property.USER_PERMISSIONS, "User Permissions" );
+		final PropertyDescriptor groupPerms = new PropertyDescriptor(
+				Property.GROUP_PERMISSIONS, "Group Permissions" );
+		final PropertyDescriptor otherPerms = new PropertyDescriptor(
+				Property.OTHER_PERMISSIONS, "Other Permissions" );
+		descriptors.add( user );
+		descriptors.add( group );
+		descriptors.add( isDownloaded );
+		descriptors.add( perms );
+		descriptors.add( userPerms );
+		descriptors.add( groupPerms );
+		descriptors.add( otherPerms );
+		return descriptors
+				.toArray( new IPropertyDescriptor[descriptors.size( )] );
 	}
 
 	/*
@@ -93,43 +104,66 @@ public class HDFSFileStorePropertySource implements IPropertySource {
 	 * .lang.Object)
 	 */
 	@Override
-	public Object getPropertyValue(Object id) {
-		if (Property.USER.equals(id))
-			return this.fileStore.getServerResourceInfo() == null ? null : fileStore.getServerResourceInfo().getOwner();
-		else if (Property.GROUP.equals(id))
-			return this.fileStore.getServerResourceInfo() == null ? null : fileStore.getServerResourceInfo().getGroup();
-		else if (Property.ISLOCAL.equals(id))
-			return this.fileStore.isLocalFile();
-		else if (Property.PERMISSIONS.equals(id)){
+	public Object getPropertyValue( Object id )
+	{
+		if ( Property.USER.equals( id ) )
+			return this.fileStore.getServerResourceInfo( ) == null ? null
+					: fileStore.getServerResourceInfo( ).getOwner( );
+		else if ( Property.GROUP.equals( id ) )
+			return this.fileStore.getServerResourceInfo( ) == null ? null
+					: fileStore.getServerResourceInfo( ).getGroup( );
+		else if ( Property.ISLOCAL.equals( id ) )
+			return this.fileStore.isLocalFile( );
+		else if ( Property.PERMISSIONS.equals( id ) )
+		{
 			String perms = "";
-			final Permissions effectivePermissions = this.fileStore.getEffectivePermissions();
-			if(effectivePermissions!=null){
+			final Permissions effectivePermissions = this.fileStore
+					.getEffectivePermissions( );
+			if ( effectivePermissions != null )
+			{
 				perms += effectivePermissions.read ? "r" : "-";
 				perms += effectivePermissions.write ? "w" : "-";
 				perms += effectivePermissions.execute ? "x" : "-";
-			}else{
+			}
+			else
+			{
 				perms += "?";
 				perms += "?";
 				perms += "?";
 			}
 			return perms;
-		} else if (Property.USER_PERMISSIONS.equals(id)){
+		}
+		else if ( Property.USER_PERMISSIONS.equals( id ) )
+		{
 			String perms = "";
-			perms += this.fileStore.fetchInfo().getAttribute(EFS.ATTRIBUTE_OWNER_READ) ? "r" : "-";
-			perms += this.fileStore.fetchInfo().getAttribute(EFS.ATTRIBUTE_OWNER_WRITE) ? "w" : "-";
-			perms += this.fileStore.fetchInfo().getAttribute(EFS.ATTRIBUTE_OWNER_EXECUTE) ? "x" : "-";
+			perms += this.fileStore.fetchInfo( )
+					.getAttribute( EFS.ATTRIBUTE_OWNER_READ ) ? "r" : "-";
+			perms += this.fileStore.fetchInfo( )
+					.getAttribute( EFS.ATTRIBUTE_OWNER_WRITE ) ? "w" : "-";
+			perms += this.fileStore.fetchInfo( )
+					.getAttribute( EFS.ATTRIBUTE_OWNER_EXECUTE ) ? "x" : "-";
 			return perms;
-		} else if (Property.GROUP_PERMISSIONS.equals(id)){
+		}
+		else if ( Property.GROUP_PERMISSIONS.equals( id ) )
+		{
 			String perms = "";
-			perms += this.fileStore.fetchInfo().getAttribute(EFS.ATTRIBUTE_GROUP_READ) ? "r" : "-";
-			perms += this.fileStore.fetchInfo().getAttribute(EFS.ATTRIBUTE_GROUP_WRITE) ? "w" : "-";
-			perms += this.fileStore.fetchInfo().getAttribute(EFS.ATTRIBUTE_GROUP_EXECUTE) ? "x" : "-";
+			perms += this.fileStore.fetchInfo( )
+					.getAttribute( EFS.ATTRIBUTE_GROUP_READ ) ? "r" : "-";
+			perms += this.fileStore.fetchInfo( )
+					.getAttribute( EFS.ATTRIBUTE_GROUP_WRITE ) ? "w" : "-";
+			perms += this.fileStore.fetchInfo( )
+					.getAttribute( EFS.ATTRIBUTE_GROUP_EXECUTE ) ? "x" : "-";
 			return perms;
-		} else if (Property.OTHER_PERMISSIONS.equals(id)){
+		}
+		else if ( Property.OTHER_PERMISSIONS.equals( id ) )
+		{
 			String perms = "";
-			perms += this.fileStore.fetchInfo().getAttribute(EFS.ATTRIBUTE_OTHER_READ) ? "r" : "-";
-			perms += this.fileStore.fetchInfo().getAttribute(EFS.ATTRIBUTE_OTHER_WRITE) ? "w" : "-";
-			perms += this.fileStore.fetchInfo().getAttribute(EFS.ATTRIBUTE_OTHER_EXECUTE) ? "x" : "-";
+			perms += this.fileStore.fetchInfo( )
+					.getAttribute( EFS.ATTRIBUTE_OTHER_READ ) ? "r" : "-";
+			perms += this.fileStore.fetchInfo( )
+					.getAttribute( EFS.ATTRIBUTE_OTHER_WRITE ) ? "w" : "-";
+			perms += this.fileStore.fetchInfo( )
+					.getAttribute( EFS.ATTRIBUTE_OTHER_EXECUTE ) ? "x" : "-";
 			return perms;
 		}
 		return null;
@@ -143,7 +177,8 @@ public class HDFSFileStorePropertySource implements IPropertySource {
 	 * .Object)
 	 */
 	@Override
-	public boolean isPropertySet(Object id) {
+	public boolean isPropertySet( Object id )
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -156,7 +191,8 @@ public class HDFSFileStorePropertySource implements IPropertySource {
 	 * .lang.Object)
 	 */
 	@Override
-	public void resetPropertyValue(Object id) {
+	public void resetPropertyValue( Object id )
+	{
 		// TODO Auto-generated method stub
 
 	}
@@ -169,7 +205,8 @@ public class HDFSFileStorePropertySource implements IPropertySource {
 	 * .lang.Object, java.lang.Object)
 	 */
 	@Override
-	public void setPropertyValue(Object id, Object value) {
+	public void setPropertyValue( Object id, Object value )
+	{
 		// TODO Auto-generated method stub
 
 	}

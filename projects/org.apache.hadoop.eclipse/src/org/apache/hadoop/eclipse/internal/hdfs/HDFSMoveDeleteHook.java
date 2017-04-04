@@ -31,7 +31,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
  * @author Srimanth Gunturi
  * 
  */
-public class HDFSMoveDeleteHook implements IMoveDeleteHook {
+public class HDFSMoveDeleteHook implements IMoveDeleteHook
+{
 
 	/*
 	 * (non-Javadoc)
@@ -42,7 +43,9 @@ public class HDFSMoveDeleteHook implements IMoveDeleteHook {
 	 * int, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public boolean deleteFile(IResourceTree tree, IFile file, int updateFlags, IProgressMonitor monitor) {
+	public boolean deleteFile( IResourceTree tree, IFile file, int updateFlags,
+			IProgressMonitor monitor )
+	{
 		return false;
 	}
 
@@ -55,7 +58,9 @@ public class HDFSMoveDeleteHook implements IMoveDeleteHook {
 	 * int, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public boolean deleteFolder(IResourceTree tree, IFolder folder, int updateFlags, IProgressMonitor monitor) {
+	public boolean deleteFolder( IResourceTree tree, IFolder folder,
+			int updateFlags, IProgressMonitor monitor )
+	{
 		return false;
 	}
 
@@ -68,14 +73,19 @@ public class HDFSMoveDeleteHook implements IMoveDeleteHook {
 	 * int, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public boolean deleteProject(IResourceTree tree, IProject project, int updateFlags, IProgressMonitor monitor) {
-		if (HDFSFileSystem.SCHEME.equals(project.getLocationURI().getScheme())) {
+	public boolean deleteProject( IResourceTree tree, IProject project,
+			int updateFlags, IProgressMonitor monitor )
+	{
+		if ( HDFSFileSystem.SCHEME
+				.equals( project.getLocationURI( ).getScheme( ) ) )
+		{
 			// Deleting a HDFS project root folder *and* its contents is not
 			// supported.
 			// Caller has to uncheck the 'Delete project contents' checkbox.
-			if ((IResource.ALWAYS_DELETE_PROJECT_CONTENT & updateFlags) > 0) {
+			if ( ( IResource.ALWAYS_DELETE_PROJECT_CONTENT & updateFlags ) > 0 )
+			{
 				throw new RuntimeException(
-						"Deletion of HDFS project root folder is not supported. To remove project uncheck the \'Delete project contents on disk\' checkbox");
+						"Deletion of HDFS project root folder is not supported. To remove project uncheck the \'Delete project contents on disk\' checkbox" );
 			}
 		}
 		return false;
@@ -91,7 +101,9 @@ public class HDFSMoveDeleteHook implements IMoveDeleteHook {
 	 * org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public boolean moveFile(IResourceTree tree, IFile source, IFile destination, int updateFlags, IProgressMonitor monitor) {
+	public boolean moveFile( IResourceTree tree, IFile source,
+			IFile destination, int updateFlags, IProgressMonitor monitor )
+	{
 		return false;
 	}
 
@@ -105,7 +117,9 @@ public class HDFSMoveDeleteHook implements IMoveDeleteHook {
 	 * org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public boolean moveFolder(IResourceTree tree, IFolder source, IFolder destination, int updateFlags, IProgressMonitor monitor) {
+	public boolean moveFolder( IResourceTree tree, IFolder source,
+			IFolder destination, int updateFlags, IProgressMonitor monitor )
+	{
 		return false;
 	}
 
@@ -119,10 +133,16 @@ public class HDFSMoveDeleteHook implements IMoveDeleteHook {
 	 * org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public boolean moveProject(IResourceTree tree, IProject source, IProjectDescription description, int updateFlags, IProgressMonitor monitor) {
-		if (HDFSFileSystem.SCHEME.equals(source.getLocationURI().getScheme())) {
+	public boolean moveProject( IResourceTree tree, IProject source,
+			IProjectDescription description, int updateFlags,
+			IProgressMonitor monitor )
+	{
+		if ( HDFSFileSystem.SCHEME
+				.equals( source.getLocationURI( ).getScheme( ) ) )
+		{
 			// Moving a HDFS project is not supported.
-			throw new RuntimeException("Moving a HDFS project root folder is not supported.");
+			throw new RuntimeException(
+					"Moving a HDFS project root folder is not supported." );
 		}
 		return false;
 	}

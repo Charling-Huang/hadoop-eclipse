@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.hadoop.eclipse.ui.internal.zookeeper;
 
 import org.apache.hadoop.eclipse.internal.zookeeper.ZooKeeperManager;
@@ -27,16 +28,20 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
-public class NewZooKeeperWizard extends Wizard implements INewWizard {
+public class NewZooKeeperWizard extends Wizard implements INewWizard
+{
 
-	//private static Logger logger = Logger.getLogger(NewZooKeeperWizard.class);
+	// private static Logger logger =
+	// Logger.getLogger(NewZooKeeperWizard.class);
 	private NewZooKeeperServerWizardPage serverLocationWizardPage = null;
 
-	public NewZooKeeperWizard() {
+	public NewZooKeeperWizard( )
+	{
 	}
 
 	@Override
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
+	public void init( IWorkbench workbench, IStructuredSelection selection )
+	{
 	}
 
 	/*
@@ -45,33 +50,50 @@ public class NewZooKeeperWizard extends Wizard implements INewWizard {
 	 * @see org.eclipse.jface.wizard.Wizard#addPages()
 	 */
 	@Override
-	public void addPages() {
-		super.addPages();
-		if (serverLocationWizardPage == null) {
-			serverLocationWizardPage = new NewZooKeeperServerWizardPage();
+	public void addPages( )
+	{
+		super.addPages( );
+		if ( serverLocationWizardPage == null )
+		{
+			serverLocationWizardPage = new NewZooKeeperServerWizardPage( );
 		}
-		addPage(serverLocationWizardPage);
+		addPage( serverLocationWizardPage );
 	}
 
 	@Override
-	public boolean performFinish() {
-		if (serverLocationWizardPage != null) {
-			String ambariUrl = serverLocationWizardPage.getZkServerLocation();
-			if (ambariUrl != null) {
-				IPreferenceStore ps = Activator.getDefault().getPreferenceStore();
-				String currentUrls = ps.getString(Activator.PREFERENCE_ZOOKEEPER_URLS);
-				if (currentUrls.indexOf(ambariUrl + "\r\n") < 0) {
+	public boolean performFinish( )
+	{
+		if ( serverLocationWizardPage != null )
+		{
+			String ambariUrl = serverLocationWizardPage.getZkServerLocation( );
+			if ( ambariUrl != null )
+			{
+				IPreferenceStore ps = Activator.getDefault( )
+						.getPreferenceStore( );
+				String currentUrls = ps
+						.getString( Activator.PREFERENCE_ZOOKEEPER_URLS );
+				if ( currentUrls.indexOf( ambariUrl + "\r\n" ) < 0 )
+				{
 					currentUrls = ambariUrl + "\r\n" + currentUrls;
-					ps.setValue(Activator.PREFERENCE_ZOOKEEPER_URLS, currentUrls);
+					ps.setValue( Activator.PREFERENCE_ZOOKEEPER_URLS,
+							currentUrls );
 				}
 
-				Job j = new Job("Creating ZooKeeper project [" + serverLocationWizardPage.getZkServerName() + "]") {
-					protected org.eclipse.core.runtime.IStatus run(org.eclipse.core.runtime.IProgressMonitor monitor) {
-						ZooKeeperManager.INSTANCE.createServer(serverLocationWizardPage.getZkServerName(), serverLocationWizardPage.getZkServerLocation());
+				Job j = new Job( "Creating ZooKeeper project ["
+						+ serverLocationWizardPage.getZkServerName( )
+						+ "]" ) {
+
+					protected org.eclipse.core.runtime.IStatus run(
+							org.eclipse.core.runtime.IProgressMonitor monitor )
+					{
+						ZooKeeperManager.INSTANCE.createServer(
+								serverLocationWizardPage.getZkServerName( ),
+								serverLocationWizardPage
+										.getZkServerLocation( ) );
 						return Status.OK_STATUS;
 					};
 				};
-				j.schedule();
+				j.schedule( );
 				return true;
 			}
 		}

@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.hadoop.eclipse.ui.internal;
 
 import org.eclipse.ui.IPageLayout;
@@ -24,7 +25,8 @@ import org.eclipse.ui.IPerspectiveFactory;
  * 
  * @author Srimanth Gunturi
  */
-public class HadoopPerspectiveFactory implements IPerspectiveFactory {
+public class HadoopPerspectiveFactory implements IPerspectiveFactory
+{
 
 	/*
 	 * (non-Javadoc)
@@ -34,7 +36,8 @@ public class HadoopPerspectiveFactory implements IPerspectiveFactory {
 	 * .IPageLayout)
 	 */
 	@Override
-	public void createInitialLayout(IPageLayout layout) {
+	public void createInitialLayout( IPageLayout layout )
+	{
 	}
 
 }

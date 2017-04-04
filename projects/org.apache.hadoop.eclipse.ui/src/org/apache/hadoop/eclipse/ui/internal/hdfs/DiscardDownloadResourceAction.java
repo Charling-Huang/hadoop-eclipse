@@ -1,3 +1,4 @@
+
 package org.apache.hadoop.eclipse.ui.internal.hdfs;
 
 import java.io.File;
@@ -19,9 +20,11 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
-public class DiscardDownloadResourceAction implements IObjectActionDelegate {
+public class DiscardDownloadResourceAction implements IObjectActionDelegate
+{
 
-	private final static Logger logger = Logger.getLogger(DiscardDownloadResourceAction.class);
+	private final static Logger logger = Logger
+			.getLogger( DiscardDownloadResourceAction.class );
 	private ISelection selection;
 	private IWorkbenchPart targetPart;
 
@@ -31,16 +34,20 @@ public class DiscardDownloadResourceAction implements IObjectActionDelegate {
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	@Override
-	public void run(IAction action) {
-		if (this.selection != null && !this.selection.isEmpty()) {
+	public void run( IAction action )
+	{
+		if ( this.selection != null && !this.selection.isEmpty( ) )
+		{
 			IStructuredSelection sSelection = (IStructuredSelection) this.selection;
 			@SuppressWarnings("rawtypes")
-			Iterator itr = sSelection.iterator();
-			while (itr.hasNext()) {
-				Object object = itr.next();
-				if (object instanceof IResource) {
+			Iterator itr = sSelection.iterator( );
+			while ( itr.hasNext( ) )
+			{
+				Object object = itr.next( );
+				if ( object instanceof IResource )
+				{
 					IResource r = (IResource) object;
-					discardDownloadResource(r);
+					discardDownloadResource( r );
 				}
 			}
 		}
@@ -49,37 +56,58 @@ public class DiscardDownloadResourceAction implements IObjectActionDelegate {
 	/**
 	 * @param r
 	 */
-	private void discardDownloadResource(IResource r) {
-		try {
-			HDFSFileStore store = (HDFSFileStore) EFS.getStore(r.getLocationURI());
-			switch (r.getType()) {
-			case IResource.FOLDER:
-				IFolder folder = (IFolder) r;
-				IResource[] members = folder.members();
-				if (members != null) {
-					for (int mc = 0; mc < members.length; mc++) {
-						discardDownloadResource(members[mc]);
-					}
-				}
-			case IResource.FILE:
-				if (store.isLocalFile()) {
-					File file = store.getLocalFile();
-					HDFSManager.INSTANCE.startServerOperation(store.toURI().toString());
-					try{
-						if (file.exists()) {
-							file.delete();
-							UploadFileJob.deleteFoldersIfEmpty(file.getParentFile());
+	private void discardDownloadResource( IResource r )
+	{
+		try
+		{
+			HDFSFileStore store = (HDFSFileStore) EFS
+					.getStore( r.getLocationURI( ) );
+			switch ( r.getType( ) )
+			{
+				case IResource.FOLDER :
+					IFolder folder = (IFolder) r;
+					IResource[] members = folder.members( );
+					if ( members != null )
+					{
+						for ( int mc = 0; mc < members.length; mc++ )
+						{
+							discardDownloadResource( members[mc] );
 						}
-						r.getParent().refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
-					}finally{
-						HDFSManager.INSTANCE.stopServerOperation(store.toURI().toString());
 					}
-				}
+				case IResource.FILE :
+					if ( store.isLocalFile( ) )
+					{
+						File file = store.getLocalFile( );
+						HDFSManager.INSTANCE.startServerOperation(
+								store.toURI( ).toString( ) );
+						try
+						{
+							if ( file.exists( ) )
+							{
+								file.delete( );
+								UploadFileJob.deleteFoldersIfEmpty(
+										file.getParentFile( ) );
+							}
+							r.getParent( ).refreshLocal( IResource.DEPTH_ONE,
+									new NullProgressMonitor( ) );
+						}
+						finally
+						{
+							HDFSManager.INSTANCE.stopServerOperation(
+									store.toURI( ).toString( ) );
+						}
+					}
 			}
-		} catch (CoreException e) {
-			MessageDialog.openError(targetPart.getSite().getShell(), "Upload HDFS Resources", "Error uploading resource to " + r.getLocationURI() + ": "
-					+ e.getMessage());
-			logger.warn(e.getMessage(), e);
+		}
+		catch ( CoreException e )
+		{
+			MessageDialog.openError( targetPart.getSite( ).getShell( ),
+					"Upload HDFS Resources",
+					"Error uploading resource to "
+							+ r.getLocationURI( )
+							+ ": "
+							+ e.getMessage( ) );
+			logger.warn( e.getMessage( ), e );
 		}
 	}
 
@@ -91,29 +119,39 @@ public class DiscardDownloadResourceAction implements IObjectActionDelegate {
 	 * .IAction, org.eclipse.jface.viewers.ISelection)
 	 */
 	@Override
-	public void selectionChanged(IAction action, ISelection selection) {
+	public void selectionChanged( IAction action, ISelection selection )
+	{
 		this.selection = selection;
 		boolean enabled = true;
-		if (this.selection != null && !this.selection.isEmpty()) {
+		if ( this.selection != null && !this.selection.isEmpty( ) )
+		{
 			IStructuredSelection sSelection = (IStructuredSelection) this.selection;
 			@SuppressWarnings("rawtypes")
-			Iterator itr = sSelection.iterator();
-			while (itr.hasNext()) {
-				Object object = itr.next();
-				if (object instanceof IResource) {
+			Iterator itr = sSelection.iterator( );
+			while ( itr.hasNext( ) )
+			{
+				Object object = itr.next( );
+				if ( object instanceof IResource )
+				{
 					IResource r = (IResource) object;
-					try {
-						HDFSFileStore store = (HDFSFileStore) EFS.getStore(r.getLocationURI());
-						enabled = store.isLocalFile();
-					} catch (Throwable t) {
+					try
+					{
+						HDFSFileStore store = (HDFSFileStore) EFS
+								.getStore( r.getLocationURI( ) );
+						enabled = store.isLocalFile( );
+					}
+					catch ( Throwable t )
+					{
 						enabled = false;
 					}
-				} else
+				}
+				else
 					enabled = false;
 			}
-		} else
+		}
+		else
 			enabled = false;
-		action.setEnabled(enabled);
+		action.setEnabled( enabled );
 	}
 
 	/*
@@ -124,7 +162,8 @@ public class DiscardDownloadResourceAction implements IObjectActionDelegate {
 	 * action.IAction, org.eclipse.ui.IWorkbenchPart)
 	 */
 	@Override
-	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+	public void setActivePart( IAction action, IWorkbenchPart targetPart )
+	{
 		this.targetPart = targetPart;
 
 	}

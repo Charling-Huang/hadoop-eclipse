@@ -16,6 +16,7 @@
  * limitations under the License.
  *  
  */
+
 package org.apache.hadoop.eclipse.internal.model.impl;
 
 import java.util.Collection;
@@ -36,25 +37,32 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Servers</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Servers</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ServersImpl#getHdfsServers <em>Hdfs Servers</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ServersImpl#getVersion <em>Version</em>}</li>
- *   <li>{@link org.apache.hadoop.eclipse.internal.model.impl.ServersImpl#getZookeeperServers <em>Zookeeper Servers</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ServersImpl#getHdfsServers
+ * <em>Hdfs Servers</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ServersImpl#getVersion
+ * <em>Version</em>}</li>
+ * <li>
+ * {@link org.apache.hadoop.eclipse.internal.model.impl.ServersImpl#getZookeeperServers
+ * <em>Zookeeper Servers</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ServersImpl extends EObjectImpl implements Servers {
+public class ServersImpl extends EObjectImpl implements Servers
+{
+
 	/**
-	 * The cached value of the '{@link #getHdfsServers() <em>Hdfs Servers</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getHdfsServers() <em>Hdfs Servers</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getHdfsServers()
 	 * @generated
 	 * @ordered
@@ -62,9 +70,9 @@ public class ServersImpl extends EObjectImpl implements Servers {
 	protected EList<HDFSServer> hdfsServers;
 
 	/**
-	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getVersion() <em>Version</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -72,9 +80,9 @@ public class ServersImpl extends EObjectImpl implements Servers {
 	protected static final String VERSION_EDEFAULT = "1.0.0.0";
 
 	/**
-	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getVersion() <em>Version</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -82,9 +90,10 @@ public class ServersImpl extends EObjectImpl implements Servers {
 	protected String version = VERSION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getZookeeperServers() <em>Zookeeper Servers</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getZookeeperServers()
+	 * <em>Zookeeper Servers</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getZookeeperServers()
 	 * @generated
 	 * @ordered
@@ -92,180 +101,216 @@ public class ServersImpl extends EObjectImpl implements Servers {
 	protected EList<ZooKeeperServer> zookeeperServers;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	protected ServersImpl() {
-		super();
+	protected ServersImpl( )
+	{
+		super( );
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass( )
+	{
 		return HadoopPackage.Literals.SERVERS;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public EList<HDFSServer> getHdfsServers() {
-		if (hdfsServers == null) {
-			hdfsServers = new EObjectContainmentEList<HDFSServer>(HDFSServer.class, this, HadoopPackage.SERVERS__HDFS_SERVERS);
+	public EList<HDFSServer> getHdfsServers( )
+	{
+		if ( hdfsServers == null )
+		{
+			hdfsServers = new EObjectContainmentEList<HDFSServer>(
+					HDFSServer.class,
+					this,
+					HadoopPackage.SERVERS__HDFS_SERVERS );
 		}
 		return hdfsServers;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public String getVersion() {
+	public String getVersion( )
+	{
 		return version;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setVersion(String newVersion) {
+	public void setVersion( String newVersion )
+	{
 		String oldVersion = version;
 		version = newVersion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, HadoopPackage.SERVERS__VERSION, oldVersion, version));
+		if ( eNotificationRequired( ) )
+			eNotify( new ENotificationImpl( this,
+					Notification.SET,
+					HadoopPackage.SERVERS__VERSION,
+					oldVersion,
+					version ) );
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public EList<ZooKeeperServer> getZookeeperServers() {
-		if (zookeeperServers == null) {
-			zookeeperServers = new EObjectContainmentEList<ZooKeeperServer>(ZooKeeperServer.class, this, HadoopPackage.SERVERS__ZOOKEEPER_SERVERS);
+	public EList<ZooKeeperServer> getZookeeperServers( )
+	{
+		if ( zookeeperServers == null )
+		{
+			zookeeperServers = new EObjectContainmentEList<ZooKeeperServer>(
+					ZooKeeperServer.class,
+					this,
+					HadoopPackage.SERVERS__ZOOKEEPER_SERVERS );
 		}
 		return zookeeperServers;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case HadoopPackage.SERVERS__HDFS_SERVERS:
-				return ((InternalEList<?>)getHdfsServers()).basicRemove(otherEnd, msgs);
-			case HadoopPackage.SERVERS__ZOOKEEPER_SERVERS:
-				return ((InternalEList<?>)getZookeeperServers()).basicRemove(otherEnd, msgs);
+	public NotificationChain eInverseRemove( InternalEObject otherEnd,
+			int featureID, NotificationChain msgs )
+	{
+		switch ( featureID )
+		{
+			case HadoopPackage.SERVERS__HDFS_SERVERS :
+				return ( (InternalEList<?>) getHdfsServers( ) )
+						.basicRemove( otherEnd, msgs );
+			case HadoopPackage.SERVERS__ZOOKEEPER_SERVERS :
+				return ( (InternalEList<?>) getZookeeperServers( ) )
+						.basicRemove( otherEnd, msgs );
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return super.eInverseRemove( otherEnd, featureID, msgs );
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case HadoopPackage.SERVERS__HDFS_SERVERS:
-				return getHdfsServers();
-			case HadoopPackage.SERVERS__VERSION:
-				return getVersion();
-			case HadoopPackage.SERVERS__ZOOKEEPER_SERVERS:
-				return getZookeeperServers();
+	public Object eGet( int featureID, boolean resolve, boolean coreType )
+	{
+		switch ( featureID )
+		{
+			case HadoopPackage.SERVERS__HDFS_SERVERS :
+				return getHdfsServers( );
+			case HadoopPackage.SERVERS__VERSION :
+				return getVersion( );
+			case HadoopPackage.SERVERS__ZOOKEEPER_SERVERS :
+				return getZookeeperServers( );
 		}
-		return super.eGet(featureID, resolve, coreType);
+		return super.eGet( featureID, resolve, coreType );
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case HadoopPackage.SERVERS__HDFS_SERVERS:
-				getHdfsServers().clear();
-				getHdfsServers().addAll((Collection<? extends HDFSServer>)newValue);
+	public void eSet( int featureID, Object newValue )
+	{
+		switch ( featureID )
+		{
+			case HadoopPackage.SERVERS__HDFS_SERVERS :
+				getHdfsServers( ).clear( );
+				getHdfsServers( )
+						.addAll( (Collection<? extends HDFSServer>) newValue );
 				return;
-			case HadoopPackage.SERVERS__VERSION:
-				setVersion((String)newValue);
+			case HadoopPackage.SERVERS__VERSION :
+				setVersion( (String) newValue );
 				return;
-			case HadoopPackage.SERVERS__ZOOKEEPER_SERVERS:
-				getZookeeperServers().clear();
-				getZookeeperServers().addAll((Collection<? extends ZooKeeperServer>)newValue);
+			case HadoopPackage.SERVERS__ZOOKEEPER_SERVERS :
+				getZookeeperServers( ).clear( );
+				getZookeeperServers( ).addAll(
+						(Collection<? extends ZooKeeperServer>) newValue );
 				return;
 		}
-		super.eSet(featureID, newValue);
+		super.eSet( featureID, newValue );
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case HadoopPackage.SERVERS__HDFS_SERVERS:
-				getHdfsServers().clear();
+	public void eUnset( int featureID )
+	{
+		switch ( featureID )
+		{
+			case HadoopPackage.SERVERS__HDFS_SERVERS :
+				getHdfsServers( ).clear( );
 				return;
-			case HadoopPackage.SERVERS__VERSION:
-				setVersion(VERSION_EDEFAULT);
+			case HadoopPackage.SERVERS__VERSION :
+				setVersion( VERSION_EDEFAULT );
 				return;
-			case HadoopPackage.SERVERS__ZOOKEEPER_SERVERS:
-				getZookeeperServers().clear();
+			case HadoopPackage.SERVERS__ZOOKEEPER_SERVERS :
+				getZookeeperServers( ).clear( );
 				return;
 		}
-		super.eUnset(featureID);
+		super.eUnset( featureID );
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case HadoopPackage.SERVERS__HDFS_SERVERS:
-				return hdfsServers != null && !hdfsServers.isEmpty();
-			case HadoopPackage.SERVERS__VERSION:
-				return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
-			case HadoopPackage.SERVERS__ZOOKEEPER_SERVERS:
-				return zookeeperServers != null && !zookeeperServers.isEmpty();
+	public boolean eIsSet( int featureID )
+	{
+		switch ( featureID )
+		{
+			case HadoopPackage.SERVERS__HDFS_SERVERS :
+				return hdfsServers != null && !hdfsServers.isEmpty( );
+			case HadoopPackage.SERVERS__VERSION :
+				return VERSION_EDEFAULT == null ? version != null
+						: !VERSION_EDEFAULT.equals( version );
+			case HadoopPackage.SERVERS__ZOOKEEPER_SERVERS :
+				return zookeeperServers != null && !zookeeperServers.isEmpty( );
 		}
-		return super.eIsSet(featureID);
+		return super.eIsSet( featureID );
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
+	public String toString( )
+	{
+		if ( eIsProxy( ) )
+			return super.toString( );
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (version: ");
-		result.append(version);
-		result.append(')');
-		return result.toString();
+		StringBuffer result = new StringBuffer( super.toString( ) );
+		result.append( " (version: " );
+		result.append( version );
+		result.append( ')' );
+		return result.toString( );
 	}
 
-} //ServersImpl
+} // ServersImpl

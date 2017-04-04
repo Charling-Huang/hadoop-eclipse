@@ -1,3 +1,4 @@
+
 package org.apache.hadoop.eclipse.ui.internal.hdfs;
 
 import java.util.Iterator;
@@ -13,9 +14,11 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
-public class DisconnectAction implements IObjectActionDelegate {
+public class DisconnectAction implements IObjectActionDelegate
+{
 
-	private final static Logger logger = Logger.getLogger(DownloadResourceAction.class);
+	private final static Logger logger = Logger
+			.getLogger( DownloadResourceAction.class );
 	private ISelection selection;
 	private IWorkbenchPart targetPart;
 
@@ -25,16 +28,20 @@ public class DisconnectAction implements IObjectActionDelegate {
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	@Override
-	public void run(IAction action) {
-		if (this.selection != null && !this.selection.isEmpty()) {
+	public void run( IAction action )
+	{
+		if ( this.selection != null && !this.selection.isEmpty( ) )
+		{
 			IStructuredSelection sSelection = (IStructuredSelection) this.selection;
 			@SuppressWarnings("rawtypes")
-			Iterator itr = sSelection.iterator();
-			while (itr.hasNext()) {
-				Object object = itr.next();
-				if (object instanceof IProject) {
+			Iterator itr = sSelection.iterator( );
+			while ( itr.hasNext( ) )
+			{
+				Object object = itr.next( );
+				if ( object instanceof IProject )
+				{
 					IProject r = (IProject) object;
-					HDFSManager.disconnectProject(r);
+					HDFSManager.disconnectProject( r );
 				}
 			}
 		}
@@ -48,29 +55,40 @@ public class DisconnectAction implements IObjectActionDelegate {
 	 * .IAction, org.eclipse.jface.viewers.ISelection)
 	 */
 	@Override
-	public void selectionChanged(IAction action, ISelection selection) {
+	public void selectionChanged( IAction action, ISelection selection )
+	{
 		this.selection = selection;
 		boolean enabled = true;
-		if (this.selection != null && !this.selection.isEmpty()) {
+		if ( this.selection != null && !this.selection.isEmpty( ) )
+		{
 			IStructuredSelection sSelection = (IStructuredSelection) this.selection;
 			@SuppressWarnings("rawtypes")
-			Iterator itr = sSelection.iterator();
-			while (itr.hasNext()) {
-				Object object = itr.next();
-				if (object instanceof IProject) {
+			Iterator itr = sSelection.iterator( );
+			while ( itr.hasNext( ) )
+			{
+				Object object = itr.next( );
+				if ( object instanceof IProject )
+				{
 					IProject r = (IProject) object;
-					try {
-						HDFSServer server = HDFSManager.INSTANCE.getServer(r.getLocationURI().toString());
-						enabled = server == null ? false : server.getStatusCode() != ServerStatus.DISCONNECTED_VALUE;
-					} catch (Throwable t) {
+					try
+					{
+						HDFSServer server = HDFSManager.INSTANCE
+								.getServer( r.getLocationURI( ).toString( ) );
+						enabled = server == null ? false
+								: server.getStatusCode( ) != ServerStatus.DISCONNECTED_VALUE;
+					}
+					catch ( Throwable t )
+					{
 						enabled = false;
 					}
-				} else
+				}
+				else
 					enabled = false;
 			}
-		} else
+		}
+		else
 			enabled = false;
-		action.setEnabled(enabled);
+		action.setEnabled( enabled );
 	}
 
 	/*
@@ -81,7 +99,8 @@ public class DisconnectAction implements IObjectActionDelegate {
 	 * action.IAction, org.eclipse.ui.IWorkbenchPart)
 	 */
 	@Override
-	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+	public void setActivePart( IAction action, IWorkbenchPart targetPart )
+	{
 		this.targetPart = targetPart;
 	}
 

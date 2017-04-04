@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.hadoop.eclipse.ui.internal;
 
 import java.util.ArrayList;
@@ -31,16 +32,19 @@ import org.eclipse.ui.navigator.ICommonContentProvider;
  * @author Srimanth Gunturi
  * 
  */
-public class HadoopCommonContentProvider implements ICommonContentProvider {
+public class HadoopCommonContentProvider implements ICommonContentProvider
+{
 
-	private static final Logger logger = Logger.getLogger(HadoopCommonContentProvider.class);
-	private List<ICommonContentProvider> childProviders = new ArrayList<ICommonContentProvider>();
+	private static final Logger logger = Logger
+			.getLogger( HadoopCommonContentProvider.class );
+	private List<ICommonContentProvider> childProviders = new ArrayList<ICommonContentProvider>( );
 
 	/**
 	 * 
 	 */
-	public HadoopCommonContentProvider() {
-		childProviders.add(new ZooKeeperCommonContentProvider());
+	public HadoopCommonContentProvider( )
+	{
+		childProviders.add( new ZooKeeperCommonContentProvider( ) );
 	}
 
 	/*
@@ -51,17 +55,19 @@ public class HadoopCommonContentProvider implements ICommonContentProvider {
 	 * Object)
 	 */
 	@Override
-	public Object[] getElements(Object inputElement) {
-		List<Object> elements = new ArrayList<Object>();
-		for (ICommonContentProvider cp : childProviders) {
-			Object[] ces = cp.getElements(inputElement);
-			if (ces != null)
-				for (Object s : ces)
-					elements.add(s);
+	public Object[] getElements( Object inputElement )
+	{
+		List<Object> elements = new ArrayList<Object>( );
+		for ( ICommonContentProvider cp : childProviders )
+		{
+			Object[] ces = cp.getElements( inputElement );
+			if ( ces != null )
+				for ( Object s : ces )
+					elements.add( s );
 		}
-		if (logger.isDebugEnabled())
-			logger.debug("getElements(" + inputElement + "): " + elements);
-		return elements.toArray();
+		if ( logger.isDebugEnabled( ) )
+			logger.debug( "getElements(" + inputElement + "): " + elements );
+		return elements.toArray( );
 	}
 
 	/*
@@ -72,17 +78,19 @@ public class HadoopCommonContentProvider implements ICommonContentProvider {
 	 * Object)
 	 */
 	@Override
-	public Object[] getChildren(Object parentElement) {
-		List<Object> elements = new ArrayList<Object>();
-		for (ICommonContentProvider cp : childProviders) {
-			Object[] ces = cp.getChildren(parentElement);
-			if (ces != null)
-				for (Object s : ces)
-					elements.add(s);
+	public Object[] getChildren( Object parentElement )
+	{
+		List<Object> elements = new ArrayList<Object>( );
+		for ( ICommonContentProvider cp : childProviders )
+		{
+			Object[] ces = cp.getChildren( parentElement );
+			if ( ces != null )
+				for ( Object s : ces )
+					elements.add( s );
 		}
-		if (logger.isDebugEnabled())
-			logger.debug("getChildren(" + parentElement + "): " + elements);
-		return elements.toArray();
+		if ( logger.isDebugEnabled( ) )
+			logger.debug( "getChildren(" + parentElement + "): " + elements );
+		return elements.toArray( );
 	}
 
 	/*
@@ -93,10 +101,12 @@ public class HadoopCommonContentProvider implements ICommonContentProvider {
 	 * )
 	 */
 	@Override
-	public Object getParent(Object element) {
-		for (ICommonContentProvider cp : childProviders) {
-			Object parent = cp.getParent(element);
-			if (parent != null)
+	public Object getParent( Object element )
+	{
+		for ( ICommonContentProvider cp : childProviders )
+		{
+			Object parent = cp.getParent( element );
+			if ( parent != null )
 				return parent;
 		}
 		return null;
@@ -110,10 +120,12 @@ public class HadoopCommonContentProvider implements ICommonContentProvider {
 	 * Object)
 	 */
 	@Override
-	public boolean hasChildren(Object element) {
-		for (ICommonContentProvider cp : childProviders) {
-			boolean hasChildren = cp.hasChildren(element);
-			if (hasChildren)
+	public boolean hasChildren( Object element )
+	{
+		for ( ICommonContentProvider cp : childProviders )
+		{
+			boolean hasChildren = cp.hasChildren( element );
+			if ( hasChildren )
 				return hasChildren;
 		}
 		return false;
@@ -125,9 +137,10 @@ public class HadoopCommonContentProvider implements ICommonContentProvider {
 	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
 	 */
 	@Override
-	public void dispose() {
-		for (ICommonContentProvider cp : childProviders)
-			cp.dispose();
+	public void dispose( )
+	{
+		for ( ICommonContentProvider cp : childProviders )
+			cp.dispose( );
 	}
 
 	/*
@@ -138,20 +151,21 @@ public class HadoopCommonContentProvider implements ICommonContentProvider {
 	 * .viewers.Viewer, java.lang.Object, java.lang.Object)
 	 */
 	@Override
-	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		for (ICommonContentProvider cp : childProviders)
-			cp.inputChanged(viewer, oldInput, newInput);
+	public void inputChanged( Viewer viewer, Object oldInput, Object newInput )
+	{
+		for ( ICommonContentProvider cp : childProviders )
+			cp.inputChanged( viewer, oldInput, newInput );
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.ui.navigator.IMementoAware#restoreState(org.eclipse.ui.IMemento
-	 * )
+	 * @see org.eclipse.ui.navigator.IMementoAware#restoreState(org.eclipse.ui.
+	 * IMemento )
 	 */
 	@Override
-	public void restoreState(IMemento aMemento) {
+	public void restoreState( IMemento aMemento )
+	{
 		// TODO Auto-generated method stub
 	}
 
@@ -162,21 +176,22 @@ public class HadoopCommonContentProvider implements ICommonContentProvider {
 	 * org.eclipse.ui.navigator.IMementoAware#saveState(org.eclipse.ui.IMemento)
 	 */
 	@Override
-	public void saveState(IMemento aMemento) {
+	public void saveState( IMemento aMemento )
+	{
 		// TODO Auto-generated method stub
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.ui.navigator.ICommonContentProvider#init(org.eclipse.ui.navigator
-	 * .ICommonContentExtensionSite)
+	 * @see org.eclipse.ui.navigator.ICommonContentProvider#init(org.eclipse.ui.
+	 * navigator .ICommonContentExtensionSite)
 	 */
 	@Override
-	public void init(ICommonContentExtensionSite aConfig) {
-		for (ICommonContentProvider cp : childProviders)
-			cp.init(aConfig);
+	public void init( ICommonContentExtensionSite aConfig )
+	{
+		for ( ICommonContentProvider cp : childProviders )
+			cp.init( aConfig );
 	}
 
 }

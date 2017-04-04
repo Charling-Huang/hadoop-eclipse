@@ -27,19 +27,24 @@ import org.apache.hadoop.eclipse.internal.model.ZNode;
  * @author Srimanth Gunturi
  * 
  */
-public abstract class ZooKeeperClient {
+public abstract class ZooKeeperClient
+{
 
-	public abstract void initialize(String serverLocation);
+	public abstract void initialize( String serverLocation );
 
-	public abstract boolean isConnected() throws IOException, InterruptedException;
+	public abstract boolean isConnected( )
+			throws IOException, InterruptedException;
 
-	public abstract void connect() throws IOException, InterruptedException;
+	public abstract void connect( ) throws IOException, InterruptedException;
 
-	public abstract List<ZNode> getChildren(ZNode path) throws IOException, InterruptedException;
+	public abstract List<ZNode> getChildren( ZNode path )
+			throws IOException, InterruptedException;
 
-	public abstract void disconnect() throws IOException, InterruptedException;
+	public abstract void disconnect( ) throws IOException, InterruptedException;
 
-	public abstract void delete(ZNode zkn) throws IOException, InterruptedException;
+	public abstract void delete( ZNode zkn )
+			throws IOException, InterruptedException;
 
-	public abstract byte[] open(ZNode path) throws InterruptedException, IOException;
+	public abstract byte[] open( ZNode path )
+			throws InterruptedException, IOException;
 }

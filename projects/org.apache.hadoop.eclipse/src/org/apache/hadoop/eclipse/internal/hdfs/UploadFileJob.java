@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.hadoop.eclipse.internal.hdfs;
 
 import java.io.File;
@@ -38,9 +39,11 @@ import org.eclipse.core.runtime.jobs.Job;
  * @author Srimanth Gunturi
  * 
  */
-public class UploadFileJob extends Job {
+public class UploadFileJob extends Job
+{
 
-	private final static Logger logger = Logger.getLogger(UploadFileJob.class);
+	private final static Logger logger = Logger
+			.getLogger( UploadFileJob.class );
 	private final HDFSFileStore store;
 	private final IResource resource;
 
@@ -48,83 +51,134 @@ public class UploadFileJob extends Job {
 	 * @throws CoreException
 	 * 
 	 */
-	public UploadFileJob(IResource resource) throws CoreException {
-		super("Uploading " + resource.getLocationURI());
+	public UploadFileJob( IResource resource ) throws CoreException
+	{
+		super( "Uploading " + resource.getLocationURI( ) );
 		this.resource = resource;
-		this.store = (HDFSFileStore) EFS.getStore(resource.getLocationURI());;
+		this.store = (HDFSFileStore) EFS
+				.getStore( resource.getLocationURI( ) );;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.core.resources.IWorkspaceRunnable#run(org.eclipse.core.runtime
-	 * .IProgressMonitor)
+	 * @see org.eclipse.core.resources.IWorkspaceRunnable#run(org.eclipse.core.
+	 * runtime .IProgressMonitor)
 	 */
 	@Override
-	public IStatus run(IProgressMonitor monitor) {
+	public IStatus run( IProgressMonitor monitor )
+	{
 		IStatus status = Status.OK_STATUS;
-		if (store != null) {
-			URI uri = store.toURI();
-			try {
-				File localFile = store.getLocalFile();
-				if (logger.isDebugEnabled())
-					logger.debug("[" + uri + "]: Uploading from " + (localFile == null ? "(null)" : localFile.toString()));
-				HDFSManager.INSTANCE.startServerOperation(uri.toString());
-				if (localFile != null && localFile.exists()) {
+		if ( store != null )
+		{
+			URI uri = store.toURI( );
+			try
+			{
+				File localFile = store.getLocalFile( );
+				if ( logger.isDebugEnabled( ) )
+					logger.debug( "["
+							+ uri
+							+ "]: Uploading from "
+							+ ( localFile == null ? "(null)"
+									: localFile.toString( ) ) );
+				HDFSManager.INSTANCE.startServerOperation( uri.toString( ) );
+				if ( localFile != null && localFile.exists( ) )
+				{
 					boolean uploaded = false;
-					monitor.beginTask("Uploading " + localFile.getAbsolutePath(), (int) localFile.length());
-					FileInputStream fis = new FileInputStream(localFile);
-					OutputStream fos = store.openRemoteOutputStream(EFS.NONE, new NullProgressMonitor());
-					try {
-						if (!monitor.isCanceled()) {
+					monitor.beginTask(
+							"Uploading " + localFile.getAbsolutePath( ),
+							(int) localFile.length( ) );
+					FileInputStream fis = new FileInputStream( localFile );
+					OutputStream fos = store.openRemoteOutputStream( EFS.NONE,
+							new NullProgressMonitor( ) );
+					try
+					{
+						if ( !monitor.isCanceled( ) )
+						{
 							byte[] data = new byte[8 * 1024];
-							int read = fis.read(data);
+							int read = fis.read( data );
 							int totalRead = 0;
-							while (read > -1) {
-								if (monitor.isCanceled())
-									throw new InterruptedException();
-								fos.write(data, 0, read);
+							while ( read > -1 )
+							{
+								if ( monitor.isCanceled( ) )
+									throw new InterruptedException( );
+								fos.write( data, 0, read );
 								totalRead += read;
-								monitor.worked(read);
-								read = fis.read(data);
-								if (logger.isDebugEnabled())
-									logger.debug("Uploaded " + totalRead + " out of " + localFile.length() + " [" + (((float)totalRead*100.0f) / (float)localFile.length())
-											+ "]");
+								monitor.worked( read );
+								read = fis.read( data );
+								if ( logger.isDebugEnabled( ) )
+									logger.debug( "Uploaded "
+											+ totalRead
+											+ " out of "
+											+ localFile.length( )
+											+ " ["
+											+ ( ( (float) totalRead * 100.0f )
+													/ (float) localFile
+															.length( ) )
+											+ "]" );
 							}
 							uploaded = true;
 						}
-					} catch (InterruptedException e) {
-						throw e;
-					} finally {
-						try {
-							fis.close();
-						} catch (Throwable t) {
-						}
-						try {
-							fos.close();
-						} catch (Throwable t) {
-						}
-						if (uploaded) {
-							// Delete parent folders if empty.
-							File parentFolder = localFile.getParentFile();
-							localFile.delete();
-							deleteFoldersIfEmpty(parentFolder);
-						}
-						monitor.done();
 					}
-				} else
-					status = new Status(IStatus.ERROR, Activator.BUNDLE_ID, "Local file not found [" + localFile + "]");
-				resource.refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
-			} catch (InterruptedException e) {
-				logger.debug("Uploading file [" + uri + "] cancelled by user");
-			} catch (IOException e) {
-				status = new Status(IStatus.ERROR, Activator.BUNDLE_ID, "Error uploading file " + uri, e);
-			} catch (CoreException e) {
-				status = new Status(IStatus.ERROR, Activator.BUNDLE_ID, e.getMessage(), e);
-				;
-			} finally {
-				HDFSManager.INSTANCE.stopServerOperation(uri.toString());
+					catch ( InterruptedException e )
+					{
+						throw e;
+					}
+					finally
+					{
+						try
+						{
+							fis.close( );
+						}
+						catch ( Throwable t )
+						{
+						}
+						try
+						{
+							fos.close( );
+						}
+						catch ( Throwable t )
+						{
+						}
+						if ( uploaded )
+						{
+							// Delete parent folders if empty.
+							File parentFolder = localFile.getParentFile( );
+							localFile.delete( );
+							deleteFoldersIfEmpty( parentFolder );
+						}
+						monitor.done( );
+					}
+				}
+				else
+					status = new Status( IStatus.ERROR,
+							Activator.BUNDLE_ID,
+							"Local file not found [" + localFile + "]" );
+				resource.refreshLocal( IResource.DEPTH_ONE,
+						new NullProgressMonitor( ) );
+			}
+			catch ( InterruptedException e )
+			{
+				logger.debug(
+						"Uploading file [" + uri + "] cancelled by user" );
+			}
+			catch ( IOException e )
+			{
+				status = new Status( IStatus.ERROR,
+						Activator.BUNDLE_ID,
+						"Error uploading file " + uri,
+						e );
+			}
+			catch ( CoreException e )
+			{
+				status = new Status( IStatus.ERROR,
+						Activator.BUNDLE_ID,
+						e.getMessage( ),
+						e );;
+			}
+			finally
+			{
+				HDFSManager.INSTANCE.stopServerOperation( uri.toString( ) );
 			}
 		}
 		return status;
@@ -136,15 +190,17 @@ public class UploadFileJob extends Job {
 	 * 
 	 * @param localFile
 	 */
-	public static void deleteFoldersIfEmpty(File folder) {
+	public static void deleteFoldersIfEmpty( File folder )
+	{
 		File toDeleteFolder = folder;
-		String[] children = toDeleteFolder.list();
-		while (children == null || children.length < 1) {
+		String[] children = toDeleteFolder.list( );
+		while ( children == null || children.length < 1 )
+		{
 			// Empty folder
-			folder = toDeleteFolder.getParentFile();
-			toDeleteFolder.delete();
+			folder = toDeleteFolder.getParentFile( );
+			toDeleteFolder.delete( );
 			toDeleteFolder = folder;
-			children = folder.list();
+			children = folder.list( );
 		}
 	}
 }

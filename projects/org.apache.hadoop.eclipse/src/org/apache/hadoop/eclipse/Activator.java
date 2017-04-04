@@ -27,12 +27,14 @@ import org.osgi.framework.BundleContext;
  * 
  * @author Srimanth Gunturi
  */
-public class Activator implements BundleActivator {
+public class Activator implements BundleActivator
+{
 
 	public static final String BUNDLE_ID = "org.apache.hadoop.eclipse";
 	private static BundleContext context;
 
-	static BundleContext getContext() {
+	static BundleContext getContext( )
+	{
 		return context;
 	}
 
@@ -43,10 +45,11 @@ public class Activator implements BundleActivator {
 	 * org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext
 	 * )
 	 */
-	public void start(BundleContext bundleContext) throws Exception {
+	public void start( BundleContext bundleContext ) throws Exception
+	{
 		Activator.context = bundleContext;
-		HadoopPackageImpl.init();
-		HadoopManager.INSTANCE.getServers();
+		HadoopPackageImpl.init( );
+		HadoopManager.INSTANCE.getServers( );
 	}
 
 	/*
@@ -55,8 +58,9 @@ public class Activator implements BundleActivator {
 	 * @see
 	 * org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
-	public void stop(BundleContext bundleContext) throws Exception {
-		HadoopManager.INSTANCE.saveServers();
+	public void stop( BundleContext bundleContext ) throws Exception
+	{
+		HadoopManager.INSTANCE.saveServers( );
 		Activator.context = null;
 	}
 

@@ -16,70 +16,73 @@
  * limitations under the License.
  *  
  */
+
 package org.apache.hadoop.eclipse.internal.model;
 
 import org.eclipse.emf.ecore.EFactory;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Factory</b> for the model.
- * It provides a create method for each non-abstract class of the model.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
+ * create method for each non-abstract class of the model. <!-- end-user-doc -->
+ * 
  * @see org.apache.hadoop.eclipse.internal.model.HadoopPackage
  * @generated
  */
-public interface HadoopFactory extends EFactory {
-	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	HadoopFactory eINSTANCE = org.apache.hadoop.eclipse.internal.model.impl.HadoopFactoryImpl.init();
+public interface HadoopFactory extends EFactory
+{
 
 	/**
-	 * Returns a new object of class '<em>HDFS Server</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The singleton instance of the factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	HadoopFactory eINSTANCE = org.apache.hadoop.eclipse.internal.model.impl.HadoopFactoryImpl
+			.init( );
+
+	/**
+	 * Returns a new object of class '<em>HDFS Server</em>'. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>HDFS Server</em>'.
 	 * @generated
 	 */
-	HDFSServer createHDFSServer();
+	HDFSServer createHDFSServer( );
 
 	/**
-	 * Returns a new object of class '<em>Servers</em>'.
-	 * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Servers</em>'. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Servers</em>'.
 	 * @generated
 	 */
-	Servers createServers();
+	Servers createServers( );
 
 	/**
-	 * Returns a new object of class '<em>Zoo Keeper Server</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns a new object of class '<em>Zoo Keeper Server</em>'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Zoo Keeper Server</em>'.
 	 * @generated
 	 */
-	ZooKeeperServer createZooKeeperServer();
+	ZooKeeperServer createZooKeeperServer( );
 
 	/**
-	 * Returns a new object of class '<em>ZNode</em>'.
-	 * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>ZNode</em>'. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>ZNode</em>'.
 	 * @generated
 	 */
-	ZNode createZNode();
+	ZNode createZNode( );
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+	 * Returns the package supported by this factory. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-	HadoopPackage getHadoopPackage();
+	HadoopPackage getHadoopPackage( );
 
-} //HadoopFactory
+} // HadoopFactory

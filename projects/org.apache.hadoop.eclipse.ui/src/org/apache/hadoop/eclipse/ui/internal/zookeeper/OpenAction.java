@@ -1,3 +1,4 @@
+
 package org.apache.hadoop.eclipse.ui.internal.zookeeper;
 
 import java.io.IOException;
@@ -17,9 +18,10 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 
-public class OpenAction implements IObjectActionDelegate {
+public class OpenAction implements IObjectActionDelegate
+{
 
-	private final static Logger logger = Logger.getLogger(OpenAction.class);
+	private final static Logger logger = Logger.getLogger( OpenAction.class );
 	private ISelection selection;
 	private IWorkbenchPart targetPart;
 
@@ -29,30 +31,51 @@ public class OpenAction implements IObjectActionDelegate {
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	@Override
-	public void run(IAction action) {
-		if (this.selection != null && !this.selection.isEmpty()) {
+	public void run( IAction action )
+	{
+		if ( this.selection != null && !this.selection.isEmpty( ) )
+		{
 			IStructuredSelection sSelection = (IStructuredSelection) this.selection;
 			@SuppressWarnings("rawtypes")
-			Iterator itr = sSelection.iterator();
-			while (itr.hasNext()) {
-				Object object = itr.next();
-				if (object instanceof ZNode) {
+			Iterator itr = sSelection.iterator( );
+			while ( itr.hasNext( ) )
+			{
+				Object object = itr.next( );
+				if ( object instanceof ZNode )
+				{
 					ZNode zkn = (ZNode) object;
-					if (logger.isDebugEnabled())
-						logger.debug("Opening: " + zkn);
-					try {
-						ZooKeeperClient client = ZooKeeperManager.INSTANCE.getClient(zkn.getServer());
-						byte[] open = client.open(zkn);
-						IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-						IEditorDescriptor defaultEditor = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(zkn.getNodeName());
-						activePage.openEditor(new ZooKeeperNodeEditorInput(zkn, open), defaultEditor == null ? "org.eclipse.ui.DefaultTextEditor"
-								: defaultEditor.getId(), true);
-					} catch (CoreException e) {
-						logger.error(e.getMessage(), e);
-					} catch (IOException e) {
-						logger.error(e.getMessage(), e);
-					} catch (InterruptedException e) {
-						logger.error(e.getMessage(), e);
+					if ( logger.isDebugEnabled( ) )
+						logger.debug( "Opening: " + zkn );
+					try
+					{
+						ZooKeeperClient client = ZooKeeperManager.INSTANCE
+								.getClient( zkn.getServer( ) );
+						byte[] open = client.open( zkn );
+						IWorkbenchPage activePage = PlatformUI.getWorkbench( )
+								.getActiveWorkbenchWindow( )
+								.getActivePage( );
+						IEditorDescriptor defaultEditor = PlatformUI
+								.getWorkbench( )
+								.getEditorRegistry( )
+								.getDefaultEditor( zkn.getNodeName( ) );
+						activePage.openEditor(
+								new ZooKeeperNodeEditorInput( zkn, open ),
+								defaultEditor == null
+										? "org.eclipse.ui.DefaultTextEditor"
+										: defaultEditor.getId( ),
+								true );
+					}
+					catch ( CoreException e )
+					{
+						logger.error( e.getMessage( ), e );
+					}
+					catch ( IOException e )
+					{
+						logger.error( e.getMessage( ), e );
+					}
+					catch ( InterruptedException e )
+					{
+						logger.error( e.getMessage( ), e );
 					}
 				}
 			}
@@ -67,24 +90,29 @@ public class OpenAction implements IObjectActionDelegate {
 	 * .IAction, org.eclipse.jface.viewers.ISelection)
 	 */
 	@Override
-	public void selectionChanged(IAction action, ISelection selection) {
+	public void selectionChanged( IAction action, ISelection selection )
+	{
 		this.selection = selection;
 		boolean enabled = true;
-		if (this.selection != null && !this.selection.isEmpty()) {
+		if ( this.selection != null && !this.selection.isEmpty( ) )
+		{
 			IStructuredSelection sSelection = (IStructuredSelection) this.selection;
 			@SuppressWarnings("rawtypes")
-			Iterator itr = sSelection.iterator();
-			while (itr.hasNext()) {
-				Object object = itr.next();
+			Iterator itr = sSelection.iterator( );
+			while ( itr.hasNext( ) )
+			{
+				Object object = itr.next( );
 				enabled = false;
-				if (object instanceof ZNode) {
+				if ( object instanceof ZNode )
+				{
 					ZNode zkn = (ZNode) object;
 					enabled = zkn != null;
 				}
 			}
-		} else
+		}
+		else
 			enabled = false;
-		action.setEnabled(enabled);
+		action.setEnabled( enabled );
 	}
 
 	/*
@@ -95,7 +123,8 @@ public class OpenAction implements IObjectActionDelegate {
 	 * action.IAction, org.eclipse.ui.IWorkbenchPart)
 	 */
 	@Override
-	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+	public void setActivePart( IAction action, IWorkbenchPart targetPart )
+	{
 		this.targetPart = targetPart;
 	}
 

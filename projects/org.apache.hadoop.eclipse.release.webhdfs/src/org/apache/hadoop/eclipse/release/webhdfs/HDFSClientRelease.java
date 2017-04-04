@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.hadoop.eclipse.release.webhdfs;
 
 import java.io.IOException;
@@ -35,21 +36,25 @@ import org.apache.log4j.Logger;
  * 
  * @author Srimanth Gunturi
  */
-public class HDFSClientRelease extends org.apache.hadoop.eclipse.hdfs.HDFSClient {
+public class HDFSClientRelease extends org.apache.hadoop.eclipse.hdfs.HDFSClient
+{
 
-	private static Logger logger = Logger.getLogger(HDFSClientRelease.class);
-	
+	private static Logger logger = Logger.getLogger( HDFSClientRelease.class );
+
 	private HttpClient httpClient = null;
 
 	/**
 	 * 
 	 */
-	public HDFSClientRelease() {
+	public HDFSClientRelease( )
+	{
 	}
 
-	protected HttpClient getHttpClient() {
-		if (httpClient == null) {
-			httpClient = new DefaultHttpClient();
+	protected HttpClient getHttpClient( )
+	{
+		if ( httpClient == null )
+		{
+			httpClient = new DefaultHttpClient( );
 		}
 		return httpClient;
 	}
@@ -61,8 +66,10 @@ public class HDFSClientRelease extends org.apache.hadoop.eclipse.hdfs.HDFSClient
 	 * org.apache.hadoop.eclipse.hdfs.HDFSClient#getDefaultUserAndGroupIds()
 	 */
 	@Override
-	public List<String> getDefaultUserAndGroupIds() throws IOException, InterruptedException {
-		return new ArrayList<String>();
+	public List<String> getDefaultUserAndGroupIds( )
+			throws IOException, InterruptedException
+	{
+		return new ArrayList<String>( );
 	}
 
 	/*
@@ -73,7 +80,9 @@ public class HDFSClientRelease extends org.apache.hadoop.eclipse.hdfs.HDFSClient
 	 * .net.URI, java.lang.String)
 	 */
 	@Override
-	public ResourceInformation getResourceInformation(URI uri, String user) throws IOException, InterruptedException {
+	public ResourceInformation getResourceInformation( URI uri, String user )
+			throws IOException, InterruptedException
+	{
 		return null;
 	}
 
@@ -86,7 +95,10 @@ public class HDFSClientRelease extends org.apache.hadoop.eclipse.hdfs.HDFSClient
 	 * java.lang.String)
 	 */
 	@Override
-	public void setResourceInformation(URI uri, ResourceInformation information, String user) throws IOException, InterruptedException {
+	public void setResourceInformation( URI uri,
+			ResourceInformation information, String user )
+			throws IOException, InterruptedException
+	{
 		// TODO Auto-generated method stub
 
 	}
@@ -99,7 +111,9 @@ public class HDFSClientRelease extends org.apache.hadoop.eclipse.hdfs.HDFSClient
 	 * java.lang.String)
 	 */
 	@Override
-	public List<ResourceInformation> listResources(URI uri, String user) throws IOException, InterruptedException {
+	public List<ResourceInformation> listResources( URI uri, String user )
+			throws IOException, InterruptedException
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -112,7 +126,9 @@ public class HDFSClientRelease extends org.apache.hadoop.eclipse.hdfs.HDFSClient
 	 * java.lang.String)
 	 */
 	@Override
-	public InputStream openInputStream(URI uri, String user) throws IOException, InterruptedException {
+	public InputStream openInputStream( URI uri, String user )
+			throws IOException, InterruptedException
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -124,7 +140,9 @@ public class HDFSClientRelease extends org.apache.hadoop.eclipse.hdfs.HDFSClient
 	 * java.lang.String)
 	 */
 	@Override
-	public boolean mkdirs(URI uri, String user) throws IOException, InterruptedException {
+	public boolean mkdirs( URI uri, String user )
+			throws IOException, InterruptedException
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -137,7 +155,9 @@ public class HDFSClientRelease extends org.apache.hadoop.eclipse.hdfs.HDFSClient
 	 * java.lang.String)
 	 */
 	@Override
-	public OutputStream openOutputStream(URI uri, String user) throws IOException, InterruptedException {
+	public OutputStream openOutputStream( URI uri, String user )
+			throws IOException, InterruptedException
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -150,7 +170,9 @@ public class HDFSClientRelease extends org.apache.hadoop.eclipse.hdfs.HDFSClient
 	 * .URI, java.lang.String)
 	 */
 	@Override
-	public OutputStream createOutputStream(URI uri, String user) throws IOException, InterruptedException {
+	public OutputStream createOutputStream( URI uri, String user )
+			throws IOException, InterruptedException
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -162,7 +184,9 @@ public class HDFSClientRelease extends org.apache.hadoop.eclipse.hdfs.HDFSClient
 	 * java.lang.String)
 	 */
 	@Override
-	public void delete(URI uri, String user) throws IOException, InterruptedException {
+	public void delete( URI uri, String user )
+			throws IOException, InterruptedException
+	{
 		// TODO Auto-generated method stub
 
 	}

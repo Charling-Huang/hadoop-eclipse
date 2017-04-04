@@ -38,9 +38,12 @@ import org.eclipse.core.resources.ResourcesPlugin;
  * @author Srimanth Gunturi
  * 
  */
-public class InterruptableHDFSClient extends HDFSClient {
+public class InterruptableHDFSClient extends HDFSClient
+{
+
 	private static final int DEFAULT_TIMEOUT = 5000;
-	private static final Logger logger = Logger.getLogger(InterruptableHDFSClient.class);
+	private static final Logger logger = Logger
+			.getLogger( InterruptableHDFSClient.class );
 	// private static ExecutorService threadPool =
 	// Executors.newFixedThreadPool(10);
 
@@ -52,55 +55,73 @@ public class InterruptableHDFSClient extends HDFSClient {
 	 * @param serverURI
 	 * 
 	 */
-	public InterruptableHDFSClient(String serverURI, HDFSClient client) {
+	public InterruptableHDFSClient( String serverURI, HDFSClient client )
+	{
 		this.serverURI = serverURI;
 		this.client = client;
 	}
 
-	private static interface CustomRunnable<V> {
-		public V run() throws IOException, InterruptedException;
+	private static interface CustomRunnable<V>
+	{
+
+		public V run( ) throws IOException, InterruptedException;
 	}
 
-	protected <T> T executeWithTimeout(final CustomRunnable<T> runnable) throws IOException, InterruptedException {
-		final List<T> data = new ArrayList<T>();
+	protected <T> T executeWithTimeout( final CustomRunnable<T> runnable )
+			throws IOException, InterruptedException
+	{
+		final List<T> data = new ArrayList<T>( );
 		final IOException[] ioE = new IOException[1];
 		final InterruptedException[] inE = new InterruptedException[1];
-		Thread runnerThread = new Thread(new Runnable() {
-			public void run() {
-				try {
-					data.add(runnable.run());
-				} catch (IOException e) {
+		Thread runnerThread = new Thread( new Runnable( ) {
+
+			public void run( )
+			{
+				try
+				{
+					data.add( runnable.run( ) );
+				}
+				catch ( IOException e )
+				{
 					ioE[0] = e;
-				} catch (InterruptedException e) {
+				}
+				catch ( InterruptedException e )
+				{
 					inE[0] = e;
 				}
 			}
-		});
+		} );
 		boolean interrupted = false;
-		runnerThread.start();
-		runnerThread.join(timeoutMillis);
-		if (runnerThread.isAlive()) {
-			if(logger.isDebugEnabled())
-				logger.debug("executeWithTimeout(): Interrupting server call");
-			runnerThread.interrupt();
+		runnerThread.start( );
+		runnerThread.join( timeoutMillis );
+		if ( runnerThread.isAlive( ) )
+		{
+			if ( logger.isDebugEnabled( ) )
+				logger.debug(
+						"executeWithTimeout(): Interrupting server call" );
+			runnerThread.interrupt( );
 			interrupted = true;
 		}
-		if (ioE[0] != null)
+		if ( ioE[0] != null )
 			throw ioE[0];
-		if (inE[0] != null)
+		if ( inE[0] != null )
 			throw inE[0];
-		if (interrupted) {
+		if ( interrupted )
+		{
 			// Tell HDFS manager that the server timed out
-			if(logger.isDebugEnabled())
-				logger.debug("executeWithTimeout(): Server timed out: "+serverURI);
-			HDFSServer server = HDFSManager.INSTANCE.getServer(serverURI);
-			String projectName = HDFSManager.INSTANCE.getProjectName(server);
-			IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-			HDFSManager.disconnectProject(project);
-			throw new InterruptedException();
+			if ( logger.isDebugEnabled( ) )
+				logger.debug( "executeWithTimeout(): Server timed out: "
+						+ serverURI );
+			HDFSServer server = HDFSManager.INSTANCE.getServer( serverURI );
+			String projectName = HDFSManager.INSTANCE.getProjectName( server );
+			IProject project = ResourcesPlugin.getWorkspace( )
+					.getRoot( )
+					.getProject( projectName );
+			HDFSManager.disconnectProject( project );
+			throw new InterruptedException( );
 		}
-		if (data.size() > 0)
-			return data.get(0);
+		if ( data.size( ) > 0 )
+			return data.get( 0 );
 		return null;
 	}
 
@@ -111,13 +132,17 @@ public class InterruptableHDFSClient extends HDFSClient {
 	 * org.apache.hadoop.eclipse.hdfs.HDFSClient#getDefaultUserAndGroupIds()
 	 */
 	@Override
-	public List<String> getDefaultUserAndGroupIds() throws IOException, InterruptedException {
-		return executeWithTimeout(new CustomRunnable<List<String>>() {
+	public List<String> getDefaultUserAndGroupIds( )
+			throws IOException, InterruptedException
+	{
+		return executeWithTimeout( new CustomRunnable<List<String>>( ) {
+
 			@Override
-			public List<String> run() throws IOException, InterruptedException {
-				return client.getDefaultUserAndGroupIds();
+			public List<String> run( ) throws IOException, InterruptedException
+			{
+				return client.getDefaultUserAndGroupIds( );
 			}
-		});
+		} );
 	}
 
 	/*
@@ -128,13 +153,18 @@ public class InterruptableHDFSClient extends HDFSClient {
 	 * .net.URI, java.lang.String)
 	 */
 	@Override
-	public ResourceInformation getResourceInformation(final URI uri, final String user) throws IOException, InterruptedException {
-		return executeWithTimeout(new CustomRunnable<ResourceInformation>() {
+	public ResourceInformation getResourceInformation( final URI uri,
+			final String user ) throws IOException, InterruptedException
+	{
+		return executeWithTimeout( new CustomRunnable<ResourceInformation>( ) {
+
 			@Override
-			public ResourceInformation run() throws IOException, InterruptedException {
-				return client.getResourceInformation(uri, user);
+			public ResourceInformation run( )
+					throws IOException, InterruptedException
+			{
+				return client.getResourceInformation( uri, user );
 			}
-		});
+		} );
 	}
 
 	/*
@@ -146,14 +176,19 @@ public class InterruptableHDFSClient extends HDFSClient {
 	 * java.lang.String)
 	 */
 	@Override
-	public void setResourceInformation(final URI uri, final ResourceInformation information, final String user) throws IOException, InterruptedException {
-		executeWithTimeout(new CustomRunnable<Object>() {
+	public void setResourceInformation( final URI uri,
+			final ResourceInformation information, final String user )
+			throws IOException, InterruptedException
+	{
+		executeWithTimeout( new CustomRunnable<Object>( ) {
+
 			@Override
-			public Object run() throws IOException, InterruptedException {
-				client.setResourceInformation(uri, information, user);
+			public Object run( ) throws IOException, InterruptedException
+			{
+				client.setResourceInformation( uri, information, user );
 				return null;
 			}
-		});
+		} );
 	}
 
 	/*
@@ -164,13 +199,19 @@ public class InterruptableHDFSClient extends HDFSClient {
 	 * java.lang.String)
 	 */
 	@Override
-	public List<ResourceInformation> listResources(final URI uri, final String user) throws IOException, InterruptedException {
-		return executeWithTimeout(new CustomRunnable<List<ResourceInformation>>() {
-			@Override
-			public List<ResourceInformation> run() throws IOException, InterruptedException {
-				return client.listResources(uri, user);
-			}
-		});
+	public List<ResourceInformation> listResources( final URI uri,
+			final String user ) throws IOException, InterruptedException
+	{
+		return executeWithTimeout(
+				new CustomRunnable<List<ResourceInformation>>( ) {
+
+					@Override
+					public List<ResourceInformation> run( )
+							throws IOException, InterruptedException
+					{
+						return client.listResources( uri, user );
+					}
+				} );
 	}
 
 	/*
@@ -181,13 +222,17 @@ public class InterruptableHDFSClient extends HDFSClient {
 	 * java.lang.String)
 	 */
 	@Override
-	public InputStream openInputStream(final URI uri, final String user) throws IOException, InterruptedException {
-		return executeWithTimeout(new CustomRunnable<InputStream>() {
+	public InputStream openInputStream( final URI uri, final String user )
+			throws IOException, InterruptedException
+	{
+		return executeWithTimeout( new CustomRunnable<InputStream>( ) {
+
 			@Override
-			public InputStream run() throws IOException, InterruptedException {
-				return client.openInputStream(uri, user);
+			public InputStream run( ) throws IOException, InterruptedException
+			{
+				return client.openInputStream( uri, user );
 			}
-		});
+		} );
 	}
 
 	/*
@@ -197,13 +242,17 @@ public class InterruptableHDFSClient extends HDFSClient {
 	 * java.lang.String)
 	 */
 	@Override
-	public boolean mkdirs(final URI uri, final String user) throws IOException, InterruptedException {
-		return executeWithTimeout(new CustomRunnable<Boolean>() {
+	public boolean mkdirs( final URI uri, final String user )
+			throws IOException, InterruptedException
+	{
+		return executeWithTimeout( new CustomRunnable<Boolean>( ) {
+
 			@Override
-			public Boolean run() throws IOException, InterruptedException {
-				return client.mkdirs(uri, user);
+			public Boolean run( ) throws IOException, InterruptedException
+			{
+				return client.mkdirs( uri, user );
 			}
-		});
+		} );
 	}
 
 	/*
@@ -214,13 +263,17 @@ public class InterruptableHDFSClient extends HDFSClient {
 	 * java.lang.String)
 	 */
 	@Override
-	public OutputStream openOutputStream(final URI uri, final String user) throws IOException, InterruptedException {
-		return executeWithTimeout(new CustomRunnable<OutputStream>() {
+	public OutputStream openOutputStream( final URI uri, final String user )
+			throws IOException, InterruptedException
+	{
+		return executeWithTimeout( new CustomRunnable<OutputStream>( ) {
+
 			@Override
-			public OutputStream run() throws IOException, InterruptedException {
-				return client.openOutputStream(uri, user);
+			public OutputStream run( ) throws IOException, InterruptedException
+			{
+				return client.openOutputStream( uri, user );
 			}
-		});
+		} );
 	}
 
 	/*
@@ -231,13 +284,17 @@ public class InterruptableHDFSClient extends HDFSClient {
 	 * .URI, java.lang.String)
 	 */
 	@Override
-	public OutputStream createOutputStream(final URI uri, final String user) throws IOException, InterruptedException {
-		return executeWithTimeout(new CustomRunnable<OutputStream>() {
+	public OutputStream createOutputStream( final URI uri, final String user )
+			throws IOException, InterruptedException
+	{
+		return executeWithTimeout( new CustomRunnable<OutputStream>( ) {
+
 			@Override
-			public OutputStream run() throws IOException, InterruptedException {
-				return client.openOutputStream(uri, user);
+			public OutputStream run( ) throws IOException, InterruptedException
+			{
+				return client.openOutputStream( uri, user );
 			}
-		});
+		} );
 	}
 
 	/*
@@ -247,14 +304,18 @@ public class InterruptableHDFSClient extends HDFSClient {
 	 * java.lang.String)
 	 */
 	@Override
-	public void delete(final URI uri, final String user) throws IOException, InterruptedException {
-		executeWithTimeout(new CustomRunnable<Object>() {
+	public void delete( final URI uri, final String user )
+			throws IOException, InterruptedException
+	{
+		executeWithTimeout( new CustomRunnable<Object>( ) {
+
 			@Override
-			public Object run() throws IOException, InterruptedException {
-				client.delete(uri, user);
+			public Object run( ) throws IOException, InterruptedException
+			{
+				client.delete( uri, user );
 				return null;
 			}
-		});
+		} );
 	}
 
 }

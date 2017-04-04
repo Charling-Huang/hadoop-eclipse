@@ -1,3 +1,4 @@
+
 package org.apache.hadoop.eclipse.ui.internal.zookeeper;
 
 import java.util.Iterator;
@@ -13,9 +14,11 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.navigator.resources.ProjectExplorer;
 
-public class RefreshAction implements IObjectActionDelegate {
+public class RefreshAction implements IObjectActionDelegate
+{
 
-	private final static Logger logger = Logger.getLogger(RefreshAction.class);
+	private final static Logger logger = Logger
+			.getLogger( RefreshAction.class );
 	private ISelection selection;
 	private IWorkbenchPart targetPart;
 
@@ -25,18 +28,22 @@ public class RefreshAction implements IObjectActionDelegate {
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	@Override
-	public void run(IAction action) {
-		if (this.selection != null && !this.selection.isEmpty()) {
+	public void run( IAction action )
+	{
+		if ( this.selection != null && !this.selection.isEmpty( ) )
+		{
 			IStructuredSelection sSelection = (IStructuredSelection) this.selection;
-			if (targetPart instanceof ProjectExplorer) {
+			if ( targetPart instanceof ProjectExplorer )
+			{
 				ProjectExplorer pe = (ProjectExplorer) targetPart;
 				@SuppressWarnings("rawtypes")
-				Iterator itr = sSelection.iterator();
-				while (itr.hasNext()) {
-					Object object = itr.next();
-					if (logger.isDebugEnabled())
-						logger.debug("Refreshing: " + object);
-					pe.getCommonViewer().refresh(object, true);
+				Iterator itr = sSelection.iterator( );
+				while ( itr.hasNext( ) )
+				{
+					Object object = itr.next( );
+					if ( logger.isDebugEnabled( ) )
+						logger.debug( "Refreshing: " + object );
+					pe.getCommonViewer( ).refresh( object, true );
 				}
 			}
 		}
@@ -50,24 +57,31 @@ public class RefreshAction implements IObjectActionDelegate {
 	 * .IAction, org.eclipse.jface.viewers.ISelection)
 	 */
 	@Override
-	public void selectionChanged(IAction action, ISelection selection) {
+	public void selectionChanged( IAction action, ISelection selection )
+	{
 		this.selection = selection;
 		boolean enabled = true;
-		if (this.selection != null && !this.selection.isEmpty()) {
+		if ( this.selection != null && !this.selection.isEmpty( ) )
+		{
 			IStructuredSelection sSelection = (IStructuredSelection) this.selection;
 			@SuppressWarnings("rawtypes")
-			Iterator itr = sSelection.iterator();
-			while (itr.hasNext()) {
-				Object object = itr.next();
-				if (object instanceof ZooKeeperServer) {
+			Iterator itr = sSelection.iterator( );
+			while ( itr.hasNext( ) )
+			{
+				Object object = itr.next( );
+				if ( object instanceof ZooKeeperServer )
+				{
 					ZooKeeperServer zks = (ZooKeeperServer) object;
-					enabled = zks.getStatusCode() == ServerStatus.CONNECTED_VALUE;
-				} else
+					enabled = zks
+							.getStatusCode( ) == ServerStatus.CONNECTED_VALUE;
+				}
+				else
 					enabled = object instanceof ZNode;
 			}
-		} else
+		}
+		else
 			enabled = false;
-		action.setEnabled(enabled);
+		action.setEnabled( enabled );
 	}
 
 	/*
@@ -78,7 +92,8 @@ public class RefreshAction implements IObjectActionDelegate {
 	 * action.IAction, org.eclipse.ui.IWorkbenchPart)
 	 */
 	@Override
-	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+	public void setActivePart( IAction action, IWorkbenchPart targetPart )
+	{
 		this.targetPart = targetPart;
 	}
 

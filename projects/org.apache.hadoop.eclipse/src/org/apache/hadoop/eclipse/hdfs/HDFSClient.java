@@ -28,16 +28,19 @@ import java.util.List;
  * 
  * @author Srimanth Gunturi
  */
-public abstract class HDFSClient {
+public abstract class HDFSClient
+{
+
 	/**
 	 * Provides the default userId and groupIds.
 	 * 
 	 * @return List of ids. First ID has to be of the user. Group IDs are
 	 *         optional.
 	 * @throws IOException
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
-	public abstract List<String> getDefaultUserAndGroupIds() throws IOException, InterruptedException;
+	public abstract List<String> getDefaultUserAndGroupIds( )
+			throws IOException, InterruptedException;
 
 	/**
 	 * 
@@ -47,7 +50,8 @@ public abstract class HDFSClient {
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	public abstract ResourceInformation getResourceInformation(URI uri, String user) throws IOException, InterruptedException;
+	public abstract ResourceInformation getResourceInformation( URI uri,
+			String user ) throws IOException, InterruptedException;
 
 	/**
 	 * 
@@ -55,9 +59,11 @@ public abstract class HDFSClient {
 	 * @param information
 	 * @param user
 	 * @throws IOException
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
-	public abstract void setResourceInformation(URI uri, ResourceInformation information, String user) throws IOException, InterruptedException;
+	public abstract void setResourceInformation( URI uri,
+			ResourceInformation information, String user )
+			throws IOException, InterruptedException;
 
 	/**
 	 * 
@@ -65,17 +71,19 @@ public abstract class HDFSClient {
 	 * @param user
 	 * @return
 	 * @throws IOException
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
-	public abstract List<ResourceInformation> listResources(URI uri, String user) throws IOException, InterruptedException;
+	public abstract List<ResourceInformation> listResources( URI uri,
+			String user ) throws IOException, InterruptedException;
 
 	/**
 	 * @param uri
 	 * @param user
 	 * @return
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
-	public abstract InputStream openInputStream(URI uri, String user) throws IOException, InterruptedException;
+	public abstract InputStream openInputStream( URI uri, String user )
+			throws IOException, InterruptedException;
 
 	/**
 	 * 
@@ -83,32 +91,36 @@ public abstract class HDFSClient {
 	 * @param user
 	 * @return
 	 * @throws IOException
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
-	public abstract boolean mkdirs(URI uri, String user) throws IOException, InterruptedException;
+	public abstract boolean mkdirs( URI uri, String user )
+			throws IOException, InterruptedException;
 
 	/**
 	 * @param uri
 	 * @param user
 	 * @return
 	 * @throws IOException
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
-	public abstract OutputStream openOutputStream(URI uri, String user) throws IOException, InterruptedException;
+	public abstract OutputStream openOutputStream( URI uri, String user )
+			throws IOException, InterruptedException;
 
 	/**
 	 * @param uri
 	 * @param monitor
 	 * @return
 	 * @throws IOException
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
-	public abstract OutputStream createOutputStream(URI uri, String user) throws IOException, InterruptedException;
+	public abstract OutputStream createOutputStream( URI uri, String user )
+			throws IOException, InterruptedException;
 
 	/**
 	 * @param uri
 	 * @param user
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
-	public abstract void delete(URI uri, String user) throws IOException, InterruptedException;
+	public abstract void delete( URI uri, String user )
+			throws IOException, InterruptedException;
 }

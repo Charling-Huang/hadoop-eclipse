@@ -20,22 +20,29 @@ package org.apache.hadoop.eclipse.hdfs;
 
 import java.util.List;
 
-public class ResourceInformation {
-	public static class Permissions {
+public class ResourceInformation
+{
+
+	public static class Permissions
+	{
+
 		public boolean read = true;
 		public boolean write = true;
 		public boolean execute = true;
 
-		public Permissions() {
+		public Permissions( )
+		{
 		}
 
-		public Permissions(boolean read, boolean write, boolean execute) {
+		public Permissions( boolean read, boolean write, boolean execute )
+		{
 			this.read = read;
 			this.write = write;
 			this.execute = execute;
 		}
 
-		public void copy(Permissions copyFrom) {
+		public void copy( Permissions copyFrom )
+		{
 			this.read = copyFrom.read;
 			this.write = copyFrom.write;
 			this.execute = copyFrom.execute;
@@ -51,15 +58,16 @@ public class ResourceInformation {
 	private short replicationFactor;
 	private String owner;
 	private String group;
-	private Permissions userPermissions = new Permissions();
-	private Permissions groupPermissions = new Permissions();
-	private Permissions otherPermissions = new Permissions();
-	private Permissions effectivePermissions = new Permissions();
+	private Permissions userPermissions = new Permissions( );
+	private Permissions groupPermissions = new Permissions( );
+	private Permissions otherPermissions = new Permissions( );
+	private Permissions effectivePermissions = new Permissions( );
 
 	/**
 	 * @return the name
 	 */
-	public String getName() {
+	public String getName( )
+	{
 		return name;
 	}
 
@@ -67,14 +75,16 @@ public class ResourceInformation {
 	 * @param name
 	 *            the name to set
 	 */
-	public void setName(String name) {
+	public void setName( String name )
+	{
 		this.name = name;
 	}
 
 	/**
 	 * @return the lastModifiedTime
 	 */
-	public long getLastModifiedTime() {
+	public long getLastModifiedTime( )
+	{
 		return lastModifiedTime;
 	}
 
@@ -82,14 +92,16 @@ public class ResourceInformation {
 	 * @param lastModifiedTime
 	 *            the lastModifiedTime to set
 	 */
-	public void setLastModifiedTime(long lastModifiedTime) {
+	public void setLastModifiedTime( long lastModifiedTime )
+	{
 		this.lastModifiedTime = lastModifiedTime;
 	}
 
 	/**
 	 * @return the lastAccessedTime
 	 */
-	public long getLastAccessedTime() {
+	public long getLastAccessedTime( )
+	{
 		return lastAccessedTime;
 	}
 
@@ -97,14 +109,16 @@ public class ResourceInformation {
 	 * @param lastAccessedTime
 	 *            the lastAccessedTime to set
 	 */
-	public void setLastAccessedTime(long lastAccessedTime) {
+	public void setLastAccessedTime( long lastAccessedTime )
+	{
 		this.lastAccessedTime = lastAccessedTime;
 	}
 
 	/**
 	 * @return the isFolder
 	 */
-	public boolean isFolder() {
+	public boolean isFolder( )
+	{
 		return isFolder;
 	}
 
@@ -112,71 +126,88 @@ public class ResourceInformation {
 	 * @param isFolder
 	 *            the isFolder to set
 	 */
-	public void setFolder(boolean isFolder) {
+	public void setFolder( boolean isFolder )
+	{
 		this.isFolder = isFolder;
 	}
 
-	public void setSize(long size) {
+	public void setSize( long size )
+	{
 		this.size = size;
 	}
 
-	public long getSize() {
+	public long getSize( )
+	{
 		return size;
 	}
 
-	public void setPath(String path) {
+	public void setPath( String path )
+	{
 		this.path = path;
 	}
 
-	public String getPath() {
+	public String getPath( )
+	{
 		return path;
 	}
 
-	public void setReplicationFactor(short replicationFactor) {
+	public void setReplicationFactor( short replicationFactor )
+	{
 		this.replicationFactor = replicationFactor;
 	}
 
-	public short getReplicationFactor() {
+	public short getReplicationFactor( )
+	{
 		return replicationFactor;
 	}
 
-	public void setOwner(String owner) {
+	public void setOwner( String owner )
+	{
 		this.owner = owner;
 	}
 
-	public String getOwner() {
+	public String getOwner( )
+	{
 		return owner;
 	}
 
-	public void setGroup(String group) {
+	public void setGroup( String group )
+	{
 		this.group = group;
 	}
 
-	public String getGroup() {
+	public String getGroup( )
+	{
 		return group;
 	}
 
-	public void setUserPermissions(Permissions userPermissions) {
+	public void setUserPermissions( Permissions userPermissions )
+	{
 		this.userPermissions = userPermissions;
 	}
 
-	public Permissions getUserPermissions() {
+	public Permissions getUserPermissions( )
+	{
 		return userPermissions;
 	}
 
-	public void setGroupPermissions(Permissions groupPermissions) {
+	public void setGroupPermissions( Permissions groupPermissions )
+	{
 		this.groupPermissions = groupPermissions;
 	}
 
-	public Permissions getGroupPermissions() {
+	public Permissions getGroupPermissions( )
+	{
 		return groupPermissions;
 	}
 
-	public void setOtherPermissions(Permissions otherPermissions) {
+	public void setOtherPermissions( Permissions otherPermissions )
+	{
 		this.otherPermissions = otherPermissions;
 	}
 
-	public Permissions getOtherPermissions() {
+	public Permissions getOtherPermissions( )
+	{
 		return otherPermissions;
 	}
 
@@ -185,7 +216,8 @@ public class ResourceInformation {
 	 * 
 	 * @return {@link Permissions}
 	 */
-	public Permissions getEffectivePermissions() {
+	public Permissions getEffectivePermissions( )
+	{
 		return effectivePermissions;
 	}
 
@@ -196,17 +228,24 @@ public class ResourceInformation {
 	 * @param user
 	 * @param groups
 	 */
-	public void updateEffectivePermissions(String user, List<String> groups) {
-		if (user != null) {
-			if (getOwner().equals(user)) {
+	public void updateEffectivePermissions( String user, List<String> groups )
+	{
+		if ( user != null )
+		{
+			if ( getOwner( ).equals( user ) )
+			{
 				// Owner permissions apply
-				this.effectivePermissions.copy(this.userPermissions);
-			} else if (groups!=null && groups.contains(getGroup())) {
+				this.effectivePermissions.copy( this.userPermissions );
+			}
+			else if ( groups != null && groups.contains( getGroup( ) ) )
+			{
 				// Group permissions apply
-				this.effectivePermissions.copy(this.groupPermissions);
-			} else {
+				this.effectivePermissions.copy( this.groupPermissions );
+			}
+			else
+			{
 				// Other permissions apply
-				this.effectivePermissions.copy(this.otherPermissions);
+				this.effectivePermissions.copy( this.otherPermissions );
 			}
 		}
 	}

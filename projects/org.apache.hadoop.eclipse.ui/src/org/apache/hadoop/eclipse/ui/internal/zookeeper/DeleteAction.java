@@ -1,3 +1,4 @@
+
 package org.apache.hadoop.eclipse.ui.internal.zookeeper;
 
 import java.io.IOException;
@@ -16,9 +17,10 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.navigator.resources.ProjectExplorer;
 
-public class DeleteAction implements IObjectActionDelegate {
+public class DeleteAction implements IObjectActionDelegate
+{
 
-	private final static Logger logger = Logger.getLogger(DeleteAction.class);
+	private final static Logger logger = Logger.getLogger( DeleteAction.class );
 	private ISelection selection;
 	private IWorkbenchPart targetPart;
 
@@ -28,45 +30,66 @@ public class DeleteAction implements IObjectActionDelegate {
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	@Override
-	public void run(IAction action) {
-		if (this.selection != null && !this.selection.isEmpty()) {
+	public void run( IAction action )
+	{
+		if ( this.selection != null && !this.selection.isEmpty( ) )
+		{
 			IStructuredSelection sSelection = (IStructuredSelection) this.selection;
 			@SuppressWarnings("rawtypes")
-			Iterator itr = sSelection.iterator();
-			while (itr.hasNext()) {
-				Object object = itr.next();
-				if (object instanceof ZooKeeperServer) {
+			Iterator itr = sSelection.iterator( );
+			while ( itr.hasNext( ) )
+			{
+				Object object = itr.next( );
+				if ( object instanceof ZooKeeperServer )
+				{
 					ZooKeeperServer r = (ZooKeeperServer) object;
-					if (logger.isDebugEnabled())
-						logger.debug("Deleting: " + r);
-					try {
-						ZooKeeperManager.INSTANCE.disconnect(r);
-					} finally {
-						try {
-							ZooKeeperManager.INSTANCE.delete(r);
-						} catch (CoreException e) {
-							logger.error(e.getMessage());
+					if ( logger.isDebugEnabled( ) )
+						logger.debug( "Deleting: " + r );
+					try
+					{
+						ZooKeeperManager.INSTANCE.disconnect( r );
+					}
+					finally
+					{
+						try
+						{
+							ZooKeeperManager.INSTANCE.delete( r );
+						}
+						catch ( CoreException e )
+						{
+							logger.error( e.getMessage( ) );
 						}
 					}
-					if (logger.isDebugEnabled())
-						logger.debug("Deleted: " + r);
-					if (targetPart instanceof ProjectExplorer) {
+					if ( logger.isDebugEnabled( ) )
+						logger.debug( "Deleted: " + r );
+					if ( targetPart instanceof ProjectExplorer )
+					{
 						ProjectExplorer pe = (ProjectExplorer) targetPart;
-						pe.getCommonViewer().refresh();
+						pe.getCommonViewer( ).refresh( );
 					}
-				} else if (object instanceof ZNode) {
+				}
+				else if ( object instanceof ZNode )
+				{
 					ZNode zkn = (ZNode) object;
-					if (logger.isDebugEnabled())
-						logger.debug("Deleting: " + zkn);
-					try {
-						ZooKeeperClient client = ZooKeeperManager.INSTANCE.getClient(zkn.getServer());
-						client.delete(zkn);
-					} catch (CoreException e) {
-						logger.error(e.getMessage(), e);
-					} catch (IOException e) {
-						logger.error(e.getMessage(), e);
-					} catch (InterruptedException e) {
-						logger.error(e.getMessage(), e);
+					if ( logger.isDebugEnabled( ) )
+						logger.debug( "Deleting: " + zkn );
+					try
+					{
+						ZooKeeperClient client = ZooKeeperManager.INSTANCE
+								.getClient( zkn.getServer( ) );
+						client.delete( zkn );
+					}
+					catch ( CoreException e )
+					{
+						logger.error( e.getMessage( ), e );
+					}
+					catch ( IOException e )
+					{
+						logger.error( e.getMessage( ), e );
+					}
+					catch ( InterruptedException e )
+					{
+						logger.error( e.getMessage( ), e );
 					}
 				}
 			}
@@ -81,27 +104,34 @@ public class DeleteAction implements IObjectActionDelegate {
 	 * .IAction, org.eclipse.jface.viewers.ISelection)
 	 */
 	@Override
-	public void selectionChanged(IAction action, ISelection selection) {
+	public void selectionChanged( IAction action, ISelection selection )
+	{
 		this.selection = selection;
 		boolean enabled = true;
-		if (this.selection != null && !this.selection.isEmpty()) {
+		if ( this.selection != null && !this.selection.isEmpty( ) )
+		{
 			IStructuredSelection sSelection = (IStructuredSelection) this.selection;
 			@SuppressWarnings("rawtypes")
-			Iterator itr = sSelection.iterator();
-			while (itr.hasNext()) {
-				Object object = itr.next();
+			Iterator itr = sSelection.iterator( );
+			while ( itr.hasNext( ) )
+			{
+				Object object = itr.next( );
 				enabled = false;
-				if (object instanceof ZooKeeperServer) {
+				if ( object instanceof ZooKeeperServer )
+				{
 					ZooKeeperServer server = (ZooKeeperServer) object;
 					enabled = server != null;
-				} else if (object instanceof ZNode) {
+				}
+				else if ( object instanceof ZNode )
+				{
 					ZNode zkn = (ZNode) object;
 					enabled = zkn != null;
 				}
 			}
-		} else
+		}
+		else
 			enabled = false;
-		action.setEnabled(enabled);
+		action.setEnabled( enabled );
 	}
 
 	/*
@@ -112,7 +142,8 @@ public class DeleteAction implements IObjectActionDelegate {
 	 * action.IAction, org.eclipse.ui.IWorkbenchPart)
 	 */
 	@Override
-	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+	public void setActivePart( IAction action, IWorkbenchPart targetPart )
+	{
 		this.targetPart = targetPart;
 	}
 

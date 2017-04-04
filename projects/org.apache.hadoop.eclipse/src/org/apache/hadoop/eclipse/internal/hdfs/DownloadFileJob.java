@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.hadoop.eclipse.internal.hdfs;
 
 import java.io.File;
@@ -40,96 +41,153 @@ import org.eclipse.core.runtime.jobs.Job;
  * @author Srimanth Gunturi
  * 
  */
-public class DownloadFileJob extends Job {
+public class DownloadFileJob extends Job
+{
 
-	private final static Logger logger = Logger.getLogger(DownloadFileJob.class);
+	private final static Logger logger = Logger
+			.getLogger( DownloadFileJob.class );
 	private final HDFSFileStore store;
 	private final IResource resource;
 
 	/**
-	 * @throws CoreException 
+	 * @throws CoreException
 	 * 
 	 */
-	public DownloadFileJob(IResource resource) throws CoreException {
-		super("Downloading " + resource.getLocationURI().toString());
+	public DownloadFileJob( IResource resource ) throws CoreException
+	{
+		super( "Downloading " + resource.getLocationURI( ).toString( ) );
 		this.resource = resource;
-		this.store = (HDFSFileStore) EFS.getStore(resource.getLocationURI());
+		this.store = (HDFSFileStore) EFS.getStore( resource.getLocationURI( ) );
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.core.resources.IWorkspaceRunnable#run(org.eclipse.core.runtime
-	 * .IProgressMonitor)
+	 * @see org.eclipse.core.resources.IWorkspaceRunnable#run(org.eclipse.core.
+	 * runtime .IProgressMonitor)
 	 */
 	@Override
-	public IStatus run(IProgressMonitor monitor) {
+	public IStatus run( IProgressMonitor monitor )
+	{
 		IStatus status = Status.OK_STATUS;
-		if (store != null) {
-			URI uri = store.toURI();
-			try {
-				File localFile = store.getLocalFile();
-				if (logger.isDebugEnabled())
-					logger.debug("[" + uri + "]: Downloading to " + (localFile == null ? "(null)" : localFile.toString()));
-				HDFSManager.INSTANCE.startServerOperation(uri.toString());
-				final IFileInfo serverInfo = store.fetchInfo();
-				if (serverInfo.exists()) {
-					monitor.beginTask("Downloading " + uri.toString(), (int) serverInfo.getLength());
-					if (!localFile.exists()) {
-						localFile.getParentFile().mkdirs();
-						localFile.createNewFile();
+		if ( store != null )
+		{
+			URI uri = store.toURI( );
+			try
+			{
+				File localFile = store.getLocalFile( );
+				if ( logger.isDebugEnabled( ) )
+					logger.debug( "["
+							+ uri
+							+ "]: Downloading to "
+							+ ( localFile == null ? "(null)"
+									: localFile.toString( ) ) );
+				HDFSManager.INSTANCE.startServerOperation( uri.toString( ) );
+				final IFileInfo serverInfo = store.fetchInfo( );
+				if ( serverInfo.exists( ) )
+				{
+					monitor.beginTask( "Downloading " + uri.toString( ),
+							(int) serverInfo.getLength( ) );
+					if ( !localFile.exists( ) )
+					{
+						localFile.getParentFile( ).mkdirs( );
+						localFile.createNewFile( );
 					}
-					InputStream openInputStream = store.openRemoteInputStream(EFS.NONE, new NullProgressMonitor());
-					FileOutputStream fos = new FileOutputStream(localFile);
-					try {
-						if (!monitor.isCanceled()) {
+					InputStream openInputStream = store.openRemoteInputStream(
+							EFS.NONE, new NullProgressMonitor( ) );
+					FileOutputStream fos = new FileOutputStream( localFile );
+					try
+					{
+						if ( !monitor.isCanceled( ) )
+						{
 							byte[] data = new byte[8 * 1024];
 							int totalRead = 0;
-							int read = openInputStream.read(data);
-							while (read > -1) {
-								if (monitor.isCanceled())
-									throw new InterruptedException();
-								fos.write(data, 0, read);
+							int read = openInputStream.read( data );
+							while ( read > -1 )
+							{
+								if ( monitor.isCanceled( ) )
+									throw new InterruptedException( );
+								fos.write( data, 0, read );
 								totalRead += read;
-								monitor.worked(read);
-								read = openInputStream.read(data);
-								if (logger.isDebugEnabled())
-									logger.debug("Downloaded " + totalRead + " out of " + serverInfo.getLength() + " [" + (((float)totalRead*100.0f) / (float)serverInfo.getLength())
-											+ "]");
+								monitor.worked( read );
+								read = openInputStream.read( data );
+								if ( logger.isDebugEnabled( ) )
+									logger.debug( "Downloaded "
+											+ totalRead
+											+ " out of "
+											+ serverInfo.getLength( )
+											+ " ["
+											+ ( ( (float) totalRead * 100.0f )
+													/ (float) serverInfo
+															.getLength( ) )
+											+ "]" );
 							}
 						}
-					} catch (IOException e) {
-						throw e;
-					} catch (InterruptedException e) {
-						throw e;
-					} finally {
-						try {
-							openInputStream.close();
-						} catch (Throwable t) {
-						}
-						try {
-							fos.close();
-						} catch (Throwable t) {
-						}
-						monitor.done();
 					}
-				} else
-					throw new CoreException(new Status(IStatus.ERROR, Activator.BUNDLE_ID, "Server resource not found [" + uri + "]"));
-				resource.refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
-			} catch (InterruptedException e) {
-				logger.warn(e);
-			} catch (CoreException e) {
-				logger.warn(e);
-				status = e.getStatus();
-			} catch (FileNotFoundException e) {
-				logger.warn(e);
-				status = new Status(IStatus.ERROR, Activator.BUNDLE_ID, "Local file not found for writing server content [" + uri + "]", e);
-			} catch (IOException e) {
-				logger.warn(e);
-				status = new Status(IStatus.ERROR, Activator.BUNDLE_ID, "Error downloading file content [" + uri + "]", e);
-			} finally {
-				HDFSManager.INSTANCE.stopServerOperation(uri.toString());
+					catch ( IOException e )
+					{
+						throw e;
+					}
+					catch ( InterruptedException e )
+					{
+						throw e;
+					}
+					finally
+					{
+						try
+						{
+							openInputStream.close( );
+						}
+						catch ( Throwable t )
+						{
+						}
+						try
+						{
+							fos.close( );
+						}
+						catch ( Throwable t )
+						{
+						}
+						monitor.done( );
+					}
+				}
+				else
+					throw new CoreException( new Status( IStatus.ERROR,
+							Activator.BUNDLE_ID,
+							"Server resource not found [" + uri + "]" ) );
+				resource.refreshLocal( IResource.DEPTH_ONE,
+						new NullProgressMonitor( ) );
+			}
+			catch ( InterruptedException e )
+			{
+				logger.warn( e );
+			}
+			catch ( CoreException e )
+			{
+				logger.warn( e );
+				status = e.getStatus( );
+			}
+			catch ( FileNotFoundException e )
+			{
+				logger.warn( e );
+				status = new Status( IStatus.ERROR,
+						Activator.BUNDLE_ID,
+						"Local file not found for writing server content ["
+								+ uri
+								+ "]",
+						e );
+			}
+			catch ( IOException e )
+			{
+				logger.warn( e );
+				status = new Status( IStatus.ERROR,
+						Activator.BUNDLE_ID,
+						"Error downloading file content [" + uri + "]",
+						e );
+			}
+			finally
+			{
+				HDFSManager.INSTANCE.stopServerOperation( uri.toString( ) );
 			}
 		}
 		return status;

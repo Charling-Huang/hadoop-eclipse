@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.hadoop.eclipse.ui.internal.zookeeper;
 
 import java.io.ByteArrayInputStream;
@@ -29,14 +30,16 @@ import org.eclipse.core.runtime.Path;
  * @author Srimanth Gunturi
  * 
  */
-public class ZooKeeperNodeStorage implements IStorage {
+public class ZooKeeperNodeStorage implements IStorage
+{
 
 	private final ZooKeeperNodeEditorInput editorInput;
 
 	/**
 	 * 
 	 */
-	public ZooKeeperNodeStorage(ZooKeeperNodeEditorInput editorInput) {
+	public ZooKeeperNodeStorage( ZooKeeperNodeEditorInput editorInput )
+	{
 		this.editorInput = editorInput;
 	}
 
@@ -46,7 +49,8 @@ public class ZooKeeperNodeStorage implements IStorage {
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
 	 */
 	@Override
-	public Object getAdapter(Class adapter) {
+	public Object getAdapter( Class adapter )
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -57,8 +61,9 @@ public class ZooKeeperNodeStorage implements IStorage {
 	 * @see org.eclipse.core.resources.IStorage#getContents()
 	 */
 	@Override
-	public InputStream getContents() throws CoreException {
-		return new ByteArrayInputStream(editorInput.getNodeData());
+	public InputStream getContents( ) throws CoreException
+	{
+		return new ByteArrayInputStream( editorInput.getNodeData( ) );
 	}
 
 	/*
@@ -67,8 +72,9 @@ public class ZooKeeperNodeStorage implements IStorage {
 	 * @see org.eclipse.core.resources.IStorage#getFullPath()
 	 */
 	@Override
-	public IPath getFullPath() {
-		return new Path(editorInput.getNode().getPath());
+	public IPath getFullPath( )
+	{
+		return new Path( editorInput.getNode( ).getPath( ) );
 	}
 
 	/*
@@ -77,8 +83,9 @@ public class ZooKeeperNodeStorage implements IStorage {
 	 * @see org.eclipse.core.resources.IStorage#getName()
 	 */
 	@Override
-	public String getName() {
-		return editorInput.getName();
+	public String getName( )
+	{
+		return editorInput.getName( );
 	}
 
 	/*
@@ -87,7 +94,8 @@ public class ZooKeeperNodeStorage implements IStorage {
 	 * @see org.eclipse.core.resources.IStorage#isReadOnly()
 	 */
 	@Override
-	public boolean isReadOnly() {
+	public boolean isReadOnly( )
+	{
 		return false;
 	}
 
